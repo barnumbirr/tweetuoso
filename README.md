@@ -27,7 +27,7 @@ Not available at this time, but I'm working on it.
 
 ### From source
 
-Get the latest version (form GitHub):
+Get the latest version (from GitHub):
  
     $ wget -O /tmp/tweetuoso-last.tgz https://github.com/c0ding/tweetuoso/tarball/master
     $ sudo apt-get update
