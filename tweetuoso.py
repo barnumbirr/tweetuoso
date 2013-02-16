@@ -181,12 +181,13 @@ def main():
         mentions()
       elif x == '3':
         status = raw_input("\033[31m>> \033[0;0mNew Tweet: ").strip()
-        match = re.match("(?P<url>https?://[^\s]+)", status)
-        if match is None:
+        url = re.search("(?P<url>https?://[^\s]+)", status)
+        if url is not None:
          try:
-              short_url = "http://is.gd/create.php?format=simple&url=" + str(match)
+              long_url = url.group("url")
+              short_url = "http://is.gd/create.php?format=simple&url=" + long_url
               r = requests.get(short_url)
-              status = status.replace(str(match), r.text)
+              status = status.replace(long_url, r.text)
               update(status)
          except requests.HTTPError:
            print "\033[31m>> \033[0;0mError: Unable to shorten URL."
