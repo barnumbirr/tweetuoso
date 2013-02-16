@@ -5,7 +5,6 @@
 import os
 import re
 import sys
-from datetime import date, datetime, time, timedelta
 import requests
 import tweepy as tw
 
@@ -65,7 +64,7 @@ def timeline():
     api = auth_()
     tl = api.home_timeline()
     for tweet in tl:
-     print "   @"+ "\033[31m"+ tweet.user.screen_name.encode('utf-8') + "\033[0;0m" + tweet.created_at.strftime(' \033[37mtweeted on %d/%m/%Y at %H:%M\033[0;0m\n') + "      " + tweet.text.encode('utf-8')
+	print "   @"+ "\033[31m"+ tweet.user.screen_name.encode('utf-8') + "\033[0;0m" + tweet.created_at.strftime(' \033[37mtweeted on %d/%m/%Y at %H:%M\033[0;0m\n') + "      " + tweet.text.encode('utf-8')
   except KeyboardInterrupt:
     print "\nAborted"
   except tw.TweepError:
@@ -192,7 +191,7 @@ def main():
          except requests.HTTPError:
            print "\033[31m>> \033[0;0mError: Unable to shorten URL."
       elif x == '4':
-        d = raw_input('\033[31m>> \033[0;0mTweet to delete: ')
+        d = raw_input('\033[31m>> \033[0;0mTweet ID: ')
         destroy(d)
       elif x == '5':
         me()
