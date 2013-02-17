@@ -15,11 +15,11 @@ For now, it allows you to:
 * follow or unfollow people
 * search for 'query'
 
-More is still to come. So feel free to report issues or to contribute.
+More is still to come...
 
 ## Console screenshot (80x24):
 
-![screenshot](https://raw.github.com/c0ding/tweetuoso/master/tweetuoso/screenshot.png)
+![screenshot](https://raw.github.com/c0ding/tweetuoso/master/tweetuoso/doc/screenshot.png)
 
 ## Installation
 
@@ -45,8 +45,52 @@ Get the latest version (from GitHub):
 
 ## Configuration
 
-Work in progress.
+### Step 1: Register a new client app with Twitter
+
+Navigate to https://dev.twitter.com/apps/new. You might have to log in to the Twitter Developers site first, if you’re not already.
+Fill in the registration fields as follows:
+
+![screenshot](https://raw.github.com/c0ding/tweetuoso/master/tweetuoso/doc/registration.png)
+
+### Step 2: OAuth settings
+
+Next, the app needs to be authorized to connect to your account so it can send tweets under your name. Paste the Consumer Key and Consumer Secret into tweetuoso.py. Then save and run the client on your system.
+
+![screenshot](https://raw.github.com/c0ding/tweetuoso/master/tweetuoso/doc/keys.png)
+
+You should see a prompt like this:
+
+    $ Please visit this url to get the token: <url>
+    $ PIN:
+
+Open that URL in your browser. You should see the standard OAuth Twitter connection screen:
+
+Click Allow.
+
+Twitter will then provide you with a PIN code that authenticates the connection between the client app and your Twitter account.
+
+Enter this PIN into the Tweetuoso:
+
+    $ PIN: 2781961
+
+The script will then print out another key/secret pair: (The values will be different each time!)
+
+    $ ACCESS_KEY = '124242RCyi3g0cZ4r5BWL047rsh0S0yv5VxAGwTKCOsHAb'
+    $ ACCESS_SECRET = 'kaTXiC489qo8y6haTBSlwOqR1syG83tzPG2StdQ'
+
+Keep this information on your screen because we’ll need it in the next step.
+
+### Step 3: Paste the keys into Tweetuoso:
+
+Paste the Access Token and Access Secret from the end of step 2 into this script, filling the access_token and access_secret constants.
+
+Finally, we’re all set up. Our command line app is registered as a Twitter client and the app is connected to our Twitter user account
 
 ## Running
 
-Work in progress.
+Simply execute tweetuoso.py and enjoy!
+
+Personally I like to add Tweetuoso to my PATH=${PATH}: so that I can execute it whenever I want without needing to navigate to the right directory.
+
+
+So feel free to report issues or to contribute.
