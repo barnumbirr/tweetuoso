@@ -1,5 +1,5 @@
 =============================
-Tweetuoso ![screenshot](https://raw.github.com/c0ding/tweetuoso/master/tweetuoso/doc/tweetuoso.banner.png)
+![screenshot](https://raw.github.com/c0ding/tweetuoso/master/tweetuoso/doc/tweetuoso.banner.png)
 =============================
 
 ## Description
