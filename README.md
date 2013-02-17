@@ -17,13 +17,10 @@ Console screenshot (80x24):
 Pre-requisites:
 
 * Python 2.6+ (not tested with Python 3+)
-* tweepy (for installation via Pypi and setup.py)
-* python-setuptools (for installation via Pypi)
+* tweepy (for a Twitter API connection, obviously)
+* python-setuptools 
 * Working API keys from Twitter
 
-### From PyPi (easy and cross platform way)
-
-Not available at this time, but I'm working on it.
 
 ### From source
 
