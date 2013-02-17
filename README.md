@@ -34,8 +34,8 @@ Get the latest version (from GitHub):
     $ sudo apt-get install python-setuptools python-tweepy
     $ cd /tmp
 	$ tar zxvf tweetuoso-last.tgz
-	$ cd c0ding-tweetuoso-*
-	$ chmod 777 tweetuoso.py
+	$ cd c0ding-tweetuoso-*/tweetuoso
+	$ chmod 777 core.py
 
 ## Configuration
 
