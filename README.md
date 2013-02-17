@@ -41,7 +41,7 @@ Get the latest version (from GitHub):
     $ cd /tmp
 	$ tar zxvf tweetuoso-last.tgz
 	$ cd c0ding-tweetuoso-*/tweetuoso
-	$ chmod 777 core.py
+	$ chmod 777 tweetuoso.py
 
 ## Configuration
 
