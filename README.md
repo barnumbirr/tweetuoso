@@ -4,9 +4,18 @@ Tweetuoso
 
 ## Description
 
-Tweetuoso is a very light Twitter Command-line client.
+Tweetuoso is a very light Twitter Command-line client developed in Python. The main goal of Tweetuoso is to become a fully-fledged twitter client with the same functions as the online version.
 
-It is developed in Python.
+For now, it allows you to:
+
+* check your timeline
+* post tweets
+* show tweets that mentionned you
+* get your profile details
+* follow or unfollow people
+* search for <query>
+
+More is still to come. So feel free to report issues or to contribute.
 
 ## Console screenshot (80x24):
 
@@ -41,6 +50,3 @@ Work in progress.
 ## Running
 
 Work in progress.
-
-
-Feel free to contribute !
