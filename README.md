@@ -92,5 +92,25 @@ Simply execute tweetuoso.py and enjoy!
 
 Personally I like to add Tweetuoso to my PATH=${PATH}: so that I can execute it whenever I want without needing to navigate to the right directory.
 
+## License
 
-So feel free to report issues or to contribute.
+```
+           DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+                   Version 2, December 2004
+ 
+Copyright (C) 2004 c0ding
+ 
+Everyone is permitted to copy and distribute verbatim or modified
+copies of this license document, and changing it is allowed as long
+as the name is changed.
+ 
+           DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+  TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+ 
+ 0. You just DO WHAT THE FUCK YOU WANT TO.
+
+
+```
+
+
+Feel free to report issues or to contribute.
