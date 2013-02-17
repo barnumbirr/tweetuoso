@@ -8,9 +8,9 @@ Tweetuoso is a very light Twitter Command-line client.
 
 It is developed in Python.
 
-Console (80x24) screenshot:
+Console screenshot (80x24):
 
-![screenshot](https://github.com/c0ding/tweetuoso/raw/master/screenshot.png)
+![screenshot](https://raw.github.com/c0ding/tweetuoso/master/tweetuoso/screenshot.png)
 
 ## Installation
 
