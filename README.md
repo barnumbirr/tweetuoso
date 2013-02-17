@@ -13,7 +13,7 @@ For now, it allows you to:
 * show tweets that mentionned you
 * get your profile details
 * follow or unfollow people
-* search for <query>
+* search for 'query'
 
 More is still to come. So feel free to report issues or to contribute.
 
