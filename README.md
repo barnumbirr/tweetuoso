@@ -47,7 +47,7 @@ Get the latest version (from GitHub):
 
 ### Step 1: Register a new client app with Twitter
 
-Navigate to https://dev.twitter.com/apps/new. You might have to log in to the Twitter Developers site first, if you’re not already.
+Navigate to https://dev.twitter.com/apps/new. You might have to log into the Twitter Developers site first, if you’re not already.
 Fill in the registration fields as follows:
 
 ![screenshot](https://raw.github.com/c0ding/tweetuoso/master/tweetuoso/doc/registration.png)
@@ -63,17 +63,15 @@ You should see a prompt like this:
     $ Please visit this url to get the token: <url>
     $ PIN:
 
-Open that URL in your browser. You should see the standard OAuth Twitter connection screen:
-
-Click Allow.
+Open that URL in your browser. You should see the standard OAuth Twitter connection screen. Click Allow.
 
 Twitter will then provide you with a PIN code that authenticates the connection between the client app and your Twitter account.
 
-Enter this PIN into the Tweetuoso:
+Enter this PIN into Tweetuoso:
 
     $ PIN: 2781961
 
-The script will then print out another key/secret pair: (The values will be different each time!)
+Tweetuoso will then print out another key/secret pair: (The values will be different each time!)
 
     $ ACCESS_KEY = '124242RCyi3g0cZ4r5BWL047rsh0S0yv5VxAGwTKCOsHAb'
     $ ACCESS_SECRET = 'kaTXiC489qo8y6haTBSlwOqR1syG83tzPG2StdQ'
@@ -82,7 +80,7 @@ Keep this information on your screen because we’ll need it in the next step.
 
 ### Step 3: Paste the keys into Tweetuoso:
 
-Paste the Access Token and Access Secret from the end of step 2 into this script, filling the access_token and access_secret constants.
+Paste the Access Token and Access Secret from the end of step 2 into the tweetuoso.py file, filling the access_token and access_secret constants.
 
 Finally, we’re all set up. Our command line app is registered as a Twitter client and the app is connected to our Twitter user account
 
@@ -113,4 +111,4 @@ as the name is changed.
 ```
 
 
-Feel free to report issues or to contribute.
+Feel free to report issues or to contribute
