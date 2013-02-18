@@ -4,7 +4,7 @@
 
 ## Description
 
-Tweetuoso is a very light Twitter Command-line client developed in Python. The main goal of Tweetuoso is to become a fully-fledged twitter client with the same functions as the online version.
+**Tweetuoso** is a very light Twitter Command-line client developed in Python. The main goal of Tweetuoso is to become a fully-fledged twitter client with the same functions as the online version.
 
 For now, it allows you to:
 
@@ -55,7 +55,7 @@ Fill in the registration fields as follows:
 
 ### Step 2: OAuth settings
 
-Next, the app needs to be authorized to connect to your account so it can send tweets under your name. Paste the Consumer Key and Consumer Secret into tweetuoso.py. Then save and run Tweetuoso on your system.
+Next, the app needs to be authorized to connect to your account so it can send tweets under your name. Paste the **Consumer Key** and **Consumer Secret** into tweetuoso.py. Then save and run **Tweetuoso** on your system.
 
 ![screenshot](https://raw.github.com/c0ding/tweetuoso/master/tweetuoso/doc/keys.png)
 
@@ -81,7 +81,7 @@ Keep this information on your screen because we’ll need it in the next step.
 
 ### Step 3: Paste the keys into Tweetuoso
 
-Paste the Access Token and Access Secret from the end of step 2 into the tweetuoso.py file, filling the access_token and access_secret constants.
+Paste the **Access Token** and **Access Secret** from the end of step 2 into the tweetuoso.py file, filling the **access_token** and **access_secret** constants.
 
 ### Step 4: Application Type
 
@@ -95,7 +95,7 @@ Finally, we’re all set up. Our command line app is registered as a Twitter cli
 
 Simply execute tweetuoso.py and enjoy!
 
-Personally I like to add Tweetuoso to my PATH=${PATH}: so that I can execute it whenever I want without needing to navigate to the right directory.
+Personally I like to add Tweetuoso to my PATH=${PATH} so that I can execute it whenever I want without needing to navigate to the right directory.
 
 ## License
 
@@ -117,6 +117,4 @@ as the name is changed.
 
 ```
 
-
-
-Feel free to report issues or to contribute
+**Feel free to report issues or to contribute**
