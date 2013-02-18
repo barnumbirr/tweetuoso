@@ -70,14 +70,14 @@ $ sudo apt-get install python-setuptools python-tweepy
 $ cd /tmp
 $ tar zxvf tweetuoso-last.tgz
 $ cd c0ding-tweetuoso-*/tweetuoso
-$ chmod 777 core.py
+$ chmod 777 tweetuoso.py
 </code></pre>
 
 <h2>Configuration</h2>
 
 <h3>Step 1: Register a new client app with Twitter</h3>
 
-<p>Navigate to <a href="https://dev.twitter.com/apps/new">https://dev.twitter.com/apps/new</a>. You might have to log in to the Twitter Developers site first, if you’re not already.
+<p>Navigate to <a href="https://dev.twitter.com/apps/new">https://dev.twitter.com/apps/new</a>. You might have to log into the Twitter Developers site first, if you’re not already.
 Fill in the registration fields as follows:</p>
 
 <p><img src="https://raw.github.com/c0ding/tweetuoso/master/tweetuoso/doc/registration.png" alt="screenshot"></p>
@@ -94,18 +94,16 @@ Fill in the registration fields as follows:</p>
 $ PIN:
 </code></pre>
 
-<p>Open that URL in your browser. You should see the standard OAuth Twitter connection screen:</p>
-
-<p>Click Allow.</p>
+<p>Open that URL in your browser. You should see the standard OAuth Twitter connection screen. Click Allow.</p>
 
 <p>Twitter will then provide you with a PIN code that authenticates the connection between the client app and your Twitter account.</p>
 
-<p>Enter this PIN into the Tweetuoso:</p>
+<p>Enter this PIN into Tweetuoso:</p>
 
 <pre><code>$ PIN: 2781961
 </code></pre>
 
-<p>The script will then print out another key/secret pair: (The values will be different each time!)</p>
+<p>Tweetuoso will then print out another key/secret pair: (The values will be different each time!)</p>
 
 <pre><code>$ ACCESS_KEY = '124242RCyi3g0cZ4r5BWL047rsh0S0yv5VxAGwTKCOsHAb'
 $ ACCESS_SECRET = 'kaTXiC489qo8y6haTBSlwOqR1syG83tzPG2StdQ'
@@ -115,7 +113,7 @@ $ ACCESS_SECRET = 'kaTXiC489qo8y6haTBSlwOqR1syG83tzPG2StdQ'
 
 <h3>Step 3: Paste the keys into Tweetuoso:</h3>
 
-<p>Paste the Access Token and Access Secret from the end of step 2 into this script, filling the access_token and access_secret constants.</p>
+<p>Paste the Access Token and Access Secret from the end of step 2 into the tweetuoso.py file, filling the access_token and access_secret constants.</p>
 
 <p>Finally, we’re all set up. Our command line app is registered as a Twitter client and the app is connected to our Twitter user account</p>
 
@@ -144,7 +142,7 @@ as the name is changed.
 
 </code></pre>
 
-<p>Feel free to report issues or to contribute.</p>
+<p>Feel free to report issues or to contribute</p>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/c0ding">c0ding</a></p>
