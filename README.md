@@ -54,7 +54,7 @@ Fill in the registration fields as follows:
 
 ### Step 2: OAuth settings
 
-Next, the app needs to be authorized to connect to your account so it can send tweets under your name. Paste the Consumer Key and Consumer Secret into tweetuoso.py. Then save and run the client on your system.
+Next, the app needs to be authorized to connect to your account so it can send tweets under your name. Paste the Consumer Key and Consumer Secret into tweetuoso.py. Then save and run Tweetuoso on your system.
 
 ![screenshot](https://raw.github.com/c0ding/tweetuoso/master/tweetuoso/doc/keys.png)
 
@@ -67,7 +67,7 @@ Open that URL in your browser. You should see the standard OAuth Twitter connect
 
 Twitter will then provide you with a PIN code that authenticates the connection between the client app and your Twitter account.
 
-Enter this PIN into Tweetuoso:
+Enter this PIN into the Tweetuoso prompt:
 
     $ PIN: 2781961
 
@@ -78,7 +78,7 @@ Tweetuoso will then print out another key/secret pair: (The values will be diffe
 
 Keep this information on your screen because we’ll need it in the next step.
 
-### Step 3: Paste the keys into Tweetuoso:
+### Step 3: Paste the keys into Tweetuoso
 
 Paste the Access Token and Access Secret from the end of step 2 into the tweetuoso.py file, filling the access_token and access_secret constants.
 
