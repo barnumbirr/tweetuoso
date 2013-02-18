@@ -30,7 +30,6 @@ Pre-requisites:
 * python-setuptools 
 * Working API keys from Twitter
 
-
 ### From source
 
 Get the latest version (from GitHub):
@@ -52,6 +51,8 @@ Fill in the registration fields as follows:
 
 ![screenshot](https://raw.github.com/c0ding/tweetuoso/master/tweetuoso/doc/registration.png)
 
+**Note**: whatever you specify for Application Name will be the “via” name your followers see in the details of tweets issued from your command line app.
+
 ### Step 2: OAuth settings
 
 Next, the app needs to be authorized to connect to your account so it can send tweets under your name. Paste the Consumer Key and Consumer Secret into tweetuoso.py. Then save and run Tweetuoso on your system.
@@ -63,7 +64,7 @@ You should see a prompt like this:
     $ Please visit this url to get the token: <url>
     $ PIN:
 
-Open that URL in your browser. You should see the standard OAuth Twitter connection screen. Click Allow.
+Open that URL in your browser. You should see the standard OAuth Twitter connection screen. Click **Allow**.
 
 Twitter will then provide you with a PIN code that authenticates the connection between the client app and your Twitter account.
 
@@ -82,7 +83,13 @@ Keep this information on your screen because we’ll need it in the next step.
 
 Paste the Access Token and Access Secret from the end of step 2 into the tweetuoso.py file, filling the access_token and access_secret constants.
 
-Finally, we’re all set up. Our command line app is registered as a Twitter client and the app is connected to our Twitter user account
+### Step 4: Application Type
+
+On the Twitter Developer website, navigate to the **Settings** tab. Allow your application Read, Write and direct messages access.
+
+![screenshot](https://raw.github.com/c0ding/tweetuoso/master/tweetuoso/doc/access.png)
+
+Finally, we’re all set up. Our command line app is registered as a Twitter client and the app is connected to our Twitter user account.
 
 ## Running
 
@@ -109,6 +116,7 @@ as the name is changed.
 
 
 ```
+
 
 
 Feel free to report issues or to contribute
