@@ -27,6 +27,7 @@ Pre-requisites:
 
 * Python 2.6+ (not tested with Python 3+)
 * tweepy (for a Twitter API connection, obviously)
+* requests 1.1.0
 * python-setuptools 
 * Working API keys from Twitter
 
