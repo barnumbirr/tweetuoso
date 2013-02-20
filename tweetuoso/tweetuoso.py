@@ -4,12 +4,14 @@
 import os
 import re
 import sys
+import cmd
 import requests
 import tweepy as tw
 
+
 consumer_key = ''
 consumer_secret = ''
-access_token = '' 
+access_token = ''
 access_secret = ''
 
 
@@ -58,94 +60,98 @@ def auth_():
 	api = tw.API(auth)
 	return api
 
-def timeline():
-	try:
-		api = auth_()
-		tl = api.home_timeline()
-		for tweet in tl:
-			print "   @"+ "\033[31m"+ tweet.user.screen_name.encode('utf-8') + "\033[0;0m" + tweet.created_at.strftime(' \033[37mtweeted on %d/%m/%Y at %H:%M\033[0;0m\n') + "      " + tweet.text.encode('utf-8')
-	except KeyboardInterrupt:
-		print "\nAborted"
-	except tw.TweepError:
-		os.system('clear')
-		print "\033[31m>> \033[0;0mError: Unable to perform action."
+class TweetuosoCommands(cmd.Cmd):
 
-def mentions():
-	try:
-		api = auth_()
-		mt = api.mentions()
-		for tweet in mt:
-			print "   @"+ "\033[31m"+ tweet.user.screen_name.encode('utf-8') + "\033[0;0m" + tweet.created_at.strftime(' \033[37mtweeted you on %d/%m/%Y at %H:%M\033[0;0m\n') + "      " + tweet.text.encode('utf-8')
-	except KeyboardInterrupt:
-		print "\nAborted"
-	except tw.TweepError:
-		os.system('clear')
-		print "\033[31m>> \033[0;0mError: Unable to perform action."
+	prompt = "\033[31m>> \033[0;0m"
 
-def update(a):
-	try:
-		api = auth_()
-		api.update_status(a)
-		print "\033[31mStatus updated successfully!\033[0;0m"
-	except KeyboardInterrupt:
-		print "\nAborted"
-	except tw.TweepError:
-		print "\033[31m>> \033[0;0mError: Unable to perform action."
+	def do_timeline(self, line):
+		try:
+			api = auth_()
+			tl = api.home_timeline()
+			for tweet in tl:
+				print "   @"+ "\033[31m"+ tweet.user.screen_name.encode('utf-8') + "\033[0;0m" + tweet.created_at.strftime(' \033[37mtweeted on %d/%m/%Y at %H:%M\033[0;0m\n') + "      " + tweet.text.encode('utf-8')
+		except KeyboardInterrupt:
+			print "\nAborted"
+		except tw.TweepError:
+			os.system('clear')
+			print "\033[31m>> \033[0;0mError: Unable to perform action."
 
-def destroy(tweet_id):
-	""" Destroy your tweet by given tweet_id """
-	try:
-		api = auth_()
-		api.destroy_status(tweet_id)
-		print "\033[31m>> \033[0;0m" + tweet_id + " deleted successfully."
-	except KeyboardInterrupt:
-		print "\nAborted"
-	except tw.TweepError:
-		print "\033[31m>> \033[0;0mError: Unable to perform action."
+	def do_mentions(self, line):
+		try:
+			api = auth_()
+			mt = api.mentions()
+			for tweet in mt:
+				print "   @"+ "\033[31m"+ tweet.user.screen_name.encode('utf-8') + "\033[0;0m" + tweet.created_at.strftime(' \033[37mtweeted you on %d/%m/%Y at %H:%M\033[0;0m\n') + "      " + tweet.text.encode('utf-8')
+		except KeyboardInterrupt:
+			print "\nAborted"
+		except tw.TweepError:
+			os.system('clear')
+			print "\033[31m>> \033[0;0mError: Unable to perform action."
 
-def follow(user_id):
-	""" Follow user with given user_id """
-	try:
-		api = auth_()
-		api.create_friendship(user_id)
-		print "You started following " + "\033[31m" + user_id + "\033[0;0m" +"."
-	except KeyboardInterrupt:
-		print "\nAborted"
-	except tw.TweepError:
-		print "\033[31m>> \033[0;0mError: Unable to perform action."
+	def do_update(self, a):
+		try:
+			api = auth_()
+			api.update_status(a)
+			print "\033[31mStatus updated successfully!\033[0;0m"
+		except KeyboardInterrupt:
+			print "\nAborted"
+		except tw.TweepError:
+			print "\033[31m>> \033[0;0mError: Unable to perform action."
 
-def unfollow(user_id):
-	""" Unfollow user with given user_id """
-	try:
-		api = auth_()
-		api.destroy_friendship(user_id)
-		print "\033[31m>> \033[0;0mYou successfully unfollowed " + "\033[31m" + user_id + "\033[0;0m" +"."
-	except KeyboardInterrupt:
-		print "\nAborted"
-	except tw.TweepError:
-		print "\033[31m>> \033[0;0mError: Unable to perform action."
+	def do_destroy(self, tweet_id):
+		""" Destroy your tweet by given tweet_id """
+		try:
+			api = auth_()
+			api.destroy_status(tweet_id)
+			print "\033[31m>> \033[0;0m" + tweet_id + " deleted successfully."
+		except KeyboardInterrupt:
+			print "\nAborted"
+		except tw.TweepError:
+			print "\033[31m>> \033[0;0mError: Unable to perform action."
 
-def me():
-	try:
-		api = auth_()
-		user = api.me()
-		print "   @"+ "\033[31m"+ user.screen_name + "\033[0;0m" + " (" + "\033[37m" + user.name + "\033[0;0m" + ")\n      " + user.description + "\n      " + "Following: " +  str(user.friends_count) + " || Followers: " + str(user.followers_count) + " || Tweets: " + str(user.statuses_count) + "\n      " + user.location + " || " + user.url
-	except KeyboardInterrupt:
-		print "\nAborted"
-	except tw.TweepError:
-		os.system('clear')
-		print "\033[31m>> \033[0;0mError: Unable to perform action."
+	def do_follow(self, user_id):
+		""" Follow user with given user_id """
+		try:
+			api = auth_()
+			api.create_friendship(user_id)
+			print "You started following " + "\033[31m" + user_id + "\033[0;0m" +"."
+		except KeyboardInterrupt:
+			print "\nAborted"
+		except tw.TweepError:
+			print "\033[31m>> \033[0;0mError: Unable to perform action."
 
-def search(q):
-	try:
-		api = auth_()
-		src = api.search(q, rpp=20, result_type="recent")
-		for tweet in src:
-			print "   @"+ "\033[31m"+ tweet.from_user.encode('utf-8') + "\033[0;0m" + tweet.created_at.strftime(' \033[37mtweeted on %d/%m/%Y at %H:%M\033[0;0m\n') + "      " + tweet.text.encode('utf-8')
-	except KeyboardInterrupt:
-		print "\nAborted"
-	except tw.TweepError:
-		print "\033[31m>> \033[0;0mError: Unable to perform action."
+	def do_unfollow(self, user_id):
+		""" Unfollow user with given user_id """
+		try:
+			api = auth_()
+			api.destroy_friendship(user_id)
+			print "\033[31m>> \033[0;0mYou successfully unfollowed " + "\033[31m" + user_id + "\033[0;0m" +"."
+		except KeyboardInterrupt:
+			print "\nAborted"
+		except tw.TweepError:
+			print "\033[31m>> \033[0;0mError: Unable to perform action."
+
+	def do_me(self, line):
+		try:
+			api = auth_()
+			user = api.me()
+			print "   @"+ "\033[31m"+ user.screen_name + "\033[0;0m" + " (" + "\033[37m" + user.name + "\033[0;0m" + ")\n      " + user.description + "\n      " + "Following: " +  str(user.friends_count) + " || Followers: " + str(user.followers_count) + " || Tweets: " + str(user.statuses_count) + "\n      " + user.location + " || " + user.url
+		except KeyboardInterrupt:
+			print "\nAborted"
+		except tw.TweepError:
+			os.system('clear')
+			print "\033[31m>> \033[0;0mError: Unable to perform action."
+
+	def do_search(self, q):
+		try:
+			api = auth_()
+			src = api.search(q, rpp=20, result_type="recent")
+			for tweet in src:
+				print "   @"+ "\033[31m"+ tweet.from_user.encode('utf-8') + "\033[0;0m" + tweet.created_at.strftime(' \033[37mtweeted on %d/%m/%Y at %H:%M\033[0;0m\n') + "      " + tweet.text.encode('utf-8')
+		except KeyboardInterrupt:
+			print "\nAborted"
+		except tw.TweepError:
+			print "\033[31m>> \033[0;0mError: Unable to perform action."
 
 def help():
 	print "\033[31m   Menu:\n   ________________________________________________________________"
@@ -165,6 +171,8 @@ def help():
 
 def main():
 	banner()
+	TweetuosoCommands().cmdloop()
+	return
 	while True:
 		try:
 			x = raw_input('\033[31m>> \033[0;0m')
