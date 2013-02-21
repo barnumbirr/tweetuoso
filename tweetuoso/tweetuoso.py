@@ -14,7 +14,6 @@ consumer_secret = ''
 access_token = ''
 access_secret = ''
 
-
 def banner ():
   print """\033[31m####################################################################
 ##       _______                                                  ##
@@ -65,6 +64,7 @@ class TweetuosoCommands(cmd.Cmd):
 	prompt = "\033[31m>> \033[0;0m"
 
 	def do_timeline(self, line):
+		""" Show current timeline """
 		try:
 			api = auth_()
 			tl = api.home_timeline()
@@ -77,6 +77,7 @@ class TweetuosoCommands(cmd.Cmd):
 			print "\033[31m>> \033[0;0mError: Unable to perform action."
 
 	def do_mentions(self, line):
+		""" Show tweets in which you are mentioned """
 		try:
 			api = auth_()
 			mt = api.mentions()
@@ -88,7 +89,8 @@ class TweetuosoCommands(cmd.Cmd):
 			os.system('clear')
 			print "\033[31m>> \033[0;0mError: Unable to perform action."
 
-	def do_update(self, a):
+	def do_post(self, a):
+		""" Post a tweet """
 		try:
 			api = auth_()
 			api.update_status(a)
@@ -98,8 +100,8 @@ class TweetuosoCommands(cmd.Cmd):
 		except tw.TweepError:
 			print "\033[31m>> \033[0;0mError: Unable to perform action."
 
-	def do_destroy(self, tweet_id):
-		""" Destroy your tweet by given tweet_id """
+	def do_delete(self, tweet_id):
+		""" Delete your tweet by given tweet_id """
 		try:
 			api = auth_()
 			api.destroy_status(tweet_id)
@@ -132,6 +134,7 @@ class TweetuosoCommands(cmd.Cmd):
 			print "\033[31m>> \033[0;0mError: Unable to perform action."
 
 	def do_me(self, line):
+		""" Show your current profile """
 		try:
 			api = auth_()
 			user = api.me()
@@ -143,6 +146,7 @@ class TweetuosoCommands(cmd.Cmd):
 			print "\033[31m>> \033[0;0mError: Unable to perform action."
 
 	def do_search(self, q):
+		""" Search Twitter """
 		try:
 			api = auth_()
 			src = api.search(q, rpp=20, result_type="recent")
@@ -153,72 +157,32 @@ class TweetuosoCommands(cmd.Cmd):
 		except tw.TweepError:
 			print "\033[31m>> \033[0;0mError: Unable to perform action."
 
-def help():
-	print "\033[31m   Menu:\n   ________________________________________________________________"
-	print "   +                                                              +"
-	print "   +\t1. Show timeline.                                         +"
-	print "   +\t2. Show tweets that mentioned you.                        +"
-	print "   +\t3. Post new tweet.                                        +"
-	print "   +\t4. Delete tweet.                                          +"
-	print "   +\t5. Me (Get account info).                                 +"
-	print "   +\t6. Search for <query>.                                    +"
-	print "   +\t7. Follow a new user.                                     +"
-	print "   +\t8. Unfollow a user.                                       +"
-	print "   +                                                              +"
-	print "   +     Use 'quit' to leave.                                     +"
-	print "   +______________________________________________________________+\033[0;0m"
-	print ""
+	def do_quit(self, line):
+		os.system("clear")
+		sys.exit(0)
+
+	def do_help(self, line):
+		""" Show detailed help """
+		print "\033[31m   Commands:\n   ________________________________________________________________"
+		print "   +                                                              +"
+		print "   +\ttimeline\t Show timeline.                                         +"
+		print "   +\tmentions\t Show tweets that mentioned you.                        +"
+		print "   +\tpost\t\t Post new tweet.                                        +"
+		print "   +\tdelete\t\t Delete tweet.                                          +"
+		print "   +\tme\t\t Me (Get account info).                                 +"
+		print "   +\tsearch\t\t Search for <query>.                                    +"
+		print "   +\tfollow\t\t Follow a new user.                                     +"
+		print "   +\tunfollow\t Unfollow a user.                                       +"
+		print "   +                                                              +"
+		print "   +     Use 'quit' to leave.                                     +"
+		print "   +______________________________________________________________+\033[0;0m"
+		print ""
+
 
 def main():
 	banner()
 	TweetuosoCommands().cmdloop()
-	return
-	while True:
-		try:
-			x = raw_input('\033[31m>> \033[0;0m')
 
-			if x == 'quit':
-				os.system("clear")
-				sys.exit(0)
-			elif x == 'help':
-				help()
-			elif x == '1':
-				timeline()
-			elif x == '2':
-				mentions()
-			elif x == '3':
-				status = raw_input("\033[31m>> \033[0;0mNew Tweet: ").strip()
-				url = re.search("(?P<url>https?://[^\s]+)", status)
-				if url is not None:
-					try:
-						long_url = url.group("url")
-						short_url = "http://is.gd/create.php?format=simple&url=" + long_url
-						r = requests.get(short_url)
-						status = status.replace(long_url, r.text)
-						update(status)
-					except requests.HTTPError:
-						print "\033[31m>> \033[0;0mError: Unable to shorten URL."
-			elif x == '4':
-				d = raw_input('\033[31m>> \033[0;0mTweet ID: ')
-				destroy(d)
-			elif x == '5':
-				me()
-			elif x == '6':
-				q = raw_input('\033[31m>> \033[0;0mSearch for: ')
-				search(q)
-			elif x == '7':
-				u = raw_input('\033[31m>> \033[0;0mUser you wish to follow: ')
-				follow(u)
-			elif x == '8':
-				u = raw_input('\033[31m>> \033[0;0mUser you wish to unfollow: ')
-				unfollow(u)
-			else:
-				help()
-		except EOFError:
-			os.system("clear");
-			help()
-		except KeyboardInterrupt:
-			print "\033[31m>>\033[0;0m Use 'quit' to leave."
 
 if __name__ == '__main__':
 	os.system('clear')
