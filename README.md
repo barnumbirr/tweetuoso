@@ -26,7 +26,7 @@ More is still to come...
 Pre-requisites:
 
 * Python 2.6+ (not tested with Python 3+)
-* tweepy (for a Twitter API connection, obviously)
+* tweepy >= 1.40 (for a Twitter API connection, obviously)
 * requests 1.1.0
 * python-setuptools 
 * Working API keys from Twitter
@@ -34,14 +34,19 @@ Pre-requisites:
 ### From source
 
 Get the latest version (from GitHub):
- 
+
     $ wget -O /tmp/tweetuoso-last.tgz https://github.com/c0ding/tweetuoso/tarball/master
     $ sudo apt-get update
-    $ sudo apt-get install python-setuptools python-tweepy
+    $ sudo apt-get install python-setuptools python-tweepy python-requests
     $ cd /tmp
-	$ tar zxvf tweetuoso-last.tgz
-	$ cd c0ding-tweetuoso-*/tweetuoso
-	$ chmod 777 tweetuoso.py
+    $ tar zxvf tweetuoso-last.tgz
+    $ chmod -R 777 c0ding-tweetuoso-*    
+    $ cd c0ding-tweetuoso-*/
+    $ python setup.py install
+    
+### From PyPi
+
+Coming soon...
 
 ## Configuration
 
