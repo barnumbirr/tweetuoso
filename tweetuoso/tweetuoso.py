@@ -41,10 +41,11 @@ def auth():
 		auth = tw.OAuthHandler(consumer_key, consumer_secret)
 		try:
 			url = auth.get_authorization_url()
-		
+
 		except tw.TweepError:
 			print "\033[31m>> \033[0;0mError occured, failed to get token\n"
-				
+			return
+
 		print "\033[31m>> \033[0;0mPlease visit this url to get the token: \n" + url
 		pin = raw_input('\033[31m>> \033[0;0mPIN: ').strip()
 		auth.get_access_token(pin)
@@ -172,7 +173,7 @@ def main():
 	while True:
 		try:
 			x = raw_input('\033[31m>> \033[0;0m')
-			
+
 			if x == 'quit':
 				os.system("clear")
 				sys.exit(0)
