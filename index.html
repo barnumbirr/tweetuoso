@@ -34,7 +34,7 @@
 
 <h2>Description</h2>
 
-<p>Tweetuoso is a very light Twitter Command-line client developed in Python. The main goal of Tweetuoso is to become a fully-fledged twitter client with the same functions as the online version.</p>
+<p><strong>Tweetuoso</strong> is a very light Twitter Command-line client developed in Python. The main goal of Tweetuoso is to become a fully-fledged twitter client with the same functions as the online version.</p>
 
 <p>For now, it allows you to:</p>
 
@@ -58,6 +58,7 @@
 <ul>
 <li>Python 2.6+ (not tested with Python 3+)</li>
 <li>tweepy (for a Twitter API connection, obviously)</li>
+<li>requests 1.1.0</li>
 <li>python-setuptools </li>
 <li>Working API keys from Twitter</li>
 </ul><h3>From source</h3>
@@ -82,9 +83,11 @@ Fill in the registration fields as follows:</p>
 
 <p><img src="https://raw.github.com/c0ding/tweetuoso/master/tweetuoso/doc/registration.png" alt="screenshot"></p>
 
+<p><strong>Note</strong>: whatever you specify for Application Name will be the “via” name your followers see in the details of tweets issued from your command line app.</p>
+
 <h3>Step 2: OAuth settings</h3>
 
-<p>Next, the app needs to be authorized to connect to your account so it can send tweets under your name. Paste the Consumer Key and Consumer Secret into tweetuoso.py. Then save and run Tweetuoso on your system.</p>
+<p>Next, the app needs to be authorized to connect to your account so it can send tweets under your name. Paste the <strong>Consumer Key</strong> and <strong>Consumer Secret</strong> into tweetuoso.py. Then save and run <strong>Tweetuoso</strong> on your system.</p>
 
 <p><img src="https://raw.github.com/c0ding/tweetuoso/master/tweetuoso/doc/keys.png" alt="screenshot"></p>
 
@@ -94,7 +97,7 @@ Fill in the registration fields as follows:</p>
 $ PIN:
 </code></pre>
 
-<p>Open that URL in your browser. You should see the standard OAuth Twitter connection screen. Click Allow.</p>
+<p>Open that URL in your browser. You should see the standard OAuth Twitter connection screen. Click <strong>Allow</strong>.</p>
 
 <p>Twitter will then provide you with a PIN code that authenticates the connection between the client app and your Twitter account.</p>
 
@@ -113,15 +116,21 @@ $ ACCESS_SECRET = 'kaTXiC489qo8y6haTBSlwOqR1syG83tzPG2StdQ'
 
 <h3>Step 3: Paste the keys into Tweetuoso</h3>
 
-<p>Paste the Access Token and Access Secret from the end of step 2 into the tweetuoso.py file, filling the access_token and access_secret constants.</p>
+<p>Paste the <strong>Access Token</strong> and <strong>Access Secret</strong> from the end of step 2 into the tweetuoso.py file, filling the <strong>access_token</strong> and <strong>access_secret</strong> constants.</p>
 
-<p>Finally, we’re all set up. Our command line app is registered as a Twitter client and the app is connected to our Twitter user account</p>
+<h3>Step 4: Application Type</h3>
+
+<p>On the Twitter Developer website, navigate to the <strong>Settings</strong> tab. Allow your application Read, Write and direct messages access.</p>
+
+<p><img src="https://raw.github.com/c0ding/tweetuoso/master/tweetuoso/doc/access.png" alt="screenshot"></p>
+
+<p>Finally, we’re all set up. Our command line app is registered as a Twitter client and the app is connected to our Twitter user account.</p>
 
 <h2>Running</h2>
 
 <p>Simply execute tweetuoso.py and enjoy!</p>
 
-<p>Personally I like to add Tweetuoso to my PATH=${PATH}: so that I can execute it whenever I want without needing to navigate to the right directory.</p>
+<p>Personally I like to add Tweetuoso to my PATH=${PATH} so that I can execute it whenever I want without needing to navigate to the right directory.</p>
 
 <h2>License</h2>
 
@@ -142,7 +151,7 @@ as the name is changed.
 
 </code></pre>
 
-<p>Feel free to report issues or to contribute</p>
+<p><strong>Feel free to report issues or to contribute</strong></p>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/c0ding">c0ding</a></p>
