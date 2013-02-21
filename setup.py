@@ -15,9 +15,4 @@ setup(
     long_description=open('README.md').read(),
     keywords = 'twitter tweepy python command-line',
     scripts = ['tweetuoso/tweetuoso.py']
-    install_requires=[
-        "tweepy >= 1.40",
-        "requests <= 1.0",
-        "python-setuptools",
-    ],
 )
