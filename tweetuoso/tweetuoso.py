@@ -1,11 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-__appname__ = 'tweetuoso'
-__version__ = "1.0.1"
-__author__ = "@c0ding <https://twitter.com/c0ding>"
-__licence__ = "WTFPL"
-
 import os
 import re
 import sys
@@ -14,7 +9,7 @@ import tweepy as tw
 
 consumer_key = ''
 consumer_secret = ''
-access_token = ''
+access_token = '' 
 access_secret = ''
 
 
