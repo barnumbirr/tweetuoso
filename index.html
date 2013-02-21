@@ -57,7 +57,7 @@
 
 <ul>
 <li>Python 2.6+ (not tested with Python 3+)</li>
-<li>tweepy (for a Twitter API connection, obviously)</li>
+<li>tweepy &gt;= 1.40 (for a Twitter API connection, obviously)</li>
 <li>requests 1.1.0</li>
 <li>python-setuptools </li>
 <li>Working API keys from Twitter</li>
@@ -67,12 +67,17 @@
 
 <pre><code>$ wget -O /tmp/tweetuoso-last.tgz https://github.com/c0ding/tweetuoso/tarball/master
 $ sudo apt-get update
-$ sudo apt-get install python-setuptools python-tweepy
+$ sudo apt-get install python-setuptools python-tweepy python-requests
 $ cd /tmp
 $ tar zxvf tweetuoso-last.tgz
-$ cd c0ding-tweetuoso-*/tweetuoso
-$ chmod 777 tweetuoso.py
+$ chmod -R 777 c0ding-tweetuoso-*    
+$ cd c0ding-tweetuoso-*/
+$ python setup.py install
 </code></pre>
+
+<h3>From PyPi</h3>
+
+<p>Coming soon...</p>
 
 <h2>Configuration</h2>
 
