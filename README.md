@@ -125,6 +125,6 @@ as the name is changed.
 
 ## Thanks to
 
-* Sven Steinbauer [Svenito on Github](https://github.com/Svenito)
+* Sven Steinbauer ([Svenito on Github](https://github.com/Svenito))
 
 **Feel free to report issues or to contribute**
