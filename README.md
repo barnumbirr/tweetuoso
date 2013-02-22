@@ -2,7 +2,9 @@
 ![screenshot](https://raw.github.com/c0ding/tweetuoso/master/tweetuoso/doc/tweetuoso.banner.png)
 =============================
 
+
 ## Description
+
 
 **Tweetuoso** is a very light Twitter Command-line client developed in Python. The main goal of Tweetuoso is to become a fully-fledged twitter client with the same functions as the online version.
 
@@ -17,11 +19,15 @@ For now, it allows you to:
 
 More is still to come...
 
+
 ## Console screenshot (80x24):
+
 
 ![screenshot](https://raw.github.com/c0ding/tweetuoso/master/tweetuoso/doc/screenshot.png)
 
+
 ## Installation
+
 
 Pre-requisites:
 
@@ -31,7 +37,9 @@ Pre-requisites:
 * python-setuptools 
 * Working API keys from Twitter
 
+
 ### From source
+
 
 Get the latest version (from GitHub):
 
@@ -43,14 +51,19 @@ Get the latest version (from GitHub):
     $ chmod -R 777 c0ding-tweetuoso-*    
     $ cd c0ding-tweetuoso-*/
     $ python setup.py install
-    
+
+
 ### From PyPi
+
 
 Coming soon...
 
+
 ## Configuration
 
+
 ### Step 1: Register a new client app with Twitter
+
 
 Navigate to https://dev.twitter.com/apps/new. You might have to log into the Twitter Developers site first, if you’re not already.
 Fill in the registration fields as follows:
@@ -59,7 +72,9 @@ Fill in the registration fields as follows:
 
 **Note**: whatever you specify for Application Name will be the “via” name your followers see in the details of tweets issued from your command line app.
 
+
 ### Step 2: OAuth settings
+
 
 Next, the app needs to be authorized to connect to your account so it can send tweets under your name. Paste the **Consumer Key** and **Consumer Secret** into tweetuoso.py. Then save and run **Tweetuoso** on your system.
 
@@ -87,9 +102,11 @@ Keep this information on your screen because we’ll need it in the next step.
 
 ### Step 3: Paste the keys into Tweetuoso
 
+
 Paste the **Access Token** and **Access Secret** from the end of step 2 into the tweetuoso.py file, filling the **access_token** and **access_secret** constants.
 
 ### Step 4: Application Type
+
 
 On the Twitter Developer website, navigate to the **Settings** tab. Allow your application Read, Write and direct messages access.
 
@@ -99,11 +116,12 @@ Finally, we’re all set up. Our command line app is registered as a Twitter cli
 
 ## Running
 
-Simply execute tweetuoso.py and enjoy!
 
-Personally I like to add Tweetuoso to my PATH=${PATH} so that I can execute it whenever I want without needing to navigate to the right directory.
+Simply follow th steps above and execute tweetuoso.py. Enjoy!
+
 
 ## License
+
 
 ```
            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
@@ -123,8 +141,11 @@ as the name is changed.
 
 ```
 
+
 ## Thanks to
 
+
 * Sven Steinbauer ([Svenito on Github](https://github.com/Svenito))
+
 
 **Feel free to report issues or to contribute**
