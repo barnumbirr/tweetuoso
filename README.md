@@ -16,6 +16,8 @@ For now, it allows you to:
 * get your profile details
 * follow or unfollow people
 * search for 'query'
+* stalk people (or yourself)
+* show current trends
 
 More is still to come...
 
