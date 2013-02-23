@@ -169,12 +169,9 @@ class TweetuosoCommands(cmd.Cmd):
 		""" Returns the top 20 trending topics for the day. """
 		try:
 			api = auth_()
-			tr = api.trends_daily()
-			for trends in tr:
-				data = api.trends_location(1)
-				for trend in data[0]["trends"]:
-					trend_name = trend["name"]
-					print trend_name
+			t = api.trends_location(1)
+			trends = "\n".join(i["name"] for i in t[0]["trends"])
+			print trends
 		except KeyboardInterrupt:
 			print "\nAborted"
 		except tw.TweepError:
