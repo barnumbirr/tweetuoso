@@ -138,7 +138,7 @@ class TweetuosoCommands(cmd.Cmd):
 		try:
 			api = auth_()
 			user = api.me()
-			print "   @"+ "\033[31m"+ user.screen_name + "\033[0;0m" + " (" + "\033[37m" + user.name + "\033[0;0m" + ")\n      " + user.description + "\n      " + "Following: " +  str(user.friends_count) + " || Followers: " + str(user.followers_count) + " || Tweets: " + str(user.statuses_count) + "\n      " + user.location + " || " + user.url
+			print "   @"+ "\033[31m"+ user.screen_name + "\033[0;0m" + " (" + "\033[37m" + user.name + "\033[0;0m" + ")\n      " + user.description + "\n      " + "Following: " +  str(user.friends_count) + " || Followers: " + str(user.followers_count) + " || Tweets: " + str(user.statuses_count) + "|| Listed: " + str(user.listed_count) + "\n      " + user.location + " || " + user.url
 		except KeyboardInterrupt:
 			print "\nAborted"
 		except tw.TweepError:
