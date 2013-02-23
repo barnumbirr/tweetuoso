@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = 'tweetuoso',
-    version = "1.0.1",
+    version = "1.0.2",
     url = "http://c0ding.github.com/tweetuoso/",
     download_url = "https://github.com/c0ding/tweetuoso/archive/master.zip",
     author = 'c0ding',
