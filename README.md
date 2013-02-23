@@ -51,6 +51,7 @@ Get the latest version (from GitHub):
     $ chmod -R 777 c0ding-tweetuoso-*    
     $ cd c0ding-tweetuoso-*/
     $ python setup.py install
+    $ **Remember to configure Tweetuoso before install it via setup**
 
 
 ### From PyPi
