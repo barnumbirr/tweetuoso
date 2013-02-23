@@ -8,7 +8,6 @@ import cmd
 import requests
 import tweepy as tw
 
-
 consumer_key = ''
 consumer_secret = ''
 access_token = '' 
@@ -93,8 +92,17 @@ class TweetuosoCommands(cmd.Cmd):
 		""" Post a tweet """
 		try:
 			api = auth_()
-			api.update_status(a)
-			print "\033[31m>> \033[0;0mStatus updated successfully!\033[0;0m"
+			url = re.search("(?P<url>https?://[^\s]+)", a)
+			if url is not None:
+				try:
+					long_url = url.group("url")
+					short_url = "http://is.gd/create.php?format=simple&url=" + long_url
+					r = requests.get(short_url)
+					a = a.replace(long_url, r.text)
+					api.update_status(a)
+					print "\033[31m>> \033[0;0mStatus updated successfully!\033[0;0m"
+				except requests.HTTPError:
+					print "\033[31m>> \033[0;0mError: Unable to shorten URL."
 		except KeyboardInterrupt:
 			print "\nAborted"
 		except tw.TweepError:
