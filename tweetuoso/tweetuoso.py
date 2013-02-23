@@ -94,7 +94,7 @@ class TweetuosoCommands(cmd.Cmd):
 		try:
 			api = auth_()
 			api.update_status(a)
-			print "\033[31mStatus updated successfully!\033[0;0m"
+			print "\033[31m>> \033[0;0mStatus updated successfully!\033[0;0m"
 		except KeyboardInterrupt:
 			print "\nAborted"
 		except tw.TweepError:
@@ -116,7 +116,7 @@ class TweetuosoCommands(cmd.Cmd):
 		try:
 			api = auth_()
 			api.create_friendship(user_id)
-			print "You started following " + "\033[31m" + user_id + "\033[0;0m" +"."
+			print "\033[31m>> \033[0;0mYou started following " + "\033[31m" + user_id + "\033[0;0m" +"."
 		except KeyboardInterrupt:
 			print "\nAborted"
 		except tw.TweepError:
