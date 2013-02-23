@@ -173,26 +173,41 @@ class TweetuosoCommands(cmd.Cmd):
 			os.system('clear')
 			print "\033[31m>> \033[0;0mError: Unable to perform action."
 
+	def do_stalk(self, q):
+		""" Returns the last 20 tweets of given user."""
+		""" If no user given return your latest tweets."""
+		try:
+			api = auth_()
+			stk = api.user_timeline(q, count = 20, page = 1)
+			for tweet in stk:
+				print "   @"+ "\033[31m"+ tweet.user.screen_name.encode('utf-8') + "\033[0;0m" + tweet.created_at.strftime(' \033[37mtweeted on %d/%m/%Y at %H:%M\033[0;0m\n') + "      " + tweet.text.encode('utf-8')
+		except KeyboardInterrupt:
+			print "\nAborted"
+		except tw.TweepError:
+			os.system('clear')
+			print "\033[31m>> \033[0;0mError: Unable to perform action."
+			
 	def do_quit(self, line):
 		os.system("clear")
 		sys.exit(0)
-
+		
 	def do_help(self, line):
 		""" Show detailed help """
-		print "\033[31m   Commands:\n   ________________________________________________________________"
-		print "   +                                                              +"
-		print "   +\ttimeline\t Show timeline.                                         +"
-		print "   +\tmentions\t Show tweets that mentioned you.                        +"
-		print "   +\tpost\t\t Post new tweet.                                        +"
-		print "   +\tdelete\t\t Delete tweet.                                          +"
-		print "   +\tme\t\t Me (Get account info).                                 +"
-		print "   +\tsearch\t\t Search for <query>.                                    +"
-		print "   +\tfollow\t\t Follow a new user.                                     +"
-		print "   +\tunfollow\t Unfollow a user.                                       +"
-		print "   +\ttrends\t Show today's trends.                                       +"
-		print "   +                                                              +"
-		print "   +     Use 'quit' to leave.                                     +"
-		print "   +______________________________________________________________+\033[0;0m"
+		print "\n\033[31m   Commands:\n   _________________________________________________________________"
+		print "  +                                                                 +"
+		print "  +\ttimeline\t Show timeline.                             +"
+		print "  +\tmentions\t Show tweets that mentioned you.            +"
+		print "  +\tpost\t\t Post new tweet.                            +"
+		print "  +\tdelete\t\t Delete tweet.                              +"
+		print "  +\tme\t\t Me (Get account info).                     +"
+		print "  +\tsearch\t\t Search for <query>.                        +"
+		print "  +\tstalk\t\t Returns latest tweets of <query>.          +"
+		print "  +\tfollow\t\t Follow a new user.                         +"
+		print "  +\tunfollow\t Unfollow a user.                           +"
+		print "  +\ttrends\t\t Show today's trends.                       +"
+		print "  +                                                                 +"
+		print "  +     Use 'quit' to leave.                                        +"
+		print "  +_________________________________________________________________+\033[0;0m"
 		print ""
 
 
