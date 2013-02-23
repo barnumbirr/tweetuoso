@@ -11,7 +11,7 @@ import tweepy as tw
 
 consumer_key = ''
 consumer_secret = ''
-access_token = ''
+access_token = '' 
 access_secret = ''
 
 def banner ():
@@ -77,7 +77,7 @@ class TweetuosoCommands(cmd.Cmd):
 			print "\033[31m>> \033[0;0mError: Unable to perform action."
 
 	def do_mentions(self, line):
-		""" Show tweets in which you are mentioned """
+		""" Show tweets in which you were mentioned """
 		try:
 			api = auth_()
 			mt = api.mentions()
@@ -116,7 +116,7 @@ class TweetuosoCommands(cmd.Cmd):
 		try:
 			api = auth_()
 			api.create_friendship(user_id)
-			print "\033[31m>> \033[0;0mYou started following " + "\033[31m" + user_id + "\033[0;0m" +"."
+			print "\033[31m>> \033[0;0mYou started following @" + "\033[31m" + user_id + "\033[0;0m" +"."
 		except KeyboardInterrupt:
 			print "\nAborted"
 		except tw.TweepError:
@@ -127,14 +127,14 @@ class TweetuosoCommands(cmd.Cmd):
 		try:
 			api = auth_()
 			api.destroy_friendship(user_id)
-			print "\033[31m>> \033[0;0mYou successfully unfollowed " + "\033[31m" + user_id + "\033[0;0m" +"."
+			print "\033[31m>> \033[0;0mYou successfully unfollowed @" + "\033[31m" + user_id + "\033[0;0m" +"."
 		except KeyboardInterrupt:
 			print "\nAborted"
 		except tw.TweepError:
 			print "\033[31m>> \033[0;0mError: Unable to perform action."
 
 	def do_me(self, line):
-		""" Show your current profile """
+		""" Show your profile information """
 		try:
 			api = auth_()
 			user = api.me()
@@ -157,6 +157,22 @@ class TweetuosoCommands(cmd.Cmd):
 		except tw.TweepError:
 			print "\033[31m>> \033[0;0mError: Unable to perform action."
 
+	def do_trends(self, line):
+		""" Returns the top 20 trending topics for the day. """
+		try:
+			api = auth_()
+			tr = api.trends_daily()
+			for trends in tr:
+				data = api.trends_location(1)
+				for trend in data[0]["trends"]:
+					trend_name = trend["name"]
+					print trend_name
+		except KeyboardInterrupt:
+			print "\nAborted"
+		except tw.TweepError:
+			os.system('clear')
+			print "\033[31m>> \033[0;0mError: Unable to perform action."
+
 	def do_quit(self, line):
 		os.system("clear")
 		sys.exit(0)
@@ -173,6 +189,7 @@ class TweetuosoCommands(cmd.Cmd):
 		print "   +\tsearch\t\t Search for <query>.                                    +"
 		print "   +\tfollow\t\t Follow a new user.                                     +"
 		print "   +\tunfollow\t Unfollow a user.                                       +"
+		print "   +\ttrends\t Show today's trends.                                       +"
 		print "   +                                                              +"
 		print "   +     Use 'quit' to leave.                                     +"
 		print "   +______________________________________________________________+\033[0;0m"
