@@ -1,3 +1,10 @@
+Version 1.0.2
+=============
+
+	* February 2013
+	* Added cmd module
+	* Use cmd module to read user input
+
 
 Version 1.0.1
 =============
