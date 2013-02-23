@@ -103,6 +103,8 @@ class TweetuosoCommands(cmd.Cmd):
 					print "\033[31m>> \033[0;0mStatus updated successfully!\033[0;0m"
 				except requests.HTTPError:
 					print "\033[31m>> \033[0;0mError: Unable to shorten URL."
+			else:
+				api.update_status(a)
 		except KeyboardInterrupt:
 			print "\nAborted"
 		except tw.TweepError:
@@ -200,13 +202,13 @@ class TweetuosoCommands(cmd.Cmd):
 		""" Show detailed help """
 		print "\n\033[31m   Commands:\n   _________________________________________________________________"
 		print "  +                                                                 +"
-		print "  +\ttimeline\t Show timeline.                             +"
+		print "  +\ttimeline\t Show public timeline.                      +"
 		print "  +\tmentions\t Show tweets that mentioned you.            +"
+		print "  +\tstalk\t\t Show <user> timeline                       +"
 		print "  +\tpost\t\t Post new tweet.                            +"
 		print "  +\tdelete\t\t Delete tweet.                              +"
 		print "  +\tme\t\t Me (Get account info).                     +"
 		print "  +\tsearch\t\t Search for <query>.                        +"
-		print "  +\tstalk\t\t Returns latest tweets of <query>.          +"
 		print "  +\tfollow\t\t Follow a new user.                         +"
 		print "  +\tunfollow\t Unfollow a user.                           +"
 		print "  +\ttrends\t\t Show today's trends.                       +"
