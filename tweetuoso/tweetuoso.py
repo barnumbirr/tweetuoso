@@ -7,12 +7,9 @@ import sys
 import cmd
 import requests
 import tweepy as tw
+from auth import keys
 from colorama import Fore, Style
 
-consumer_key = ''
-consumer_secret = ''
-access_token = '' 
-access_secret = ''
 
 def banner ():
   print(Fore.RED +
@@ -36,7 +33,7 @@ def banner ():
 def auth():
 	print "Getting authorization url..."
 	try:
-		auth = tw.OAuthHandler(consumer_key, consumer_secret)
+		auth = tw.OAuthHandler(keys['consumer_key'], keys['consumer_secret'])
 		try:
 			url = auth.get_authorization_url()
 
@@ -56,8 +53,8 @@ def auth():
 
 def auth_():
 	""" Function doc """
-	auth = tw.OAuthHandler(consumer_key, consumer_secret)
-	auth.set_access_token(access_token, access_secret)
+	auth = tw.OAuthHandler(keys['consumer_key'], keys['consumer_secret'])
+	auth.set_access_token(keys['access_token'], keys['access_secret'])
 	api = tw.API(auth)
 	return api
 
@@ -258,7 +255,7 @@ def main():
 
 if __name__ == '__main__':
 	os.system('clear')
-	if access_token == '' and access_secret == '':
+	if keys['access_token'] == '' and keys['access_secret'] == '':
 		auth()
 	else:
 		main()
