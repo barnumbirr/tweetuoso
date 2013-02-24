@@ -41,10 +41,10 @@ def auth():
 			print(Fore.RED + ">> " + Fore.RESET + "Error occured: '%s'" % error)
 			return
 
-		print(Fore.RED + ">> " + Fore.RESET + "Please visit this url to get the token: \n" + url)
+		print(Fore.RED + ">> " + Fore.RESET + "Please visit this url to get your access keys: \n" + url)
 		pin = raw_input('\033[31m>> \033[0;0mPIN: ').strip()
 		auth.get_access_token(pin)
-		print(Fore.RED + ">> " + Fore.RESET + "Paste the following code to script's body:\n")
+		print(Fore.RED + ">> " + Fore.RESET + "Add the following keys into the auth.py file :\n")
 		print(Fore.RED + ">> " + Fore.RESET + "access_token = '%s'" % auth.access_token.key)
 		print(Fore.RED + ">> " + Fore.RESET + "access_secret = '%s'" % auth.access_token.secret)
 
@@ -77,7 +77,7 @@ class TweetuosoCommands(cmd.Cmd):
 			print "\nAborted"
 		except tw.TweepError as error:
 			os.system('clear')
-			print(Fore.RED + ">> " + Fore.RESET + "Error occured: '%s'" % error)
+			print(Fore.RED + ">> " + Fore.RESET + "Error occured: %s" % error)
 
 	def do_mentions(self, line):
 		""" Show tweets in which you were mentioned """
@@ -94,7 +94,7 @@ class TweetuosoCommands(cmd.Cmd):
 			print "\nAborted"
 		except tw.TweepError as error:
 			os.system('clear')
-			print(Fore.RED + ">> " + Fore.RESET + "Error occured: '%s'" % error)
+			print(Fore.RED + ">> " + Fore.RESET + "Error occured: %s" % error)
 
 	def do_post(self, a):
 		""" Post a tweet """
@@ -118,7 +118,7 @@ class TweetuosoCommands(cmd.Cmd):
 			print "\nAborted"
 		except tw.TweepError as error:
 			os.system('clear')
-			print(Fore.RED + ">> " + Fore.RESET + "Error occured: '%s'" % error)
+			print(Fore.RED + ">> " + Fore.RESET + "Error occured: %s" % error)
 
 	def do_delete(self, tweet_id):
 		""" Delete your tweet by given tweet_id """
@@ -130,7 +130,7 @@ class TweetuosoCommands(cmd.Cmd):
 			print "\nAborted"
 		except tw.TweepError as error:
 			os.system('clear')
-			print(Fore.RED + ">> " + Fore.RESET + "Error occured: '%s'" % error)
+			print(Fore.RED + ">> " + Fore.RESET + "Error occured: %s" % error)
 
 	def do_follow(self, user_id):
 		""" Follow user with given user_id """
@@ -142,7 +142,7 @@ class TweetuosoCommands(cmd.Cmd):
 			print "\nAborted"
 		except tw.TweepError as error:
 			os.system('clear')
-			print(Fore.RED + ">> " + Fore.RESET + "Error occured: '%s'" % error)
+			print(Fore.RED + ">> " + Fore.RESET + "Error occured: %s" % error)
 
 	def do_unfollow(self, user_id):
 		""" Unfollow user with given user_id """
@@ -154,7 +154,7 @@ class TweetuosoCommands(cmd.Cmd):
 			print "\nAborted"
 		except tw.TweepError as error:
 			os.system('clear')
-			print(Fore.RED + ">> " + Fore.RESET + "Error occured: '%s'" % error)
+			print(Fore.RED + ">> " + Fore.RESET + "Error occured: %s" % error)
 
 	def do_me(self, line):
 		""" Show your profile information """
@@ -173,7 +173,7 @@ class TweetuosoCommands(cmd.Cmd):
 			print "\nAborted"
 		except tw.TweepError as error:
 			os.system('clear')
-			print(Fore.RED + ">> " + Fore.RESET + "Error occured: '%s'" % error)
+			print(Fore.RED + ">> " + Fore.RESET + "Error occured: %s" % error)
 
 	def do_search(self, q):
 		""" Search Twitter """
@@ -190,7 +190,7 @@ class TweetuosoCommands(cmd.Cmd):
 			print "\nAborted"
 		except tw.TweepError as error:
 			os.system('clear')
-			print(Fore.RED + ">> " + Fore.RESET + "Error occured: '%s'" % error)
+			print(Fore.RED + ">> " + Fore.RESET + "Error occured: %s" % error)
 
 	def do_trends(self, line):
 		""" Returns the top 20 trending topics for the day. """
@@ -203,7 +203,7 @@ class TweetuosoCommands(cmd.Cmd):
 			print "\nAborted"
 		except tw.TweepError as error:
 			os.system('clear')
-			print(Fore.RED + ">> " + Fore.RESET + "Error occured: '%s'" % error)
+			print(Fore.RED + ">> " + Fore.RESET + "Error occured: %s" % error)
 
 	def do_stalk(self, q):
 		""" Returns the last 20 tweets of given user."""
@@ -222,7 +222,7 @@ class TweetuosoCommands(cmd.Cmd):
 			print "\nAborted"
 		except tw.TweepError as error:
 			os.system('clear')
-			print(Fore.RED + ">> " + Fore.RESET + "Error occured: '%s'" % error)
+			print(Fore.RED + ">> " + Fore.RESET + "Error occured: %s" % error)
 
 	def do_quit(self, line):
 		os.system("clear")
