@@ -10,6 +10,7 @@ Version 1.0.2
 	* Added stalk cmd
 	* Added user.listed_count to the me cmd
 	* Color handling from ASCII to colorama
+	* Use separate auth.py file for user keys
 	
 
 Version 1.0.1
