@@ -11,7 +11,7 @@ from colorama import Fore, Style
 
 consumer_key = ''
 consumer_secret = ''
-access_token = ''
+access_token = '' 
 access_secret = ''
 
 def banner ():
@@ -88,7 +88,11 @@ class TweetuosoCommands(cmd.Cmd):
 			api = auth_()
 			mt = api.mentions()
 			for tweet in mt:
-				print "   @"+ "\033[31m"+ tweet.user.screen_name.encode('utf-8') + "\033[0;0m" + tweet.created_at.strftime(' \033[37mtweeted you on %d/%m/%Y at %H:%M\033[0;0m\n') + "      " + tweet.text.encode('utf-8')
+				print("   @" + Fore.RED + tweet.user.screen_name.encode('utf-8')
+						+ Fore.RESET +
+						tweet.created_at.strftime(
+							Style.DIM +' tweeted you on %d/%m/%Y at %H:%M\n' +
+							Style.RESET_ALL) + "      " + tweet.text.encode('utf-8'))
 		except KeyboardInterrupt:
 			print "\nAborted"
 		except tw.TweepError as error:
