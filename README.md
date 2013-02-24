@@ -86,7 +86,7 @@ Next, the app needs to be authorized to connect to your account so it can send t
 
 You should see a prompt like this:
 
-    $ Please visit this url to get the token: <url>
+    $ Please visit this url to get your access keys: <url>
     $ PIN:
 
 Open that URL in your browser. You should see the standard OAuth Twitter connection screen. Click **Allow**.
@@ -99,15 +99,15 @@ Enter this PIN into the Tweetuoso prompt:
 
 Tweetuoso will then print out another key/secret pair: (The values will be different each time!)
 
-    $ ACCESS_KEY = '124242RCyi3g0cZ4r5BWL047rsh0S0yv5VxAGwTKCOsHAb'
-    $ ACCESS_SECRET = 'kaTXiC489qo8y6haTBSlwOqR1syG83tzPG2StdQ'
+    $ access_token = '124242RCyi3g0cZ4r5BWL047rsh0S0yv5VxAGwTKCOsHAb'
+    $ access_secret = 'kaTXiC489qo8y6haTBSlwOqR1syG83tzPG2StdQ'
 
 Keep this information on your screen because we’ll need it in the next step.
 
 ### Step 3: Paste the keys into Tweetuoso
 
 
-Paste the **Access Token** and **Access Secret** from the end of step 2 into the tweetuoso.py file, filling the **access_token** and **access_secret** constants.
+Paste the **Access Token** and **Access Secret** from the end of step 2 into the auth.py file, filling the **access_token** and **access_secret** constants.
 
 ### Step 4: Application Type
 
@@ -121,7 +121,7 @@ Finally, we’re all set up. Our command line app is registered as a Twitter cli
 ## Running
 
 
-Simply follow th steps above and execute tweetuoso.py. Enjoy!
+Simply follow th steps above and launch tweetuoso.py. Enjoy!
 
 
 ## License
