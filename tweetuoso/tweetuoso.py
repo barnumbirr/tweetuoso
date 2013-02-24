@@ -7,14 +7,16 @@ import sys
 import cmd
 import requests
 import tweepy as tw
+from colorama import Fore, Style
 
 consumer_key = ''
 consumer_secret = ''
-access_token = '' 
+access_token = ''
 access_secret = ''
 
 def banner ():
-  print """\033[31m####################################################################
+  print(Fore.RED +
+"""####################################################################
 ##       _______                                                  ##
 ##      |__   __|                 _                               ##
 ##         | | __      _____  ___| |_ _   _  ___  ___  ___        ##
@@ -28,7 +30,8 @@ def banner ():
 ##                                                                ##
 ##             Made with ♥ by @c0ding, February 2013              ##
 ##                      Licensed under WTFPL                      ##
-####################################################################\n\033[0;0m"""
+####################################################################\n""" +
+		Fore.RESET)
 
 def auth():
 	print "Getting authorization url..."
@@ -38,15 +41,15 @@ def auth():
 			url = auth.get_authorization_url()
 
 		except tw.TweepError as error:
-			print "\033[31m>> \033[0;0mError occured: '%s'" % error
+			print(Fore.RED + ">> " + Fore.RESET + "Error occured: '%s'" % error)
 			return
 
-		print "\033[31m>> \033[0;0mPlease visit this url to get the token: \n" + url
+		print(Fore.RED + ">> " + Fore.RESET + "Please visit this url to get the token: \n" + url)
 		pin = raw_input('\033[31m>> \033[0;0mPIN: ').strip()
 		auth.get_access_token(pin)
-		print "\033[31m>> \033[0;0mPaste the following code to script's body:\n"
-		print "\033[31m>> \033[0;0maccess_token = '%s'" % auth.access_token.key
-		print "\033[31m>> \033[0;0maccess_secret = '%s'" % auth.access_token.secret
+		print(Fore.RED + ">> " + Fore.RESET + "Paste the following code to script's body:\n")
+		print(Fore.RED + ">> " + Fore.RESET + "access_token = '%s'" % auth.access_token.key)
+		print(Fore.RED + ">> " + Fore.RESET + "access_secret = '%s'" % auth.access_token.secret)
 
 	except KeyboardInterrupt:
 		print "\nAborted"
@@ -60,7 +63,7 @@ def auth_():
 
 class TweetuosoCommands(cmd.Cmd):
 
-	prompt = "\033[31m>> \033[0;0m"
+	prompt = Fore.RED + ">> " + Fore.RESET
 
 	def do_timeline(self, line):
 		""" Show current timeline """
@@ -68,13 +71,17 @@ class TweetuosoCommands(cmd.Cmd):
 			api = auth_()
 			tl = api.home_timeline()
 			for tweet in tl:
-				print "   @"+ "\033[31m"+ tweet.user.screen_name.encode('utf-8') + "\033[0;0m" + tweet.created_at.strftime(' \033[37mtweeted on %d/%m/%Y at %H:%M\033[0;0m\n') + "      " + tweet.text.encode('utf-8')
+				print("   @" + Fore.RED + tweet.user.screen_name.encode('utf-8')
+						+ Fore.RESET +
+						tweet.created_at.strftime(
+							Style.DIM +' tweeted on %d/%m/%Y at %H:%M\n' +
+							Style.RESET_ALL) + "      " + tweet.text.encode('utf-8'))
 		except KeyboardInterrupt:
 			print "\nAborted"
 		except tw.TweepError as error:
 			os.system('clear')
-			print "\033[31m>> \033[0;0mError occured: '%s'" % error
-			
+			print(Fore.RED + ">> " + Fore.RESET + "Error occured: '%s'" % error)
+
 	def do_mentions(self, line):
 		""" Show tweets in which you were mentioned """
 		try:
@@ -86,8 +93,8 @@ class TweetuosoCommands(cmd.Cmd):
 			print "\nAborted"
 		except tw.TweepError as error:
 			os.system('clear')
-			print "\033[31m>> \033[0;0mError occured: '%s'" % error
-			
+			print(Fore.RED + ">> " + Fore.RESET + "Error occured: '%s'" % error)
+
 	def do_post(self, a):
 		""" Post a tweet """
 		try:
@@ -100,65 +107,72 @@ class TweetuosoCommands(cmd.Cmd):
 					r = requests.get(short_url)
 					a = a.replace(long_url, r.text)
 					api.update_status(a)
-					print "\033[31m>> \033[0;0mStatus updated successfully!\033[0;0m"
+					print(Fore.RED + ">> " + Fore.RESET + "Status updated successfully!\033[0;0m")
 				except requests.HTTPError:
-					print "\033[31m>> \033[0;0mError: Unable to shorten URL."
+					print(Fore.RED + ">> " + Fore.RESET + "Error: Unable to shorten URL.")
 			else:
 				api.update_status(a)
-				print "\033[31m>> \033[0;0mStatus updated successfully!\033[0;0m"
+				print(Fore.RED + ">> " + Fore.RESET + "Status updated successfully!\033[0;0m")
 		except KeyboardInterrupt:
 			print "\nAborted"
 		except tw.TweepError as error:
 			os.system('clear')
-			print "\033[31m>> \033[0;0mError occured: '%s'" % error
+			print(Fore.RED + ">> " + Fore.RESET + "Error occured: '%s'" % error)
 
 	def do_delete(self, tweet_id):
 		""" Delete your tweet by given tweet_id """
 		try:
 			api = auth_()
 			api.destroy_status(tweet_id)
-			print "\033[31m>> \033[0;0m" + tweet_id + " deleted successfully."
+			print(Fore.RED + ">> " + Fore.RESET + "" + tweet_id + " deleted successfully.")
 		except KeyboardInterrupt:
 			print "\nAborted"
 		except tw.TweepError as error:
 			os.system('clear')
-			print "\033[31m>> \033[0;0mError occured: '%s'" % error
+			print(Fore.RED + ">> " + Fore.RESET + "Error occured: '%s'" % error)
 
 	def do_follow(self, user_id):
 		""" Follow user with given user_id """
 		try:
 			api = auth_()
 			api.create_friendship(user_id)
-			print "\033[31m>> \033[0;0mYou started following @" + "\033[31m" + user_id + "\033[0;0m" +"."
+			print(Fore.RED + ">> " + Fore.RESET + "You started following @" + "\033[31m" + user_id + "\033[0;0m" +".")
 		except KeyboardInterrupt:
 			print "\nAborted"
 		except tw.TweepError as error:
 			os.system('clear')
-			print "\033[31m>> \033[0;0mError occured: '%s'" % error
+			print(Fore.RED + ">> " + Fore.RESET + "Error occured: '%s'" % error)
 
 	def do_unfollow(self, user_id):
 		""" Unfollow user with given user_id """
 		try:
 			api = auth_()
 			api.destroy_friendship(user_id)
-			print "\033[31m>> \033[0;0mYou successfully unfollowed @" + "\033[31m" + user_id + "\033[0;0m" +"."
+			print(Fore.RED + ">> " + Fore.RESET + "You successfully unfollowed @" + "\033[31m" + user_id + "\033[0;0m" +".")
 		except KeyboardInterrupt:
 			print "\nAborted"
 		except tw.TweepError as error:
 			os.system('clear')
-			print "\033[31m>> \033[0;0mError occured: '%s'" % error
+			print(Fore.RED + ">> " + Fore.RESET + "Error occured: '%s'" % error)
 
 	def do_me(self, line):
 		""" Show your profile information """
 		try:
 			api = auth_()
 			user = api.me()
-			print "   @"+ "\033[31m"+ user.screen_name + "\033[0;0m" + " (" + "\033[37m" + user.name + "\033[0;0m" + ")\n      " + user.description + "\n      " + "Following: " +  str(user.friends_count) + " || Followers: " + str(user.followers_count) + " || Tweets: " + str(user.statuses_count) + "|| Listed: " + str(user.listed_count) + "\n      " + user.location + " || " + user.url
+			print("   @"+ Fore.RED + user.screen_name + Fore.RESET + " (" +
+				Style.DIM + user.name + Style.RESET_ALL + ")\n      " +
+				user.description + "\n      " + "Following: " +
+				str(user.friends_count) + " || Followers: " +
+				str(user.followers_count) + " || Tweets: " +
+				str(user.statuses_count) + "|| Listed: " +
+				str(user.listed_count) + "\n      " +
+				user.location + " || " + user.url)
 		except KeyboardInterrupt:
 			print "\nAborted"
 		except tw.TweepError as error:
 			os.system('clear')
-			print "\033[31m>> \033[0;0mError occured: '%s'" % error
+			print(Fore.RED + ">> " + Fore.RESET + "Error occured: '%s'" % error)
 
 	def do_search(self, q):
 		""" Search Twitter """
@@ -166,12 +180,16 @@ class TweetuosoCommands(cmd.Cmd):
 			api = auth_()
 			src = api.search(q, rpp=20, result_type="recent")
 			for tweet in src:
-				print "   @"+ "\033[31m"+ tweet.from_user.encode('utf-8') + "\033[0;0m" + tweet.created_at.strftime(' \033[37mtweeted on %d/%m/%Y at %H:%M\033[0;0m\n') + "      " + tweet.text.encode('utf-8')
+				print("   @"+ Fore.RED + tweet.from_user.encode('utf-8') +
+						Fore.RESET +
+						tweet.created_at.strftime(Style.DIM +
+								' tweeted on %d/%m/%Y at %H:%M' + Style.RESET_ALL)
+						+ "      " + tweet.text.encode('utf-8'))
 		except KeyboardInterrupt:
 			print "\nAborted"
 		except tw.TweepError as error:
 			os.system('clear')
-			print "\033[31m>> \033[0;0mError occured: '%s'" % error
+			print(Fore.RED + ">> " + Fore.RESET + "Error occured: '%s'" % error)
 
 	def do_trends(self, line):
 		""" Returns the top 20 trending topics for the day. """
@@ -184,7 +202,7 @@ class TweetuosoCommands(cmd.Cmd):
 			print "\nAborted"
 		except tw.TweepError as error:
 			os.system('clear')
-			print "\033[31m>> \033[0;0mError occured: '%s'" % error
+			print(Fore.RED + ">> " + Fore.RESET + "Error occured: '%s'" % error)
 
 	def do_stalk(self, q):
 		""" Returns the last 20 tweets of given user."""
@@ -193,17 +211,22 @@ class TweetuosoCommands(cmd.Cmd):
 			api = auth_()
 			stk = api.user_timeline(q, count = 20, page = 1)
 			for tweet in stk:
-				print "   @"+ "\033[31m"+ tweet.user.screen_name.encode('utf-8') + "\033[0;0m" + tweet.created_at.strftime(' \033[37mtweeted on %d/%m/%Y at %H:%M\033[0;0m\n') + "      " + tweet.text.encode('utf-8')
+				print("   @"+ Fore.RED +
+					tweet.user.screen_name.encode('utf-8') +
+					Fore.RESET +
+					tweet.created_at.strftime(Style.DIM +
+							   ' tweeted on %d/%m/%Y at %H:%M\n' + Style.RESET_ALL)
+					+ "      " + tweet.text.encode('utf-8'))
 		except KeyboardInterrupt:
 			print "\nAborted"
 		except tw.TweepError as error:
 			os.system('clear')
-			print "\033[31m>> \033[0;0mError occured: '%s'" % error
-			
+			print(Fore.RED + ">> " + Fore.RESET + "Error occured: '%s'" % error)
+
 	def do_quit(self, line):
 		os.system("clear")
 		sys.exit(0)
-		
+
 	def do_help(self, line):
 		""" Show detailed help """
 		print "\n\033[31m   Commands:\n   _________________________________________________________________"
