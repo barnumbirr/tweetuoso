@@ -14,5 +14,6 @@ setup(
     description = 'Tweetuoso is a very light Twitter Command-line client developed in Python.',
     long_description=open('README.md').read(),
     keywords = 'twitter tweepy python command-line',
-    scripts = ['tweetuoso/tweetuoso.py']
+    scripts = ['tweetuoso/tweetuoso.py',
+               'tweetuoso/auth.py']
 )
