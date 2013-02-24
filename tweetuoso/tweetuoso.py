@@ -38,7 +38,7 @@ def auth():
 			url = auth.get_authorization_url()
 
 		except tw.TweepError as error:
-			print "\033[31m>> \033[0;0mError occured: " + str(error)
+			print "\033[31m>> \033[0;0mError occured: '%s'" % error
 			return
 
 		print "\033[31m>> \033[0;0mPlease visit this url to get the token: \n" + url
@@ -73,8 +73,8 @@ class TweetuosoCommands(cmd.Cmd):
 			print "\nAborted"
 		except tw.TweepError as error:
 			os.system('clear')
-			print "\033[31m>> \033[0;0mError occured: " + str(error)
-
+			print "\033[31m>> \033[0;0mError occured: '%s'" % error
+			
 	def do_mentions(self, line):
 		""" Show tweets in which you were mentioned """
 		try:
@@ -86,8 +86,8 @@ class TweetuosoCommands(cmd.Cmd):
 			print "\nAborted"
 		except tw.TweepError as error:
 			os.system('clear')
-			print "\033[31m>> \033[0;0mError occured: " + str(error)
-
+			print "\033[31m>> \033[0;0mError occured: '%s'" % error
+			
 	def do_post(self, a):
 		""" Post a tweet """
 		try:
@@ -105,11 +105,12 @@ class TweetuosoCommands(cmd.Cmd):
 					print "\033[31m>> \033[0;0mError: Unable to shorten URL."
 			else:
 				api.update_status(a)
+				print "\033[31m>> \033[0;0mStatus updated successfully!\033[0;0m"
 		except KeyboardInterrupt:
 			print "\nAborted"
 		except tw.TweepError as error:
 			os.system('clear')
-			print "\033[31m>> \033[0;0mError occured: " + str(error)
+			print "\033[31m>> \033[0;0mError occured: '%s'" % error
 
 	def do_delete(self, tweet_id):
 		""" Delete your tweet by given tweet_id """
@@ -121,7 +122,7 @@ class TweetuosoCommands(cmd.Cmd):
 			print "\nAborted"
 		except tw.TweepError as error:
 			os.system('clear')
-			print "\033[31m>> \033[0;0mError occured: " + str(error)
+			print "\033[31m>> \033[0;0mError occured: '%s'" % error
 
 	def do_follow(self, user_id):
 		""" Follow user with given user_id """
@@ -133,7 +134,7 @@ class TweetuosoCommands(cmd.Cmd):
 			print "\nAborted"
 		except tw.TweepError as error:
 			os.system('clear')
-			print "\033[31m>> \033[0;0mError occured: " + str(error)
+			print "\033[31m>> \033[0;0mError occured: '%s'" % error
 
 	def do_unfollow(self, user_id):
 		""" Unfollow user with given user_id """
@@ -145,7 +146,7 @@ class TweetuosoCommands(cmd.Cmd):
 			print "\nAborted"
 		except tw.TweepError as error:
 			os.system('clear')
-			print "\033[31m>> \033[0;0mError occured: " + str(error)
+			print "\033[31m>> \033[0;0mError occured: '%s'" % error
 
 	def do_me(self, line):
 		""" Show your profile information """
@@ -157,7 +158,7 @@ class TweetuosoCommands(cmd.Cmd):
 			print "\nAborted"
 		except tw.TweepError as error:
 			os.system('clear')
-			print "\033[31m>> \033[0;0mError occured: " + str(error)
+			print "\033[31m>> \033[0;0mError occured: '%s'" % error
 
 	def do_search(self, q):
 		""" Search Twitter """
@@ -170,7 +171,7 @@ class TweetuosoCommands(cmd.Cmd):
 			print "\nAborted"
 		except tw.TweepError as error:
 			os.system('clear')
-			print "\033[31m>> \033[0;0mError occured: " + str(error)
+			print "\033[31m>> \033[0;0mError occured: '%s'" % error
 
 	def do_trends(self, line):
 		""" Returns the top 20 trending topics for the day. """
@@ -183,7 +184,7 @@ class TweetuosoCommands(cmd.Cmd):
 			print "\nAborted"
 		except tw.TweepError as error:
 			os.system('clear')
-			print "\033[31m>> \033[0;0mError occured: " + str(error)
+			print "\033[31m>> \033[0;0mError occured: '%s'" % error
 
 	def do_stalk(self, q):
 		""" Returns the last 20 tweets of given user."""
@@ -197,7 +198,7 @@ class TweetuosoCommands(cmd.Cmd):
 			print "\nAborted"
 		except tw.TweepError as error:
 			os.system('clear')
-			print "\033[31m>> \033[0;0mError occured: " + str(error)
+			print "\033[31m>> \033[0;0mError occured: '%s'" % error
 			
 	def do_quit(self, line):
 		os.system("clear")
