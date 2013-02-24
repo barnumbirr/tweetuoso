@@ -9,7 +9,8 @@ Version 1.0.2
 	* Added trends cmd
 	* Added stalk cmd
 	* Added user.listed_count to the me cmd
-
+	* Color handling from ASCII to colorama
+	
 
 Version 1.0.1
 =============
