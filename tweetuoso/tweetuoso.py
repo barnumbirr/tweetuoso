@@ -37,12 +37,12 @@ def auth():
 		try:
 			url = auth.get_authorization_url()
 
-		except tw.TweepError as error:
-			print(Fore.RED + ">> " + Fore.RESET + "Error occured: '%s'" % error)
+		except tw.TweepError:
+			print(Fore.RED + ">> " + Fore.RESET + "Error occured: Couldn't get token.")
 			return
 
 		print(Fore.RED + ">> " + Fore.RESET + "Please visit this url to get your access keys: \n" + url)
-		pin = raw_input('\033[31m>> \033[0;0mPIN: ').strip()
+		pin = raw_input(Fore.RED + ">> " + Fore.RESET + "PIN: ").strip()
 		auth.get_access_token(pin)
 		print(Fore.RED + ">> " + Fore.RESET + "Add the following keys into the auth.py file :\n")
 		print(Fore.RED + ">> " + Fore.RESET + "access_token = '%s'" % auth.access_token.key)
@@ -63,7 +63,7 @@ class TweetuosoCommands(cmd.Cmd):
 	prompt = Fore.RED + ">> " + Fore.RESET
 
 	def do_timeline(self, line):
-		""" Show current timeline """
+		""" Show current timeline. """
 		try:
 			api = auth_()
 			tl = api.home_timeline()
@@ -80,7 +80,7 @@ class TweetuosoCommands(cmd.Cmd):
 			print(Fore.RED + ">> " + Fore.RESET + "Error occured: %s" % error)
 
 	def do_mentions(self, line):
-		""" Show tweets in which you were mentioned """
+		""" Show tweets in which you were mentioned. """
 		try:
 			api = auth_()
 			mt = api.mentions()
@@ -97,7 +97,7 @@ class TweetuosoCommands(cmd.Cmd):
 			print(Fore.RED + ">> " + Fore.RESET + "Error occured: %s" % error)
 
 	def do_post(self, a):
-		""" Post a tweet """
+		""" Post a tweet. """
 		try:
 			api = auth_()
 			url = re.search("(?P<url>https?://[^\s]+)", a)
@@ -108,12 +108,12 @@ class TweetuosoCommands(cmd.Cmd):
 					r = requests.get(short_url)
 					a = a.replace(long_url, r.text)
 					api.update_status(a)
-					print(Fore.RED + ">> " + Fore.RESET + "Status updated successfully!\033[0;0m")
+					print(Fore.RED + ">> " + Fore.RESET + "Status updated successfully!")
 				except requests.HTTPError:
 					print(Fore.RED + ">> " + Fore.RESET + "Error: Unable to shorten URL.")
 			else:
 				api.update_status(a)
-				print(Fore.RED + ">> " + Fore.RESET + "Status updated successfully!\033[0;0m")
+				print(Fore.RED + ">> " + Fore.RESET + "Status updated successfully!")
 		except KeyboardInterrupt:
 			print "\nAborted"
 		except tw.TweepError as error:
@@ -121,7 +121,7 @@ class TweetuosoCommands(cmd.Cmd):
 			print(Fore.RED + ">> " + Fore.RESET + "Error occured: %s" % error)
 
 	def do_delete(self, tweet_id):
-		""" Delete your tweet by given tweet_id """
+		""" Delete your tweet by given tweet_id. """
 		try:
 			api = auth_()
 			api.destroy_status(tweet_id)
@@ -133,11 +133,11 @@ class TweetuosoCommands(cmd.Cmd):
 			print(Fore.RED + ">> " + Fore.RESET + "Error occured: %s" % error)
 
 	def do_follow(self, user_id):
-		""" Follow user with given user_id """
+		""" Follow user with given user_id. """
 		try:
 			api = auth_()
 			api.create_friendship(user_id)
-			print(Fore.RED + ">> " + Fore.RESET + "You started following @" + "\033[31m" + user_id + "\033[0;0m" +".")
+			print(Fore.RED + ">> " + Fore.RESET + "You started following @" + Fore.RED + user_id + Fore.RESET +".")
 		except KeyboardInterrupt:
 			print "\nAborted"
 		except tw.TweepError as error:
@@ -145,11 +145,11 @@ class TweetuosoCommands(cmd.Cmd):
 			print(Fore.RED + ">> " + Fore.RESET + "Error occured: %s" % error)
 
 	def do_unfollow(self, user_id):
-		""" Unfollow user with given user_id """
+		""" Unfollow user with given user_id. """
 		try:
 			api = auth_()
 			api.destroy_friendship(user_id)
-			print(Fore.RED + ">> " + Fore.RESET + "You successfully unfollowed @" + "\033[31m" + user_id + "\033[0;0m" +".")
+			print(Fore.RED + ">> " + Fore.RESET + "You successfully unfollowed @" + Fore.RED + user_id + Fore.RESET +".")
 		except KeyboardInterrupt:
 			print "\nAborted"
 		except tw.TweepError as error:
@@ -157,7 +157,7 @@ class TweetuosoCommands(cmd.Cmd):
 			print(Fore.RED + ">> " + Fore.RESET + "Error occured: %s" % error)
 
 	def do_me(self, line):
-		""" Show your profile information """
+		""" Show your profile information. """
 		try:
 			api = auth_()
 			user = api.me()
@@ -176,7 +176,7 @@ class TweetuosoCommands(cmd.Cmd):
 			print(Fore.RED + ">> " + Fore.RESET + "Error occured: %s" % error)
 
 	def do_search(self, q):
-		""" Search Twitter """
+		""" Search Twitter for <query> """
 		try:
 			api = auth_()
 			src = api.search(q, rpp=20, result_type="recent")
@@ -223,6 +223,25 @@ class TweetuosoCommands(cmd.Cmd):
 		except tw.TweepError as error:
 			os.system('clear')
 			print(Fore.RED + ">> " + Fore.RESET + "Error occured: %s" % error)
+			
+	def do_followback(self, line):
+		""" Followback all your followers. """
+		""" May be limited due to API rate limits. """
+		""" Duration of operation depends on number of followers. """
+		try:
+			api = auth_()
+			fol = api.followers()
+			fri = api.friends()
+			follow = [x for x in fol if x not in fri]
+			print (Fore.RED + ">> " + Fore.RESET + "Working. This may take a while...")
+			for u in follow:
+				u.follow()
+				print (Fore.RED + ">> " + Fore.RESET + 
+					"You successfully followed back all of your followers.")
+		except tw.TweepError as error:
+			os.system('clear')
+			print(Fore.RED + ">> " + Fore.RESET + "Error occured: %s" % error)
+		print (Fore.RED + ">> " + Fore.RESET + "You successfully followed back all of your followers.")
 
 	def do_quit(self, line):
 		os.system("clear")
@@ -241,6 +260,7 @@ class TweetuosoCommands(cmd.Cmd):
 		print "  +\tsearch\t\t Search for <query>.                        +"
 		print "  +\tfollow\t\t Follow a new user.                         +"
 		print "  +\tunfollow\t Unfollow a user.                           +"
+		print "  +\tfollowback\t Followback all your followers.           +"
 		print "  +\ttrends\t\t Show today's trends.                       +"
 		print "  +                                                                 +"
 		print "  +     Use 'quit' to leave.                                        +"
