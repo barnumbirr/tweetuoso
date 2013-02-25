@@ -11,6 +11,8 @@ Version 1.0.2
 	* Added user.listed_count to the me cmd
 	* Color handling from ASCII to colorama
 	* Use separate auth.py file for user keys
+	* Added followback cmd
+	* Removed depreciated ASCII color codes
 	
 
 Version 1.0.1
