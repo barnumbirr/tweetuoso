@@ -260,7 +260,7 @@ class TweetuosoCommands(cmd.Cmd):
 		print "  +\tsearch\t\t Search for <query>.                        +"
 		print "  +\tfollow\t\t Follow a new user.                         +"
 		print "  +\tunfollow\t Unfollow a user.                           +"
-		print "  +\tfollowback\t Followback all your followers.           +"
+		print "  +\tfollowback\t Followback all your followers.             +"
 		print "  +\ttrends\t\t Show today's trends.                       +"
 		print "  +                                                                 +"
 		print "  +     Use 'quit' to leave.                                        +"
