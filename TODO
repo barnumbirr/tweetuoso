@@ -7,4 +7,8 @@
   * color #hashtag / mentions
   * add pytz support
   * post issue to https://github.com/c0ding/tweetuoso/issues directly from Tweetuoso
+  * add setting to reverse timeline order
+  * add caracter count when posting tweet
+  * package to PyPi
+  * rule the world
   * ...
