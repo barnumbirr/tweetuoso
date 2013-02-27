@@ -20,6 +20,7 @@ For now, it allows you to:
 * search for 'query'
 * stalk people (or yourself)
 * show current trends
+* automatically followback your followers
 
 More is still to come...
 
@@ -39,6 +40,7 @@ Pre-requisites:
 * tweepy >= 1.40 (for a Twitter API connection, obviously)
 * requests 1.1.0
 * colorama 0.2.5
+* GitPython 0.3.2 (if you wish to use tweet_commit)
 * python-setuptools 
 * Working API keys from Twitter
 
