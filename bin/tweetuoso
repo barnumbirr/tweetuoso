@@ -7,7 +7,7 @@ import sys
 import cmd
 import requests
 import tweepy as tw
-from auth import keys
+from tweetuoso.auth import keys
 from colorama import Fore, Style
 
 
@@ -223,7 +223,7 @@ class TweetuosoCommands(cmd.Cmd):
 		except tw.TweepError as error:
 			os.system('clear')
 			print(Fore.RED + ">> " + Fore.RESET + "Error occured: %s" % error)
-			
+
 	def do_followback(self, line):
 		""" Followback all your followers. """
 		""" May be limited due to API rate limits. """
@@ -236,7 +236,7 @@ class TweetuosoCommands(cmd.Cmd):
 			print (Fore.RED + ">> " + Fore.RESET + "Working. This may take a while...")
 			for u in follow:
 				u.follow()
-				print (Fore.RED + ">> " + Fore.RESET + 
+				print (Fore.RED + ">> " + Fore.RESET +
 					"You successfully followed back all of your followers.")
 		except tw.TweepError as error:
 			os.system('clear')
