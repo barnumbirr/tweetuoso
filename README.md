@@ -63,8 +63,7 @@ Get the latest version (from GitHub):
 
 ### From PyPi
 
-
-Coming soon...
+    $ pip install tweetuoso
 
 
 ## Configuration
