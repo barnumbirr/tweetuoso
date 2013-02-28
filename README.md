@@ -124,7 +124,7 @@ Finally, we’re all set up. Our command line app is registered as a Twitter cli
 ## Running
 
 
-Simply follow th steps above and launch tweetuoso.py. Enjoy!
+Simply follow the steps above and launch tweetuoso.py. Enjoy!
 
 
 ## License
