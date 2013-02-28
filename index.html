@@ -30,7 +30,10 @@
       <section>
         <h1></h1>
 
-<h1><img src="https://raw.github.com/c0ding/tweetuoso/master/tweetuoso/doc/tweetuoso.banner.png" alt="screenshot"></h1>
+<p align="center">
+  <img src="https://raw.github.com/c0ding/tweetuoso/master/tweetuoso/doc/tweetuoso.banner.png" alt="Tweetuoso" title="Tweetuoso"></p>
+
+<h1></h1>
 
 <h2>Description</h2>
 
@@ -47,6 +50,7 @@
 <li>search for 'query'</li>
 <li>stalk people (or yourself)</li>
 <li>show current trends</li>
+<li>automatically followback your followers</li>
 </ul><p>More is still to come...</p>
 
 <h2>Console screenshot (80x24):</h2>
@@ -62,6 +66,7 @@
 <li>tweepy &gt;= 1.40 (for a Twitter API connection, obviously)</li>
 <li>requests 1.1.0</li>
 <li>colorama 0.2.5</li>
+<li>GitPython 0.3.2 (if you wish to use tweet_commit)</li>
 <li>python-setuptools </li>
 <li>Working API keys from Twitter</li>
 </ul><h3>From source</h3>
@@ -82,7 +87,8 @@ $ python setup.py install
 
 <h3>From PyPi</h3>
 
-<p>Coming soon...</p>
+<pre><code>$ pip install tweetuoso
+</code></pre>
 
 <h2>Configuration</h2>
 
@@ -97,7 +103,7 @@ Fill in the registration fields as follows:</p>
 
 <h3>Step 2: OAuth settings</h3>
 
-<p>Next, the app needs to be authorized to connect to your account so it can send tweets under your name. Paste the <strong>Consumer Key</strong> and <strong>Consumer Secret</strong> into auth.py. Then save and run <strong>Tweetuoso</strong> on your system.</p>
+<p>Next, the app needs to be authorized to connect to your account so it can send tweets under your name. Paste the <strong>Consumer Key</strong> and <strong>Consumer Secret</strong> into tweetuoso.py. Then save and run <strong>Tweetuoso</strong> on your system.</p>
 
 <p><img src="https://raw.github.com/c0ding/tweetuoso/master/tweetuoso/doc/keys.png" alt="screenshot"></p>
 
@@ -138,14 +144,14 @@ $ access_secret = 'kaTXiC489qo8y6haTBSlwOqR1syG83tzPG2StdQ'
 
 <h2>Running</h2>
 
-<p>Simply follow th steps above and launch tweetuoso.py. Enjoy!</p>
+<p>Simply follow the steps above and launch tweetuoso.py. Enjoy!</p>
 
 <h2>License</h2>
 
 <pre><code>           DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
                    Version 2, December 2004
 
-Copyright (C) 2004 c0ding &lt;https://twitter.com/c0ding&gt;
+Copyright (C) 2013 c0ding &lt;https://twitter.com/c0ding&gt;
 
 Everyone is permitted to copy and distribute verbatim or modified
 copies of this license document, and changing it is allowed as long
