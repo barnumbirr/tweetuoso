@@ -19,6 +19,6 @@ setup(
     requires=[
         'colorama (==0.2.5)',
         'requests (==1.1.0)',
-        'tweepy (==1.40)',
+        'tweepy (==1.4)',
     ],
 )
