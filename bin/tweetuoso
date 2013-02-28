@@ -28,7 +28,7 @@ def banner ():
 ##             Made with ♥ by @c0ding, February 2013              ##
 ##                      Licensed under WTFPL                      ##
 ####################################################################\n""" +
-		Fore.RESET)
+Fore.RESET)
 
 def auth():
 	print "Getting authorization url..."
@@ -249,7 +249,7 @@ class TweetuosoCommands(cmd.Cmd):
 
 	def do_help(self, line):
 		""" Show detailed help """
-		print "\n\033[31m   Commands:\n   _________________________________________________________________"
+		print (Fore.RED + "   Commands:\n   _________________________________________________________________"
 		print "  +                                                                 +"
 		print "  +\ttimeline\t Show public timeline.                      +"
 		print "  +\tmentions\t Show tweets that mentioned you.            +"
@@ -264,7 +264,7 @@ class TweetuosoCommands(cmd.Cmd):
 		print "  +\ttrends\t\t Show today's trends.                       +"
 		print "  +                                                                 +"
 		print "  +     Use 'quit' to leave.                                        +"
-		print "  +_________________________________________________________________+\033[0;0m"
+		print "  +_________________________________________________________________+" + Fore.RESET)
 		print ""
 
 
