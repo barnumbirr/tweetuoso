@@ -9,7 +9,7 @@ setup(
     url = "http://c0ding.github.com/tweetuoso/",
     download_url = "https://github.com/c0ding/tweetuoso/archive/master.zip",
     author = 'c0ding',
-    author_email='c0ding@nowhere.net',
+    author_email='martin.simon@email.com',
     license = "WTFPL",
     packages = ['tweetuoso'],
     scripts = ['bin/tweetuoso'],
@@ -19,6 +19,6 @@ setup(
     requires=[
         'colorama (==0.2.5)',
         'requests (==1.1.0)',
-        'tweepy (==2.0)',
+        'tweepy (==1.40)',
     ],
 )
