@@ -30,6 +30,9 @@ def banner ():
 ####################################################################\n""" +
 Fore.RESET)
 
+def prompt_print(text):
+	print(Fore.RED + ">> " + Fore.RESET + text)
+
 def auth():
 	print "Getting authorization url..."
 	try:
@@ -38,15 +41,15 @@ def auth():
 			url = auth.get_authorization_url()
 
 		except tw.TweepError:
-			print(Fore.RED + ">> " + Fore.RESET + "Error occured: Couldn't get token.")
+			prompt_print("Error occured: Couldn't get token.")
 			return
 
-		print(Fore.RED + ">> " + Fore.RESET + "Please visit this url to get your access keys: \n" + url)
+		prompt_print("Please visit this url to get your access keys: \n" + url)
 		pin = raw_input(Fore.RED + ">> " + Fore.RESET + "PIN: ").strip()
 		auth.get_access_token(pin)
-		print(Fore.RED + ">> " + Fore.RESET + "Add the following keys into the auth.py file :\n")
-		print(Fore.RED + ">> " + Fore.RESET + "access_token = '%s'" % auth.access_token.key)
-		print(Fore.RED + ">> " + Fore.RESET + "access_secret = '%s'" % auth.access_token.secret)
+		prompt_print("Add the following keys into the auth.py file :\n")
+		prompt_print("access_token = '%s'" % auth.access_token.key)
+		prompt_print("access_secret = '%s'" % auth.access_token.secret)
 
 	except KeyboardInterrupt:
 		print "\nAborted"
@@ -77,7 +80,7 @@ class TweetuosoCommands(cmd.Cmd):
 			print "\nAborted"
 		except tw.TweepError as error:
 			os.system('clear')
-			print(Fore.RED + ">> " + Fore.RESET + "Error occured: %s" % error)
+			prompt_print("Error occured: %s" % error)
 
 	def do_mentions(self, line):
 		""" Show tweets in which you were mentioned. """
@@ -94,7 +97,7 @@ class TweetuosoCommands(cmd.Cmd):
 			print "\nAborted"
 		except tw.TweepError as error:
 			os.system('clear')
-			print(Fore.RED + ">> " + Fore.RESET + "Error occured: %s" % error)
+			prompt_print("Error occured: %s" % error)
 
 	def do_post(self, a):
 		""" Post a tweet. """
@@ -108,29 +111,29 @@ class TweetuosoCommands(cmd.Cmd):
 					r = requests.get(short_url)
 					a = a.replace(long_url, r.text)
 					api.update_status(a)
-					print(Fore.RED + ">> " + Fore.RESET + "Status updated successfully!")
+					prompt_print("Status updated successfully!")
 				except requests.HTTPError:
-					print(Fore.RED + ">> " + Fore.RESET + "Error: Unable to shorten URL.")
+					prompt_print("Error: Unable to shorten URL.")
 			else:
 				api.update_status(a)
-				print(Fore.RED + ">> " + Fore.RESET + "Status updated successfully!")
+				prompt_print("Status updated successfully!")
 		except KeyboardInterrupt:
 			print "\nAborted"
 		except tw.TweepError as error:
 			os.system('clear')
-			print(Fore.RED + ">> " + Fore.RESET + "Error occured: %s" % error)
+			prompt_print("Error occured: %s" % error)
 
 	def do_delete(self, tweet_id):
 		""" Delete your tweet by given tweet_id. """
 		try:
 			api = auth_()
 			api.destroy_status(tweet_id)
-			print(Fore.RED + ">> " + Fore.RESET + "" + tweet_id + " deleted successfully.")
+			prompt_print(tweet_id + " deleted successfully.")
 		except KeyboardInterrupt:
 			print "\nAborted"
 		except tw.TweepError as error:
 			os.system('clear')
-			print(Fore.RED + ">> " + Fore.RESET + "Error occured: %s" % error)
+			prompt_print("Error occured: %s" % error)
 
 	def do_follow(self, user_id):
 		""" Follow user with given user_id. """
@@ -142,19 +145,19 @@ class TweetuosoCommands(cmd.Cmd):
 			print "\nAborted"
 		except tw.TweepError as error:
 			os.system('clear')
-			print(Fore.RED + ">> " + Fore.RESET + "Error occured: %s" % error)
+			prompt_print("Error occured: %s" % error)
 
 	def do_unfollow(self, user_id):
 		""" Unfollow user with given user_id. """
 		try:
 			api = auth_()
 			api.destroy_friendship(user_id)
-			print(Fore.RED + ">> " + Fore.RESET + "You successfully unfollowed @" + Fore.RED + user_id + Fore.RESET +".")
+			prompt_print("You successfully unfollowed @" + Fore.RED + user_id + Fore.RESET +".")
 		except KeyboardInterrupt:
 			print "\nAborted"
 		except tw.TweepError as error:
 			os.system('clear')
-			print(Fore.RED + ">> " + Fore.RESET + "Error occured: %s" % error)
+			prompt_print("Error occured: %s" % error)
 
 	def do_me(self, line):
 		""" Show your profile information. """
@@ -173,7 +176,7 @@ class TweetuosoCommands(cmd.Cmd):
 			print "\nAborted"
 		except tw.TweepError as error:
 			os.system('clear')
-			print(Fore.RED + ">> " + Fore.RESET + "Error occured: %s" % error)
+			prompt_print("Error occured: %s" % error)
 
 	def do_search(self, q):
 		""" Search Twitter for <query> """
@@ -190,7 +193,7 @@ class TweetuosoCommands(cmd.Cmd):
 			print "\nAborted"
 		except tw.TweepError as error:
 			os.system('clear')
-			print(Fore.RED + ">> " + Fore.RESET + "Error occured: %s" % error)
+			prompt_print("Error occured: %s" % error)
 
 	def do_trends(self, line):
 		""" Returns the top 20 trending topics for the day. """
@@ -203,7 +206,7 @@ class TweetuosoCommands(cmd.Cmd):
 			print "\nAborted"
 		except tw.TweepError as error:
 			os.system('clear')
-			print(Fore.RED + ">> " + Fore.RESET + "Error occured: %s" % error)
+			prompt_print("Error occured: %s" % error)
 
 	def do_stalk(self, q):
 		""" Returns the last 20 tweets of given user."""
@@ -222,7 +225,7 @@ class TweetuosoCommands(cmd.Cmd):
 			print "\nAborted"
 		except tw.TweepError as error:
 			os.system('clear')
-			print(Fore.RED + ">> " + Fore.RESET + "Error occured: %s" % error)
+			prompt_print("Error occured: %s" % error)
 
 	def do_followback(self, line):
 		""" Followback all your followers. """
@@ -233,15 +236,14 @@ class TweetuosoCommands(cmd.Cmd):
 			fol = api.followers()
 			fri = api.friends()
 			follow = [x for x in fol if x not in fri]
-			print (Fore.RED + ">> " + Fore.RESET + "Working. This may take a while...")
+			prompt_print ("Working. This may take a while...")
 			for u in follow:
 				u.follow()
-				print (Fore.RED + ">> " + Fore.RESET +
-					"You successfully followed back all of your followers.")
+				prompt_print ("You successfully followed back all of your followers.")
 		except tw.TweepError as error:
 			os.system('clear')
-			print(Fore.RED + ">> " + Fore.RESET + "Error occured: %s" % error)
-		print (Fore.RED + ">> " + Fore.RESET + "You successfully followed back all of your followers.")
+			prompt_print("Error occured: %s" % error)
+		prompt_print ("You successfully followed back all of your followers.")
 
 	def do_quit(self, line):
 		os.system("clear")
