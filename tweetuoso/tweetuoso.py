@@ -7,7 +7,8 @@ import sys
 import cmd
 import requests
 import tweepy as tw
-from tweetuoso.auth import keys
+from config import keys
+from config import settings
 from colorama import Fore, Style
 
 
@@ -31,10 +32,11 @@ def banner ():
 Fore.RESET)
 
 def prompt_print(text):
+	
 	print(Fore.RED + ">> " + Fore.RESET + text)
 
 def auth():
-	print "Getting authorization url..."
+	print (Fore.RED + ">> " + Fore.RESET +"Getting authorization URL...")
 	try:
 		auth = tw.OAuthHandler(keys['consumer_key'], keys['consumer_secret'])
 		try:
@@ -70,12 +72,21 @@ class TweetuosoCommands(cmd.Cmd):
 		try:
 			api = auth_()
 			tl = api.home_timeline()
-			for tweet in tl:
-				print("   @" + Fore.RED + tweet.user.screen_name.encode('utf-8')
-						+ Fore.RESET +
-						tweet.created_at.strftime(
-							Style.DIM +' tweeted on %d/%m/%Y at %H:%M\n' +
-							Style.RESET_ALL) + "      " + tweet.text.encode('utf-8'))
+			if settings['reversed_timeline'] == True:
+				tl.reverse()
+				for tweet in tl:
+					print("   @" + Fore.RED + tweet.user.screen_name.encode('utf-8')
+							+ Fore.RESET +
+							tweet.created_at.strftime(
+								Style.DIM +' tweeted on %d/%m/%Y at %H:%M\n' +
+								Style.RESET_ALL) + "      " + tweet.text.encode('utf-8'))
+			if settings['reversed_timeline'] == False:
+				for tweet in tl:
+					print("   @" + Fore.RED + tweet.user.screen_name.encode('utf-8')
+							+ Fore.RESET +
+							tweet.created_at.strftime(
+								Style.DIM +' tweeted on %d/%m/%Y at %H:%M\n' +
+								Style.RESET_ALL) + "      " + tweet.text.encode('utf-8'))
 		except KeyboardInterrupt:
 			print "\nAborted"
 		except tw.TweepError as error:
@@ -248,6 +259,10 @@ class TweetuosoCommands(cmd.Cmd):
 	def do_quit(self, line):
 		os.system("clear")
 		sys.exit(0)
+		
+	def do_exit(self, line):
+		os.system("clear")
+		sys.exit(0)
 
 	def do_help(self, line):
 		""" Show detailed help """
@@ -265,7 +280,7 @@ class TweetuosoCommands(cmd.Cmd):
 		print "  +\tfollowback\t Followback all your followers.             +"
 		print "  +\ttrends\t\t Show today's trends.                       +"
 		print "  +                                                                 +"
-		print "  +     Use 'quit' to leave.                                        +"
+		print "  +     Use 'quit' or 'exit' to leave.                              +"
 		print "  +_________________________________________________________________+" + Fore.RESET
 		print ""
 
