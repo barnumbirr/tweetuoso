@@ -13,6 +13,8 @@ Version 1.0.2
 	* Use separate auth.py file for user keys
 	* Added followback cmd
 	* Removed depreciated ASCII color codes
+	* Added settings to config
+	* Added possibility to reverse timeline in config
 	
 
 Version 1.0.1

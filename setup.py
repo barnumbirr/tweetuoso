@@ -12,7 +12,7 @@ setup(
     author_email='martin.simon@email.com',
     license = "WTFPL",
     packages = ['tweetuoso'],
-    scripts = ['bin/tweetuoso'],
+    scripts = ['tweetuoso/tweetuoso.py'],
     description = 'Tweetuoso is a very light Twitter Command-line client developed in Python.',
     long_description=open('README.md').read(),
     keywords = 'twitter tweepy python command-line',
