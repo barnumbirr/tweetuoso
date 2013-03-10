@@ -54,7 +54,8 @@ def auth():
 		prompt_print("access_secret = '%s'" % auth.access_token.secret)
 
 	except KeyboardInterrupt:
-		print "\nAborted"
+		os.system("clear")
+		sys.exit(0)
 
 def auth_():
 	""" Function doc """
@@ -87,8 +88,6 @@ class TweetuosoCommands(cmd.Cmd):
 							tweet.created_at.strftime(
 								Style.DIM +' tweeted on %d/%m/%Y at %H:%M\n' +
 								Style.RESET_ALL) + "      " + tweet.text.encode('utf-8'))
-		except KeyboardInterrupt:
-			print "\nAborted"
 		except tw.TweepError as error:
 			prompt_print("Error occured: %s" % error)
 
@@ -103,8 +102,6 @@ class TweetuosoCommands(cmd.Cmd):
 						tweet.created_at.strftime(
 							Style.DIM +' tweeted you on %d/%m/%Y at %H:%M\n' +
 							Style.RESET_ALL) + "      " + tweet.text.encode('utf-8'))
-		except KeyboardInterrupt:
-			print "\nAborted"
 		except tw.TweepError as error:
 			prompt_print("Error occured: %s" % error)
 
@@ -126,8 +123,6 @@ class TweetuosoCommands(cmd.Cmd):
 			else:
 				api.update_status(a)
 				prompt_print("Status updated successfully!")
-		except KeyboardInterrupt:
-			print "\nAborted"
 		except tw.TweepError as error:
 			prompt_print("Error occured: %s" % error)
 
@@ -137,8 +132,6 @@ class TweetuosoCommands(cmd.Cmd):
 			api = auth_()
 			api.destroy_status(tweet_id)
 			prompt_print(tweet_id + " deleted successfully.")
-		except KeyboardInterrupt:
-			print "\nAborted"
 		except tw.TweepError as error:
 			prompt_print("Error occured: %s" % error)
 
@@ -147,9 +140,7 @@ class TweetuosoCommands(cmd.Cmd):
 		try:
 			api = auth_()
 			api.create_friendship(user_id)
-			print(Fore.RED + ">> " + Fore.RESET + "You started following @" + Fore.RED + user_id + Fore.RESET +".")
-		except KeyboardInterrupt:
-			print "\nAborted"
+			prompt_print("You started following @" + Fore.RED + user_id + Fore.RESET +".")
 		except tw.TweepError as error:
 			prompt_print("Error occured: %s" % error)
 
@@ -159,8 +150,6 @@ class TweetuosoCommands(cmd.Cmd):
 			api = auth_()
 			api.destroy_friendship(user_id)
 			prompt_print("You successfully unfollowed @" + Fore.RED + user_id + Fore.RESET +".")
-		except KeyboardInterrupt:
-			print "\nAborted"
 		except tw.TweepError as error:
 			prompt_print("Error occured: %s" % error)
 
@@ -177,8 +166,6 @@ class TweetuosoCommands(cmd.Cmd):
 				str(user.statuses_count) + "|| Listed: " +
 				str(user.listed_count) + "\n      " +
 				user.location + " || " + user.url)
-		except KeyboardInterrupt:
-			print "\nAborted"
 		except tw.TweepError as error:
 			prompt_print("Error occured: %s" % error)
 
@@ -193,8 +180,6 @@ class TweetuosoCommands(cmd.Cmd):
 						tweet.created_at.strftime(Style.DIM +
 								' tweeted on %d/%m/%Y at %H:%M' + Style.RESET_ALL)
 						+ "\n      " + tweet.text.encode('utf-8'))
-		except KeyboardInterrupt:
-			print "\nAborted"
 		except tw.TweepError as error:
 			prompt_print("Error occured: %s" % error)
 
@@ -205,8 +190,6 @@ class TweetuosoCommands(cmd.Cmd):
 			t = api.trends_location(1)
 			trends = "  " + "\n  ".join(i["name"] for i in t[0]["trends"])
 			print trends
-		except KeyboardInterrupt:
-			print "\nAborted"
 		except tw.TweepError as error:
 			prompt_print("Error occured: %s" % error)
 
@@ -223,8 +206,6 @@ class TweetuosoCommands(cmd.Cmd):
 					tweet.created_at.strftime(Style.DIM +
 							   ' tweeted on %d/%m/%Y at %H:%M\n' + Style.RESET_ALL)
 					+ "      " + tweet.text.encode('utf-8'))
-		except KeyboardInterrupt:
-			print "\nAborted"
 		except tw.TweepError as error:
 			prompt_print("Error occured: %s" % error)
 
@@ -276,9 +257,12 @@ class TweetuosoCommands(cmd.Cmd):
 
 
 def main():
-	banner()
-	TweetuosoCommands().cmdloop()
-
+	try:
+		banner()
+		TweetuosoCommands().cmdloop()
+	except KeyboardInterrupt:
+		os.system("clear")
+		sys.exit(0)
 
 if __name__ == '__main__':
 	os.system('clear')
