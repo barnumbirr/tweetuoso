@@ -90,7 +90,6 @@ class TweetuosoCommands(cmd.Cmd):
 		except KeyboardInterrupt:
 			print "\nAborted"
 		except tw.TweepError as error:
-			os.system('clear')
 			prompt_print("Error occured: %s" % error)
 
 	def do_mentions(self, line):
@@ -107,7 +106,6 @@ class TweetuosoCommands(cmd.Cmd):
 		except KeyboardInterrupt:
 			print "\nAborted"
 		except tw.TweepError as error:
-			os.system('clear')
 			prompt_print("Error occured: %s" % error)
 
 	def do_post(self, a):
@@ -131,7 +129,6 @@ class TweetuosoCommands(cmd.Cmd):
 		except KeyboardInterrupt:
 			print "\nAborted"
 		except tw.TweepError as error:
-			os.system('clear')
 			prompt_print("Error occured: %s" % error)
 
 	def do_delete(self, tweet_id):
@@ -143,7 +140,6 @@ class TweetuosoCommands(cmd.Cmd):
 		except KeyboardInterrupt:
 			print "\nAborted"
 		except tw.TweepError as error:
-			os.system('clear')
 			prompt_print("Error occured: %s" % error)
 
 	def do_follow(self, user_id):
@@ -155,7 +151,6 @@ class TweetuosoCommands(cmd.Cmd):
 		except KeyboardInterrupt:
 			print "\nAborted"
 		except tw.TweepError as error:
-			os.system('clear')
 			prompt_print("Error occured: %s" % error)
 
 	def do_unfollow(self, user_id):
@@ -167,7 +162,6 @@ class TweetuosoCommands(cmd.Cmd):
 		except KeyboardInterrupt:
 			print "\nAborted"
 		except tw.TweepError as error:
-			os.system('clear')
 			prompt_print("Error occured: %s" % error)
 
 	def do_me(self, line):
@@ -186,7 +180,6 @@ class TweetuosoCommands(cmd.Cmd):
 		except KeyboardInterrupt:
 			print "\nAborted"
 		except tw.TweepError as error:
-			os.system('clear')
 			prompt_print("Error occured: %s" % error)
 
 	def do_search(self, q):
@@ -199,24 +192,22 @@ class TweetuosoCommands(cmd.Cmd):
 						Fore.RESET +
 						tweet.created_at.strftime(Style.DIM +
 								' tweeted on %d/%m/%Y at %H:%M' + Style.RESET_ALL)
-						+ "      " + tweet.text.encode('utf-8'))
+						+ "\n      " + tweet.text.encode('utf-8'))
 		except KeyboardInterrupt:
 			print "\nAborted"
 		except tw.TweepError as error:
-			os.system('clear')
 			prompt_print("Error occured: %s" % error)
 
 	def do_trends(self, line):
-		""" Returns the top 20 trending topics for the day. """
+		""" Returns the top 10 trending topics for the day. """
 		try:
 			api = auth_()
 			t = api.trends_location(1)
-			trends = "\n".join(i["name"] for i in t[0]["trends"])
+			trends = "  " + "\n  ".join(i["name"] for i in t[0]["trends"])
 			print trends
 		except KeyboardInterrupt:
 			print "\nAborted"
 		except tw.TweepError as error:
-			os.system('clear')
 			prompt_print("Error occured: %s" % error)
 
 	def do_stalk(self, q):
@@ -235,7 +226,6 @@ class TweetuosoCommands(cmd.Cmd):
 		except KeyboardInterrupt:
 			print "\nAborted"
 		except tw.TweepError as error:
-			os.system('clear')
 			prompt_print("Error occured: %s" % error)
 
 	def do_followback(self, line):
