@@ -11,7 +11,6 @@ from config import keys
 from config import settings
 from colorama import Fore, Style
 
-
 def banner ():
   print(Fore.RED +
 """####################################################################
@@ -32,24 +31,28 @@ def banner ():
 Fore.RESET)
 
 def prompt_print(text):
-	
 	print(Fore.RED + ">> " + Fore.RESET + text)
 
 def auth():
-	print (Fore.RED + ">> " + Fore.RESET +"Getting authorization URL...")
+	banner()
+	prompt_print("Getting authorization URL...")
 	try:
 		auth = tw.OAuthHandler(keys['consumer_key'], keys['consumer_secret'])
 		try:
 			url = auth.get_authorization_url()
-
 		except tw.TweepError:
 			prompt_print("Error occured: Couldn't get token.")
 			return
 
-		prompt_print("Please visit this url to get your access keys: \n" + url)
+		prompt_print("Please visit this url to get your access keys:")
+		prompt_print(url)
 		pin = raw_input(Fore.RED + ">> " + Fore.RESET + "PIN: ").strip()
-		auth.get_access_token(pin)
-		prompt_print("Add the following keys into the config.py file :\n")
+		try:
+			auth.get_access_token(pin)
+		except tw.TweepError as error:
+			prompt_print("Error occured: %s" % error)
+			return
+		prompt_print("Add the following keys into the config.py file :")
 		prompt_print("access_token = '%s'" % auth.access_token.key)
 		prompt_print("access_secret = '%s'" % auth.access_token.secret)
 
@@ -252,7 +255,6 @@ class TweetuosoCommands(cmd.Cmd):
 		print "  +     Use 'quit' or 'exit' to leave.                              +"
 		print "  +_________________________________________________________________+" + Fore.RESET
 		print ""
-
 
 def main():
 	try:
