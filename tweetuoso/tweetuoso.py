@@ -49,7 +49,7 @@ def auth():
 		prompt_print("Please visit this url to get your access keys: \n" + url)
 		pin = raw_input(Fore.RED + ">> " + Fore.RESET + "PIN: ").strip()
 		auth.get_access_token(pin)
-		prompt_print("Add the following keys into the auth.py file :\n")
+		prompt_print("Add the following keys into the config.py file :\n")
 		prompt_print("access_token = '%s'" % auth.access_token.key)
 		prompt_print("access_secret = '%s'" % auth.access_token.secret)
 
@@ -223,9 +223,7 @@ class TweetuosoCommands(cmd.Cmd):
 				u.follow()
 				prompt_print ("You successfully followed back all of your followers.")
 		except tw.TweepError as error:
-			os.system('clear')
 			prompt_print("Error occured: %s" % error)
-		prompt_print ("You successfully followed back all of your followers.")
 
 	def do_quit(self, line):
 		os.system("clear")

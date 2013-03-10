@@ -65,7 +65,6 @@ Get the latest version (from GitHub):
 
     $ pip install tweetuoso
 
-
 ## Configuration
 
 
@@ -83,7 +82,7 @@ Fill in the registration fields as follows:
 ### Step 2: OAuth settings
 
 
-Next, the app needs to be authorized to connect to your account so it can send tweets under your name. Paste the **Consumer Key** and **Consumer Secret** into tweetuoso.py. Then save and run **Tweetuoso** on your system.
+Next, the app needs to be authorized to connect to your account so it can send tweets under your name. Paste the **Consumer Key** and **Consumer Secret** into config.py file. Then save and run **Tweetuoso** on your system.
 
 ![screenshot](https://raw.github.com/c0ding/tweetuoso/master/tweetuoso/doc/keys.png)
 
