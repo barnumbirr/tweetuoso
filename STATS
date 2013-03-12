@@ -1,13 +1,13 @@
 
  Analyzing: https://github.com/c0ding/tweetuoso/tweetuoso/tweetuoso.py
 
-              Total Lines: 272
+              Total Lines: 278
 
-               Code Lines: 187 (68.75%)
-              Blank Lines: 20 (7.35294%)
+               Code Lines: 191 (68.7050%)
+              Blank Lines: 22 (7.91366%)
 
-            Comment Lines: 1 (0.36764%)
-         Doc String Lines: 64 (23.5294%)
+            Comment Lines: 1 (0.35971%)
+         Doc String Lines: 64 (23.0215%)
           Inline Comments: 1
               Doc Strings: 16
            Total Comments: 18
@@ -19,12 +19,12 @@
     Shortest Comment Line: 23 [# -*- coding: utf-8 ...]
 
                   Imports: 10
-                Functions: 16
+                Functions: 18
                   Classes: 1
             If Statements: 7
            Try Statements: 13
         Except Statements: 13
-         Print Statements: 25
+         Print Statements: 26
               Assignments: 29
                 Variables: 19
 
