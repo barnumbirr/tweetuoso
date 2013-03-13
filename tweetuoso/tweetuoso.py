@@ -85,6 +85,7 @@ class TweetuosoCommands(cmd.Cmd):
 			if settings['reversed_timeline'] == True:
 				tl.reverse()
 				for tweet in tl:
+					tweet.text = tweet.text.replace("\n", "")
 					print("   @" + Fore.RED + tweet.user.screen_name.encode('utf-8')
 							+ Fore.RESET +
 							tweet.created_at.strftime(
@@ -92,6 +93,7 @@ class TweetuosoCommands(cmd.Cmd):
 								Style.RESET_ALL) + "      " + tweet.text.encode('utf-8'))
 			if settings['reversed_timeline'] == False:
 				for tweet in tl:
+					tweet.text = tweet.text.replace("\n", "")
 					print("   @" + Fore.RED + tweet.user.screen_name.encode('utf-8')
 							+ Fore.RESET +
 							tweet.created_at.strftime(
@@ -106,6 +108,7 @@ class TweetuosoCommands(cmd.Cmd):
 			api = auth_()
 			mt = api.mentions()
 			for tweet in mt:
+				tweet.text = tweet.text.replace("\n", "")
 				print("   @" + Fore.RED + tweet.user.screen_name.encode('utf-8')
 						+ Fore.RESET +
 						tweet.created_at.strftime(
@@ -184,6 +187,7 @@ class TweetuosoCommands(cmd.Cmd):
 			api = auth_()
 			src = api.search(q, rpp=20, result_type="recent")
 			for tweet in src:
+				tweet.text = tweet.text.replace("\n", "")
 				print("   @"+ Fore.RED + tweet.from_user.encode('utf-8') +
 						Fore.RESET +
 						tweet.created_at.strftime(Style.DIM +
@@ -209,6 +213,7 @@ class TweetuosoCommands(cmd.Cmd):
 			api = auth_()
 			stk = api.user_timeline(q, count = 20, page = 1)
 			for tweet in stk:
+				tweet.text = tweet.text.replace("\n", "")
 				print("   @"+ Fore.RED +
 					tweet.user.screen_name.encode('utf-8') +
 					Fore.RESET +
