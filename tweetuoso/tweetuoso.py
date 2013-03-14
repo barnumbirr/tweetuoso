@@ -72,7 +72,7 @@ class TweetuosoCommands(cmd.Cmd):
 	prompt = Fore.RED + ">> " + Fore.RESET
 
 	def emptyline(self):
-	    pass
+		pass
 
 	def default(self, inp):
 		print "'" + inp + "'" + " is not a valid command. Try using 'help'."
@@ -84,21 +84,13 @@ class TweetuosoCommands(cmd.Cmd):
 			tl = api.home_timeline()
 			if settings['reversed_timeline'] == True:
 				tl.reverse()
-				for tweet in tl:
-					tweet.text = tweet.text.replace("\n", " ")
-					print("   @" + Fore.RED + tweet.user.screen_name.encode('utf-8')
-							+ Fore.RESET +
-							tweet.created_at.strftime(
-								Style.DIM +' tweeted on %d/%m/%Y at %H:%M\n' +
-								Style.RESET_ALL) + "      " + tweet.text.encode('utf-8'))
-			if settings['reversed_timeline'] == False:
-				for tweet in tl:
-					tweet.text = tweet.text.replace("\n", " ")
-					print("   @" + Fore.RED + tweet.user.screen_name.encode('utf-8')
-							+ Fore.RESET +
-							tweet.created_at.strftime(
-								Style.DIM +' tweeted on %d/%m/%Y at %H:%M\n' +
-								Style.RESET_ALL) + "      " + tweet.text.encode('utf-8'))
+			for tweet in tl:
+				tweet.text = tweet.text.replace("\n", " ")
+				print("   @" + Fore.RED + tweet.user.screen_name.encode('utf-8')
+						+ Fore.RESET +
+						tweet.created_at.strftime(
+							Style.DIM +' tweeted on %d/%m/%Y at %H:%M\n' +
+							Style.RESET_ALL) + "      " + tweet.text.encode('utf-8'))
 		except tw.TweepError as error:
 			prompt_print("Error occured: %s" % error)
 
