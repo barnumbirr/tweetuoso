@@ -70,12 +70,12 @@ def auth_():
 class TweetuosoCommands(cmd.Cmd):
 
 	prompt = Fore.RED + ">> " + Fore.RESET
-	
+
 	def emptyline(self):
-	    pass
-	
+		pass
+
 	def default(self, inp):
-		print "'" + inp + "'" + " is not a valid command. Try using 'help'." 
+		print "'" + inp + "'" + " is not a valid command. Try using 'help'."
 
 	def do_timeline(self, line):
 		""" Show current timeline. """
@@ -84,21 +84,13 @@ class TweetuosoCommands(cmd.Cmd):
 			tl = api.home_timeline()
 			if settings['reversed_timeline'] == True:
 				tl.reverse()
-				for tweet in tl:
-					tweet.text = tweet.text.replace("\n", " ")
-					print("   @" + Fore.RED + tweet.user.screen_name.encode('utf-8')
-							+ Fore.RESET +
-							tweet.created_at.strftime(
-								Style.DIM +' tweeted on %d/%m/%Y at %H:%M\n' +
-								Style.RESET_ALL) + "      " + tweet.text.encode('utf-8'))
-			if settings['reversed_timeline'] == False:
-				for tweet in tl:
-					tweet.text = tweet.text.replace("\n", " ")
-					print("   @" + Fore.RED + tweet.user.screen_name.encode('utf-8')
-							+ Fore.RESET +
-							tweet.created_at.strftime(
-								Style.DIM +' tweeted on %d/%m/%Y at %H:%M\n' +
-								Style.RESET_ALL) + "      " + tweet.text.encode('utf-8'))
+			for tweet in tl:
+				tweet.text = tweet.text.replace("\n", " ")
+				print("   @" + Fore.RED + tweet.user.screen_name.encode('utf-8')
+						+ Fore.RESET +
+						tweet.created_at.strftime(
+							Style.DIM +' tweeted on %d/%m/%Y at %H:%M\n' +
+							Style.RESET_ALL) + "      " + tweet.text.encode('utf-8'))
 		except tw.TweepError as error:
 			prompt_print("Error occured: %s" % error)
 
@@ -212,6 +204,8 @@ class TweetuosoCommands(cmd.Cmd):
 		try:
 			api = auth_()
 			stk = api.user_timeline(q, count = 20, page = 1)
+			if settings['reversed_timeline'] == True:
+				stk.reverse()
 			for tweet in stk:
 				tweet.text = tweet.text.replace("\n", " ")
 				print("   @"+ Fore.RED +
@@ -238,11 +232,11 @@ class TweetuosoCommands(cmd.Cmd):
 				prompt_print ("You successfully followed back all of your followers.")
 		except tw.TweepError as error:
 			prompt_print("Error occured: %s" % error)
-		
+
 	def do_quit(self, line):
 		os.system("clear")
 		sys.exit(0)
-		
+
 	def do_exit(self, line):
 		os.system("clear")
 		sys.exit(0)
