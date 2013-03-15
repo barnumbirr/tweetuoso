@@ -99,6 +99,8 @@ class TweetuosoCommands(cmd.Cmd):
 		try:
 			api = auth_()
 			mt = api.mentions()
+			if settings['reversed_mentions'] == True:
+				mt.reverse()
 			for tweet in mt:
 				tweet.text = tweet.text.replace("\n", " ")
 				print("   @" + Fore.RED + tweet.user.screen_name.encode('utf-8')
@@ -204,7 +206,7 @@ class TweetuosoCommands(cmd.Cmd):
 		try:
 			api = auth_()
 			stk = api.user_timeline(q, count = 20, page = 1)
-			if settings['reversed_timeline'] == True:
+			if settings['reversed_stalk'] == True:
 				stk.reverse()
 			for tweet in stk:
 				tweet.text = tweet.text.replace("\n", " ")
