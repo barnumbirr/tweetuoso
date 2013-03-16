@@ -31,9 +31,13 @@ def banner ():
 Fore.RESET)
 
 def prompt_print(text):
+	""" Simple prompt funtion. """
+	""" Makes it a bit cleaner and maintainable if the prompt ever needs to change. """
 	print(Fore.RED + ">> " + Fore.RESET + text)
 
 def auth():
+	""" Initializes Tweetuoso for the first time. """
+	""" Checks for valid Twitter API keys. """
 	banner()
 	prompt_print("Getting authorization URL...")
 	try:
@@ -72,9 +76,11 @@ class TweetuosoCommands(cmd.Cmd):
 	prompt = Fore.RED + ">> " + Fore.RESET
 
 	def emptyline(self):
+		""" Return empty line instead of repeating last command. """
 		pass
 
 	def default(self, inp):
+		""" Return error if <input> is not a valid command. """
 		print "'" + inp + "'" + " is not a valid command. Try using 'help'."
 
 	def do_timeline(self, line):
