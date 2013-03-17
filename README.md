@@ -125,6 +125,7 @@ Finally, we’re all set up. Our command line app is registered as a Twitter cli
 
 Simply follow the steps above and launch tweetuoso.py. Enjoy!
 
+(You can change some settings like **reversed_timeline** in the config.py file.)
 
 ## License
 
