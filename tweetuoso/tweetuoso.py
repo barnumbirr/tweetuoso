@@ -121,20 +121,18 @@ class TweetuosoCommands(cmd.Cmd):
 		""" Post a tweet. """
 		try:
 			api = auth_()
-			url = re.search("(?P<url>https?://[^\s]+)", a)
-			if url is not None:
+			urls = re.findall("(?P<url>https?://[^\s]+)", a)
+			for url in urls:
 				try:
-					long_url = url.group("url")
+					long_url = url
 					short_url = "http://is.gd/create.php?format=simple&url=" + long_url
 					r = requests.get(short_url)
 					a = a.replace(long_url, r.text)
-					api.update_status(a)
-					prompt_print("Status updated successfully!")
 				except requests.HTTPError:
 					prompt_print("Error: Unable to shorten URL.")
-			else:
-				api.update_status(a)
-				prompt_print("Status updated successfully!")
+
+			api.update_status(a)
+			prompt_print("Status updated successfully!")
 		except tw.TweepError as error:
 			prompt_print("Error occured: %s" % error)
 
