@@ -23,7 +23,7 @@ def banner ():
 ##                                                  v.1.0.3       ##
 ##                          ˈtwiːt[uoso]                          ##
 ##                                                                ##
-##        The Twitter Commandline client written in Python        ##
+##        The Twitter Command-line client written in Python       ##
 ##                                                                ##
 ##             Made with ♥ by @c0ding, February 2013              ##
 ##                      Licensed under WTFPL                      ##
