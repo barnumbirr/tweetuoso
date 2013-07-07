@@ -202,7 +202,7 @@ class TweetuosoCommands(cmd.Cmd):
 			api = auth_()
 			t = api.trends_place(1)
 			trends = "  " + "\n  ".join(i["name"] for i in t[0]["trends"])
-			print trends 
+			print trends.encode('utf-8')
 		except tw.TweepError as error:
 			prompt_print("Error occured: %s" % error)
 
