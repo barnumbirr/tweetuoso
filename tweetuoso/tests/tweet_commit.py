@@ -11,7 +11,7 @@
 
 import tweepy
 from git import Repo
-from auth import keys
+from config import keys
 from colorama import Fore, Style
 
 # Git repository path

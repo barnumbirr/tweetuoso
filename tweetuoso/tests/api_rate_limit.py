@@ -8,7 +8,7 @@ __licence__ = "WTFPL"
 
 import os
 import tweepy as tw
-from auth import keys
+from config import keys
 from colorama import Fore, Style
 
 def rate_limit():

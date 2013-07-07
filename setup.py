@@ -5,7 +5,7 @@ from distutils.core import setup
 
 setup(
     name = 'tweetuoso',
-    version = "1.0.2",
+    version = "1.0.3",
     url = "http://c0ding.github.com/tweetuoso/",
     download_url = "https://github.com/c0ding/tweetuoso/archive/master.zip",
     author = 'c0ding',
@@ -19,6 +19,6 @@ setup(
     requires=[
         'colorama (==0.2.5)',
         'requests (==1.1.0)',
-        'tweepy (==1.4)',
+        'tweepy (==2.1)',
     ],
 )

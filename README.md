@@ -37,7 +37,7 @@ More is still to come...
 Pre-requisites:
 
 * Python 2.6+ (not tested with Python 3+)
-* tweepy >= 1.40 (for a Twitter API connection, obviously)
+* tweepy >= 2.1 (for a Twitter API connection, obviously)
 * requests 1.1.0
 * colorama 0.2.5
 * GitPython 0.3.2 (if you wish to use tweet_commit)
@@ -134,7 +134,7 @@ Simply follow the steps above and launch tweetuoso.py. Enjoy!
            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
                    Version 2, December 2004
  
-Copyright (C) 2013 c0ding <https://twitter.com/c0ding>
+Copyright (C) 2004 Sam Hocevar <sam@hocevar.net>
  
 Everyone is permitted to copy and distribute verbatim or modified
 copies of this license document, and changing it is allowed as long
