@@ -35,7 +35,8 @@
 
 <h1></h1>
 
-<h2>Description</h2>
+<h2>
+<a name="description" class="anchor" href="#description"><span class="octicon octicon-link"></span></a>Description</h2>
 
 <p><strong>Tweetuoso</strong> is a very light Twitter Command-line client developed in Python. The main goal of Tweetuoso is to become a fully-fledged twitter client with the same functions as the online version.</p>
 
@@ -53,23 +54,26 @@
 <li>automatically followback your followers</li>
 </ul><p>More is still to come...</p>
 
-<h2>Console screenshot (80x24):</h2>
+<h2>
+<a name="console-screenshot-80x24" class="anchor" href="#console-screenshot-80x24"><span class="octicon octicon-link"></span></a>Console screenshot (80x24):</h2>
 
 <p><img src="https://raw.github.com/c0ding/tweetuoso/master/tweetuoso/doc/screenshot.png" alt="screenshot"></p>
 
-<h2>Installation</h2>
+<h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
 
 <p>Pre-requisites:</p>
 
 <ul>
 <li>Python 2.6+ (not tested with Python 3+)</li>
-<li>tweepy &gt;= 1.40 (for a Twitter API connection, obviously)</li>
+<li>tweepy &gt;= 2.1 (for a Twitter API connection, obviously)</li>
 <li>requests 1.1.0</li>
 <li>colorama 0.2.5</li>
 <li>GitPython 0.3.2 (if you wish to use tweet_commit)</li>
 <li>python-setuptools </li>
 <li>Working API keys from Twitter</li>
-</ul><h3>From source</h3>
+</ul><h3>
+<a name="from-source" class="anchor" href="#from-source"><span class="octicon octicon-link"></span></a>From source</h3>
 
 <p><strong>Remember to configure Tweetuoso before install it!</strong></p>
 
@@ -85,14 +89,17 @@ $ cd c0ding-tweetuoso-*/
 $ python setup.py install
 </code></pre>
 
-<h3>From PyPi</h3>
+<h3>
+<a name="from-pypi" class="anchor" href="#from-pypi"><span class="octicon octicon-link"></span></a>From PyPi</h3>
 
 <pre><code>$ pip install tweetuoso
 </code></pre>
 
-<h2>Configuration</h2>
+<h2>
+<a name="configuration" class="anchor" href="#configuration"><span class="octicon octicon-link"></span></a>Configuration</h2>
 
-<h3>Step 1: Register a new client app with Twitter</h3>
+<h3>
+<a name="step-1-register-a-new-client-app-with-twitter" class="anchor" href="#step-1-register-a-new-client-app-with-twitter"><span class="octicon octicon-link"></span></a>Step 1: Register a new client app with Twitter</h3>
 
 <p>Navigate to <a href="https://dev.twitter.com/apps/new">https://dev.twitter.com/apps/new</a>. You might have to log into the Twitter Developers site first, if you’re not already.
 Fill in the registration fields as follows:</p>
@@ -101,9 +108,10 @@ Fill in the registration fields as follows:</p>
 
 <p><strong>Note</strong>: whatever you specify for Application Name will be the “via” name your followers see in the details of tweets issued from your command line app.</p>
 
-<h3>Step 2: OAuth settings</h3>
+<h3>
+<a name="step-2-oauth-settings" class="anchor" href="#step-2-oauth-settings"><span class="octicon octicon-link"></span></a>Step 2: OAuth settings</h3>
 
-<p>Next, the app needs to be authorized to connect to your account so it can send tweets under your name. Paste the <strong>Consumer Key</strong> and <strong>Consumer Secret</strong> into tweetuoso.py. Then save and run <strong>Tweetuoso</strong> on your system.</p>
+<p>Next, the app needs to be authorized to connect to your account so it can send tweets under your name. Paste the <strong>Consumer Key</strong> and <strong>Consumer Secret</strong> into config.py file. Then save and run <strong>Tweetuoso</strong> on your system.</p>
 
 <p><img src="https://raw.github.com/c0ding/tweetuoso/master/tweetuoso/doc/keys.png" alt="screenshot"></p>
 
@@ -130,11 +138,13 @@ $ access_secret = 'kaTXiC489qo8y6haTBSlwOqR1syG83tzPG2StdQ'
 
 <p>Keep this information on your screen because we’ll need it in the next step.</p>
 
-<h3>Step 3: Paste the keys into Tweetuoso</h3>
+<h3>
+<a name="step-3-paste-the-keys-into-tweetuoso" class="anchor" href="#step-3-paste-the-keys-into-tweetuoso"><span class="octicon octicon-link"></span></a>Step 3: Paste the keys into Tweetuoso</h3>
 
 <p>Paste the <strong>Access Token</strong> and <strong>Access Secret</strong> from the end of step 2 into the auth.py file, filling the <strong>access_token</strong> and <strong>access_secret</strong> constants.</p>
 
-<h3>Step 4: Application Type</h3>
+<h3>
+<a name="step-4-application-type" class="anchor" href="#step-4-application-type"><span class="octicon octicon-link"></span></a>Step 4: Application Type</h3>
 
 <p>On the Twitter Developer website, navigate to the <strong>Settings</strong> tab. Allow your application Read, Write and direct messages access.</p>
 
@@ -142,16 +152,20 @@ $ access_secret = 'kaTXiC489qo8y6haTBSlwOqR1syG83tzPG2StdQ'
 
 <p>Finally, we’re all set up. Our command line app is registered as a Twitter client and the app is connected to our Twitter user account.</p>
 
-<h2>Running</h2>
+<h2>
+<a name="running" class="anchor" href="#running"><span class="octicon octicon-link"></span></a>Running</h2>
 
 <p>Simply follow the steps above and launch tweetuoso.py. Enjoy!</p>
 
-<h2>License</h2>
+<p>(You can change some settings like <strong>reversed_timeline</strong> in the config.py file.)</p>
+
+<h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
 
 <pre><code>           DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
                    Version 2, December 2004
 
-Copyright (C) 2013 c0ding &lt;https://twitter.com/c0ding&gt;
+Copyright (C) 2004 Sam Hocevar &lt;sam@hocevar.net&gt;
 
 Everyone is permitted to copy and distribute verbatim or modified
 copies of this license document, and changing it is allowed as long
@@ -165,7 +179,8 @@ as the name is changed.
 
 </code></pre>
 
-<h2>Thanks to</h2>
+<h2>
+<a name="thanks-to" class="anchor" href="#thanks-to"><span class="octicon octicon-link"></span></a>Thanks to</h2>
 
 <ul>
 <li>Sven Steinbauer (<a href="https://github.com/Svenito">Svenito on Github</a>)</li>
@@ -173,6 +188,7 @@ as the name is changed.
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/c0ding">c0ding</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
       </footer>
     </div>
     <script src="javascripts/scale.fix.js"></script>
