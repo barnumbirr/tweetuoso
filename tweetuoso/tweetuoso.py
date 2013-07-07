@@ -20,7 +20,7 @@ def banner ():
 ##         | | \ \ /\ / / _ \/ _ \ __| | | |/ _ \/ __|/ _ \       ##
 ##         | |  \ V  V /  __/  __/ |_| |_| | |_| \__ \ |_| |      ##
 ##         |_|   \_/\_/ \___|\___|\__|\____|\___/|___/\___/       ##
-##                                                  v.1.0.2       ##
+##                                                  v.1.0.3       ##
 ##                          ˈtwiːt[uoso]                          ##
 ##                                                                ##
 ##        The Twitter Commandline client written in Python        ##
@@ -104,7 +104,7 @@ class TweetuosoCommands(cmd.Cmd):
 		""" Show tweets in which you were mentioned. """
 		try:
 			api = auth_()
-			mt = api.mentions()
+			mt = api.mentions_timeline()
 			if settings['reversed_mentions'] == True:
 				mt.reverse()
 			for tweet in mt:
@@ -121,18 +121,20 @@ class TweetuosoCommands(cmd.Cmd):
 		""" Post a tweet. """
 		try:
 			api = auth_()
-			urls = re.findall("(?P<url>https?://[^\s]+)", a)
-			for url in urls:
+			url = re.search("(?P<url>https?://[^\s]+)", a)
+			if url is not None:
 				try:
-					long_url = url
+					long_url = url.group("url")
 					short_url = "http://is.gd/create.php?format=simple&url=" + long_url
 					r = requests.get(short_url)
 					a = a.replace(long_url, r.text)
+					api.update_status(a)
+					prompt_print("Status updated successfully!")
 				except requests.HTTPError:
 					prompt_print("Error: Unable to shorten URL.")
-
-			api.update_status(a)
-			prompt_print("Status updated successfully!")
+			else:
+				api.update_status(a)
+				prompt_print("Status updated successfully!")
 		except tw.TweepError as error:
 			prompt_print("Error occured: %s" % error)
 
@@ -186,21 +188,20 @@ class TweetuosoCommands(cmd.Cmd):
 			src = api.search(q, rpp=20, result_type="recent")
 			for tweet in src:
 				tweet.text = tweet.text.replace("\n", " ")
-				print("   @"+ Fore.RED + tweet.from_user.encode('utf-8') +
+				print("   @"+ Fore.RED + tweet.user.screen_name.encode('utf-8') +
 						Fore.RESET +
 						tweet.created_at.strftime(Style.DIM +
 								' tweeted on %d/%m/%Y at %H:%M' + Style.RESET_ALL)
 						+ "\n      " + tweet.text.encode('utf-8'))
 		except tw.TweepError as error:
 			prompt_print("Error occured: %s" % error)
-
+			
 	def do_trends(self, line):
 		""" Returns the top 10 trending topics for the day. """
 		try:
 			api = auth_()
-			t = api.trends_location(1)
-			trends = "  " + "\n  ".join(i["name"] for i in t[0]["trends"])
-			print trends
+			t = api.trends_place(1)
+			print t
 		except tw.TweepError as error:
 			prompt_print("Error occured: %s" % error)
 
