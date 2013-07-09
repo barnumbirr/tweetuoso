@@ -95,8 +95,8 @@ class TweetuosoCommands(cmd.Cmd):
 				print("   @" + Fore.RED + tweet.user.screen_name.encode('utf-8')
 						+ Fore.RESET +
 						tweet.created_at.strftime(
-							Style.DIM +' tweeted on %d/%m/%Y at %H:%M\n' +
-							Style.RESET_ALL) + "      " + tweet.text.encode('utf-8'))
+							Style.DIM +' tweeted on %d/%m/%Y at %H:%M' +
+							Style.RESET_ALL) + "\n      " + tweet.text.encode('utf-8'))
 		except tw.TweepError as error:
 			prompt_print("Error occured: %s" % error)
 
@@ -112,8 +112,8 @@ class TweetuosoCommands(cmd.Cmd):
 				print("   @" + Fore.RED + tweet.user.screen_name.encode('utf-8')
 						+ Fore.RESET +
 						tweet.created_at.strftime(
-							Style.DIM +' tweeted you on %d/%m/%Y at %H:%M\n' +
-							Style.RESET_ALL) + "      " + tweet.text.encode('utf-8'))
+							Style.DIM +' tweeted on %d/%m/%Y at %H:%M' +
+							Style.RESET_ALL) + "\n      " + tweet.text.encode('utf-8'))
 		except tw.TweepError as error:
 			prompt_print("Error occured: %s" % error)
 
@@ -220,8 +220,8 @@ class TweetuosoCommands(cmd.Cmd):
 					tweet.user.screen_name.encode('utf-8') +
 					Fore.RESET +
 					tweet.created_at.strftime(Style.DIM +
-							   ' tweeted on %d/%m/%Y at %H:%M\n' + Style.RESET_ALL)
-					+ "      " + tweet.text.encode('utf-8'))
+							   ' tweeted on %d/%m/%Y at %H:%M' + Style.RESET_ALL)
+					+ "\n      " + tweet.text.encode('utf-8'))
 		except tw.TweepError as error:
 			prompt_print("Error occured: %s" % error)
 
