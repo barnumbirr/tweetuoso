@@ -26,9 +26,9 @@ def auth():
 if __name__ == '__main__':
 	try:
 		api = auth()
-		streaming_api = tw.streaming.Stream(api, Listener(), timeout=60)
-		streaming_api.filter(follow=None, track=['CIA'])
+		stream = tw.streaming.Stream(api, Listener(), timeout=60)
+		stream.filter(follow=None, track=['CIA'])
 	except KeyboardInterrupt:
 		os.system("clear")
-		sys.exit(0)
+		stream.disconnect()
 
