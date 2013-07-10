@@ -241,14 +241,6 @@ class TweetuosoCommands(cmd.Cmd):
 		except tw.TweepError as error:
 			prompt_print("Error occured: %s" % error)
 
-	def do_quit(self, line):
-		os.system("clear")
-		sys.exit(0)
-
-	def do_exit(self, line):
-		os.system("clear")
-		sys.exit(0)
-
 	def do_help(self, line):
 		""" Show detailed help """
 		print Fore.RED + "   Commands:\n   _________________________________________________________________"
@@ -268,6 +260,14 @@ class TweetuosoCommands(cmd.Cmd):
 		print "  +     Use 'quit' or 'exit' to leave.                              +"
 		print "  +_________________________________________________________________+" + Fore.RESET
 		print ""
+
+	def do_quit(self, line):
+		os.system("clear")
+		sys.exit(0)
+
+	def do_exit(self, line):
+		os.system("clear")
+		sys.exit(0)
 
 def main():
 	try:
