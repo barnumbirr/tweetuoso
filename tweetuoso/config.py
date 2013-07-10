@@ -9,5 +9,8 @@ keys = {
 }
 
 settings = {
-	'reversed_timeline': False
+	'reversed_timeline': False,
+	'reversed_mentions': False,
+	'reversed_stalk': False,
+	'WOEID': 1
 }

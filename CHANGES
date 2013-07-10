@@ -5,6 +5,7 @@ Version 1.0.3
 
 
 	* Fixed Tweetuoso to work with Twitter API v.1.1
+	* Added trends localization
 
 
 Version 1.0.2
@@ -20,10 +21,11 @@ Version 1.0.2
 	* Added user.listed_count to the me cmd
 	* Color handling from ASCII to colorama
 	* Use separate auth.py file for user keys
+	* config.py used instead of auth.py
 	* Added followback cmd
 	* Removed depreciated ASCII color codes
-	* Added settings to config
-	* Added possibility to reverse timeline in config
+	* Added settings to config.py
+	* Added possibility to reverse timeline / mentions / stalk in config
 	
 
 Version 1.0.1

@@ -1,16 +1,16 @@
 
  Analyzing: https://github.com/c0ding/tweetuoso/tweetuoso/tweetuoso.py
 
-              Total Lines: 285
+              Total Lines: 286
 
-               Code Lines: 218 (76.4912%)
-              Blank Lines: 26 (9.12280%)
+               Code Lines: 218 (76.2237%)
+              Blank Lines: 26 (9.09090%)
 
-            Comment Lines: 1 (0.35087%)
-         Doc String Lines: 40 (14.0350%)
+            Comment Lines: 1 (0.34965%)
+         Doc String Lines: 41 (14.3356%)
           Inline Comments: 1
-              Doc Strings: 22
-           Total Comments: 24
+              Doc Strings: 23
+           Total Comments: 25
 
         Longest Code Line: 87
        Shortest Code Line: 4 [pass]
@@ -69,18 +69,18 @@
 
   Analyzing: https://github.com/c0ding/tweetuoso/tweetuoso/config.py
 
-              Total Lines: 13
+              Total Lines: 16
 
-               Code Lines: 10 (76.9230%)
-              Blank Lines: 2 (15.3846%)
+               Code Lines: 13 (81.25%)
+              Blank Lines: 2 (12.5%)
 
-            Comment Lines: 1 (7.69230%)
+            Comment Lines: 1 (6.25%)
          Doc String Lines: 0 (0.0%)
           Inline Comments: 1
               Doc Strings: 0
            Total Comments: 2
 
-        Longest Code Line: 70
+        Longest Code Line: 28
        Shortest Code Line: 1 [}]
 
      Longest Comment Line: 23

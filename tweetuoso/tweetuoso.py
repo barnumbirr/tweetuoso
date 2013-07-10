@@ -198,9 +198,10 @@ class TweetuosoCommands(cmd.Cmd):
 			
 	def do_trends(self, line):
 		""" Returns the top 10 trending topics for the day. """
+		""" WOEID list available at http://developer.yahoo.com/geo/geoplanet/"""
 		try:
 			api = auth_()
-			t = api.trends_place(1)
+			t = api.trends_place(settings['WOEID'])
 			trends = "  " + "\n  ".join(i["name"] for i in t[0]["trends"])
 			print trends.encode('utf-8')
 		except tw.TweepError as error:
@@ -260,11 +261,11 @@ class TweetuosoCommands(cmd.Cmd):
 		print "  +     Use 'quit' or 'exit' to leave.                              +"
 		print "  +_________________________________________________________________+" + Fore.RESET
 		print ""
-
+		
 	def do_quit(self, line):
 		os.system("clear")
 		sys.exit(0)
-
+	
 	def do_exit(self, line):
 		os.system("clear")
 		sys.exit(0)
