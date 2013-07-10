@@ -6,6 +6,12 @@ import sys
 import tweepy as tw
 from config import keys
 from colorama import Fore, Style
+
+def auth():
+		
+	api = tw.OAuthHandler(keys['consumer_key'], keys['consumer_secret'])
+	api.set_access_token(keys['access_token'], keys['access_secret'])
+	return api
  
 class Listener(tw.StreamListener):
 	
@@ -16,12 +22,6 @@ class Listener(tw.StreamListener):
 						tweet.created_at.strftime(
 							Style.DIM +' tweeted on %d/%m/%Y at %H:%M' +
 							Style.RESET_ALL) + "\n      " + tweet.text.encode('utf-8'))
-					
-def auth():
-		
-	api = tw.OAuthHandler(keys['consumer_key'], keys['consumer_secret'])
-	api.set_access_token(keys['access_token'], keys['access_secret'])
-	return api
 
 if __name__ == '__main__':
 	try:
