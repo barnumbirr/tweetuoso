@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import os
+import sys
 import tweepy as tw
 from config import keys
 from colorama import Fore, Style
@@ -14,7 +16,6 @@ class Listener(tw.StreamListener):
 						tweet.created_at.strftime(
 							Style.DIM +' tweeted on %d/%m/%Y at %H:%M' +
 							Style.RESET_ALL) + "\n      " + tweet.text.encode('utf-8'))
-
 					
 def auth():
 		
@@ -23,6 +24,11 @@ def auth():
 	return api
 
 if __name__ == '__main__':
-	api = auth()
-	streaming_api = tw.streaming.Stream(api, Listener(), timeout=60)
-	streaming_api.filter(follow=None, track=['GTA 5'])
+	try:
+		api = auth()
+		streaming_api = tw.streaming.Stream(api, Listener(), timeout=60)
+		streaming_api.filter(follow=None, track=['CIA'])
+	except KeyboardInterrupt:
+		os.system("clear")
+		sys.exit(0)
+
