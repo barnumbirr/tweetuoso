@@ -4,9 +4,9 @@
 </p>
 =============================
 
+[![Downloads](https://pypip.in/d/tweetuoso/badge.png)](https://crate.io/packages/tweetuoso/)
 
 ## Description
-
 
 **Tweetuoso** is a very light Twitter Command-line client developed in Python. The main goal of Tweetuoso is to become a fully-fledged twitter client with the same functions as the online version.
 
@@ -125,7 +125,7 @@ Finally, we’re all set up. Our command line app is registered as a Twitter cli
 
 Simply follow the steps above and launch tweetuoso.py. Enjoy!
 
-(You can change some settings like **reversed_timeline** or your preferred trends WOEID in the config.py file.)
+(You can change some settings like **reversed_timeline** or your preferred trends **WOEID** in the config.py file.)
 
 ## License
 
