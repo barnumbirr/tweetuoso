@@ -22,6 +22,9 @@ class Listener(tw.StreamListener):
 						tweet.created_at.strftime(
 							Style.DIM +' tweeted on %d/%m/%Y at %H:%M' +
 							Style.RESET_ALL) + "\n      " + tweet.text.encode('utf-8'))
+							
+	def on_error(self, status_code):
+		print "Error occured: %s" % status_code
 
 if __name__ == '__main__':
 	try:
@@ -31,4 +34,3 @@ if __name__ == '__main__':
 	except KeyboardInterrupt:
 		os.system("clear")
 		stream.disconnect()
-
