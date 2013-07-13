@@ -26,11 +26,21 @@ class Listener(tw.StreamListener):
 	def on_error(self, status_code):
 		print "Error occured: %s" % status_code
 
-if __name__ == '__main__':
+def streaming():
 	try:
 		api = auth()
-		stream = tw.streaming.Stream(api, Listener(), timeout=60)
-		stream.filter(follow=None, track=['CIA'])
+		mode = raw_input("Which streaming mode do you want? [sample/filter]? ")
+		if mode == 'sample':
+			stream = tw.streaming.Stream(api, Listener(), timeout=60)
+			stream.sample()
+		if mode == 'filter':
+			track_list = raw_input('Keywords to track (comma separated): ')
+			','.join(track_list)
+			stream = tw.streaming.Stream(api, Listener(), timeout=60)
+			stream.filter(follow=None, track=[track_list])
 	except KeyboardInterrupt:
 		os.system("clear")
 		stream.disconnect()
+		
+if __name__ == '__main__':
+	streaming()
