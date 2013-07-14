@@ -12,5 +12,7 @@ settings = {
 	'reversed_timeline': False,
 	'reversed_mentions': False,
 	'reversed_stalk': False,
-	'WOEID': 1
+	'WOEID': 1,
+	'archive_path': '/Users/c0ding/Desktop/twitter.txt',
+	'timezone': 'Europe/Paris'
 }

@@ -5,6 +5,8 @@ import os
 import re
 import sys
 import cmd
+import pytz
+import codecs
 import requests
 import tweepy as tw
 from config import keys
@@ -241,6 +243,44 @@ class TweetuosoCommands(cmd.Cmd):
 				prompt_print ("You successfully followed back all of your followers.")
 		except tw.TweepError as error:
 			prompt_print("Error occured: %s" % error)
+			
+			
+	def do_archive(self, line):
+		""" Archive your tweets to a .txt file. """
+		""" May be limited due to API rate limits. """
+		""" Duration of operation depends on number of tweets. """
+		try:
+			utc = pytz.utc
+			archivefile = settings['archive_path']
+			homeTZ = pytz.timezone(settings['timezone'])
+			status_list = []
+			cur_status_count = 0 
+			api = auth_()
+			statuses = api.user_timeline(count=200, include_rts=True)
+			theUser = statuses[0].author
+			total_status_count = theUser.statuses_count
+			prompt_print("Archiving @" + Fore.RED + theUser.screen_name + Fore.RESET + "'s tweets to " + archivefile)
+			while statuses != []:
+				cur_status_count = cur_status_count + len(statuses)
+				for status in statuses:
+					status_list.append(status)
+					theMaxId = statuses[-1].id
+					theMaxId = theMaxId - 1
+				statuses = api.user_timeline(count=200, include_rts=True, max_id=theMaxId)
+				prompt_print("%d of %d tweets processed..." % (cur_status_count, total_status_count))
+			prompt_print("Total Statuses Retrieved: " + Fore.RED + str(len(status_list)) + Fore.RESET)
+			prompt_print("Writing statuses to log file...")
+			f = codecs.open(archivefile, 'a', 'utf-8')
+			for status in reversed(status_list):
+				theTime = utc.localize(status.created_at).astimezone(homeTZ)
+				f.write(status.text + '\n')
+				f.write(theTime.strftime("%d/%m/%Y at %H:%M\n"))
+				f.write('http://twitter.com/'+status.author.screen_name+'/status/'+str(status.id)+'\n')
+				f.write('- - - - -\n\n')
+			f.close()
+			prompt_print("You successfully archived all of your tweets!")
+		except tw.TweepError as error:
+			prompt_print("Error occured: %s" % error)
 
 	def do_help(self, line):
 		""" Show detailed help """
@@ -256,6 +296,7 @@ class TweetuosoCommands(cmd.Cmd):
 		print "  +\tfollow\t\t Follow a new user.                         +"
 		print "  +\tunfollow\t Unfollow a user.                           +"
 		print "  +\tfollowback\t Followback all your followers.             +"
+		print "  +\tarchive\t\t Save all your tweets to a text file.       +"
 		print "  +\ttrends\t\t Show today's trends.                       +"
 		print "  +                                                                 +"
 		print "  +     Use 'quit' or 'exit' to leave.                              +"
