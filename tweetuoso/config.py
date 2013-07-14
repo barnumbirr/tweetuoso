@@ -14,5 +14,6 @@ settings = {
 	'reversed_stalk': False,
 	'WOEID': 1,
 	'archive_path': '/Users/c0ding/Desktop/twitter.txt',
+	'reversed_archive' : False,
 	'timezone': 'Europe/Paris'
 }

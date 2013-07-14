@@ -271,7 +271,9 @@ class TweetuosoCommands(cmd.Cmd):
 			prompt_print("Total Statuses Retrieved: " + Fore.RED + str(len(status_list)) + Fore.RESET)
 			prompt_print("Writing statuses to log file...")
 			f = codecs.open(archivefile, 'a', 'utf-8')
-			for status in reversed(status_list):
+			if settings['reversed_archive'] == True:
+							status_list.reverse()
+			for status in status_list:
 				theTime = utc.localize(status.created_at).astimezone(homeTZ)
 				f.write(status.text + '\n')
 				f.write(theTime.strftime("%d/%m/%Y at %H:%M\n"))
