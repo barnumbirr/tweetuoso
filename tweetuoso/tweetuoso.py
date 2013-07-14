@@ -275,10 +275,10 @@ class TweetuosoCommands(cmd.Cmd):
 							status_list.reverse()
 			for status in status_list:
 				theTime = utc.localize(status.created_at).astimezone(homeTZ)
-				f.write(status.text + '\n')
-				f.write(theTime.strftime("%d/%m/%Y at %H:%M\n"))
-				f.write('http://twitter.com/'+status.author.screen_name+'/status/'+str(status.id)+'\n')
-				f.write('- - - - -\n\n')
+				f.write('@'+ status.author.screen_name + ' tweeted on ' + theTime.strftime("%d/%m/%Y at %H:%M\n"))
+				f.write('      ' + status.text)
+				f.write('\n      ' + 'http://twitter.com/'+status.author.screen_name+'/status/'+str(status.id)+'\n')
+				f.write('- - - - - - - -\n\n')
 			f.close()
 			prompt_print("You successfully archived all of your tweets!")
 		except tw.TweepError as error:
