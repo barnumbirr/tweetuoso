@@ -21,6 +21,7 @@ For now, it allows you to:
 * stalk people (or yourself)
 * show current trends
 * automatically followback your followers
+* Archive all your tweets to a text file
 
 More is still to come...
 
@@ -41,6 +42,7 @@ Pre-requisites:
 * requests 1.1.0
 * colorama 0.2.5
 * GitPython 0.3.2 (if you wish to use tweet_commit)
+* pytz
 * python-setuptools 
 * Working API keys from Twitter
 
@@ -123,9 +125,8 @@ Finally, we’re all set up. Our command line app is registered as a Twitter cli
 ## Running
 
 
-Simply follow the steps above and launch tweetuoso.py. Enjoy!
+Simply follow the steps above, edit the config.py file to suit your needs and launch tweetuoso.py. Enjoy!
 
-(You can change some settings like **reversed_timeline** or your preferred trends **WOEID** in the config.py file.)
 
 ## License
 
