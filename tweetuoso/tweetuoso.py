@@ -179,7 +179,7 @@ class TweetuosoCommands(cmd.Cmd):
 				str(user.followers_count) + " || Tweets: " +
 				str(user.statuses_count) + "|| Listed: " +
 				str(user.listed_count) + "\n      " +
-				user.location + " || " + user.url)
+				user.location + " || " + str(user.url))
 		except tw.TweepError as error:
 			prompt_print("Error occured: %s" % error)
 
