@@ -1,6 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+__appname__ = 'streaming'
+__version__ = "0.1"
+__author__ = "c0ding"
+__licence__ = "Apache v2 License"
+
 import os
 import sys
 import tweepy as tw

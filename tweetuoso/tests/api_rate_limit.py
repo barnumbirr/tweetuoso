@@ -3,8 +3,8 @@
 
 __appname__ = 'api_rate_limit'
 __version__ = "0.3"
-__author__ = "@c0ding <https://twitter.com/c0ding>"
-__licence__ = "WTFPL"
+__author__ = "c0ding"
+__licence__ = "Apache v2 License"
 
 import os
 import tweepy as tw

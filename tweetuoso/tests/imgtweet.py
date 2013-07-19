@@ -3,6 +3,11 @@
 
 # This won't work until the status_update_with_media() attribute is added to Tweepy API
 
+__appname__ = 'imgtweet'
+__version__ = "0.1"
+__author__ = "c0ding"
+__licence__ = "Apache v2 License"
+
 import os
 import sys
 import tweepy as tw

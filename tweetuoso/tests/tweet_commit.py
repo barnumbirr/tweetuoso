@@ -1,13 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# I wrote this code as I needed a quick way to tweet the latest commits made to
-# the Tweetuoso Github repository. This script has nothing to do with the Tweetuoso
-# project per sei (even if it uses the tweepy module and the same auth files). 
-# I just needed somewhere to store it safely.
-
-# The tweet_commit function will not be added to Tweetuoso and probably won't be
-# updated ever again as it works fine as it is.
+__appname__ = 'tweet_commit'
+__version__ = "0.1"
+__author__ = "c0ding"
+__licence__ = "Apache v2 License"
 
 import tweepy
 from git import Repo

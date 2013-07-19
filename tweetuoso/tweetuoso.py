@@ -28,7 +28,7 @@ def banner ():
 ##        The Twitter Command-line client written in Python       ##
 ##                                                                ##
 ##             Made with ♥ by @c0ding, February 2013              ##
-##                      Licensed under WTFPL                      ##
+##                Licensed under Apache v2 License                ##
 ####################################################################\n""" +
 Fore.RESET)
 

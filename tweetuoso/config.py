@@ -13,7 +13,7 @@ settings = {
 	'reversed_mentions': False,
 	'reversed_stalk': False,
 	'WOEID': 1,
-	'archive_path': '/Users/c0ding/Desktop/twitter.txt',
+	'archive_path': '/path/',
 	'reversed_archive' : False,
 	'timezone': 'Europe/Paris'
 }

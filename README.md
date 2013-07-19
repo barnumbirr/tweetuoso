@@ -55,11 +55,12 @@ Get the latest version (from GitHub):
 
     $ wget -O /tmp/tweetuoso-last.tgz https://github.com/c0ding/tweetuoso/tarball/master
     $ sudo apt-get update
-    $ sudo apt-get install python-setuptools python-tweepy python-requests
+    $ sudo apt-get install python-setuptools python-tweepy python-requests python-colorama python-pytz
     $ cd /tmp
     $ tar zxvf tweetuoso-last.tgz
     $ chmod -R 777 c0ding-tweetuoso-*    
     $ cd c0ding-tweetuoso-*/
+	$ nano /tweetuoso/config.py (edit variables)
     $ python setup.py install
 
 
@@ -132,20 +133,20 @@ Simply follow the steps above, edit the config.py file to suit your needs and la
 
 
 ```
-           DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
-                   Version 2, December 2004
- 
-Copyright (C) 2004 Sam Hocevar <sam@hocevar.net>
- 
-Everyone is permitted to copy and distribute verbatim or modified
-copies of this license document, and changing it is allowed as long
-as the name is changed.
- 
-           DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
-  TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
- 
- 0. You just DO WHAT THE FUCK YOU WANT TO.
+  Apache v2 License
+  Copyright 2013 Martin Simon
 
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
 
 ```
 
