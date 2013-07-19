@@ -179,10 +179,25 @@ class TweetuosoCommands(cmd.Cmd):
 				str(user.followers_count) + " || Tweets: " +
 				str(user.statuses_count) + "|| Listed: " +
 				str(user.listed_count) + "\n      " +
-				user.location + " || " + user.url)
+				user.location + " || " + str(user.url))
 		except tw.TweepError as error:
 			prompt_print("Error occured: %s" % error)
 
+        def do_retweet(self, tweet_id):
+                """ Retweet. """
+                try:
+                        api = auth_()
+                        rt = api.retweet(tweet_id)
+                        tweet = rt
+                        tweet.text = tweet.text.replace("\n", " ")
+                        print(str(tweet.id) + " " + tweet.created_at.strftime(
+                                        tweet.user.screen_name.encode('utf-8') +
+                                        Fore.RESET +
+                                        Style.DIM +' tweeted on %d/%m/%Y at %H:%M' +
+                                        Style.RESET_ALL) + "\n      " + tweet.text.encode('utf-8'))
+                except tw.TweepError as error:
+                        prompt_print("Error occured: %s" % error)
+                        
 	def do_search(self, q):
 		""" Search Twitter for <query> """
 		try:
@@ -300,6 +315,7 @@ class TweetuosoCommands(cmd.Cmd):
 		print "  +\tfollowback\t Followback all your followers.             +"
 		print "  +\tarchive\t\t Save all your tweets to a text file.       +"
 		print "  +\ttrends\t\t Show today's trends.                       +"
+		print "  +\tretweet\t\t Retweet tweet.                       +"
 		print "  +                                                                 +"
 		print "  +     Use 'quit' or 'exit' to leave.                              +"
 		print "  +_________________________________________________________________+" + Fore.RESET
