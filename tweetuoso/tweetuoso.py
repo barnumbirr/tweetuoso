@@ -97,8 +97,8 @@ class TweetuosoCommands(cmd.Cmd):
 				print("   @" + Fore.RED + tweet.user.screen_name.encode('utf-8')
 						+ Fore.RESET +
 						tweet.created_at.strftime(
-							Style.DIM +' tweeted on %d/%m/%Y at %H:%M' +
-							Style.RESET_ALL) + "\n      " + tweet.text.encode('utf-8'))
+							Style.DIM +' tweeted on %d/%m/%Y at %H:%M' + Style.RESET_ALL) + "\n      " +
+							tweet.text.encode('utf-8') + "\n      " + 'http://twitter.com/'+tweet.author.screen_name.encode('utf-8')+'/status/'+str(tweet.id))
 		except tw.TweepError as error:
 			prompt_print("Error occured: %s" % error)
 
@@ -183,21 +183,6 @@ class TweetuosoCommands(cmd.Cmd):
 		except tw.TweepError as error:
 			prompt_print("Error occured: %s" % error)
 
-        def do_retweet(self, tweet_id):
-                """ Retweet. """
-                try:
-                        api = auth_()
-                        rt = api.retweet(tweet_id)
-                        tweet = rt
-                        tweet.text = tweet.text.replace("\n", " ")
-                        print(str(tweet.id) + " " + tweet.created_at.strftime(
-                                        tweet.user.screen_name.encode('utf-8') +
-                                        Fore.RESET +
-                                        Style.DIM +' tweeted on %d/%m/%Y at %H:%M' +
-                                        Style.RESET_ALL) + "\n      " + tweet.text.encode('utf-8'))
-                except tw.TweepError as error:
-                        prompt_print("Error occured: %s" % error)
-                        
 	def do_search(self, q):
 		""" Search Twitter for <query> """
 		try:
@@ -256,6 +241,22 @@ class TweetuosoCommands(cmd.Cmd):
 			for u in follow:
 				u.follow()
 				prompt_print ("You successfully followed back all of your followers.")
+		except tw.TweepError as error:
+			prompt_print("Error occured: %s" % error)
+			
+	def do_retweet(self, tweet_id):
+		""" Retweet a tweet by given tweet_id. """
+		try:
+			api = auth_()
+			retweet = api.retweet(tweet_id)
+			tweet = retweet
+			tweet.text = tweet.text.replace("\n", " ")
+			print("   @"+ Fore.RED +
+				tweet.user.screen_name.encode('utf-8') +
+				Fore.RESET +
+				tweet.created_at.strftime(Style.DIM +
+						   ' tweeted on %d/%m/%Y at %H:%M' + Style.RESET_ALL)
+				+ "\n      " + tweet.text.encode('utf-8'))
 		except tw.TweepError as error:
 			prompt_print("Error occured: %s" % error)
 			

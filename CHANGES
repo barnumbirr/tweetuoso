@@ -8,6 +8,8 @@ Version 1.0.3
 	* Added trends localization
 	* Added tweets archiving
 	* Changed License form WTFPL to Apache v2 License
+	* Added retweet cmd
+	* Added tweet url in timeline
 
 
 Version 1.0.2
