@@ -309,6 +309,7 @@ class TweetuosoCommands(cmd.Cmd):
 		print "  +\tstalk\t\t Show <user> timeline                       +"
 		print "  +\tpost\t\t Post new tweet.                            +"
 		print "  +\tdelete\t\t Delete tweet.                              +"
+		print "  +\tretweet\t\t Retweet tweet.                             +"
 		print "  +\tme\t\t Me (Get account info).                     +"
 		print "  +\tsearch\t\t Search for <query>.                        +"
 		print "  +\tfollow\t\t Follow a new user.                         +"
@@ -316,7 +317,6 @@ class TweetuosoCommands(cmd.Cmd):
 		print "  +\tfollowback\t Followback all your followers.             +"
 		print "  +\tarchive\t\t Save all your tweets to a text file.       +"
 		print "  +\ttrends\t\t Show today's trends.                       +"
-		print "  +\tretweet\t\t Retweet tweet.                       +"
 		print "  +                                                                 +"
 		print "  +     Use 'quit' or 'exit' to leave.                              +"
 		print "  +_________________________________________________________________+" + Fore.RESET
