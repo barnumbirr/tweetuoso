@@ -39,11 +39,11 @@ Pre-requisites:
 
 * Python 2.6+ (not tested with Python 3+)
 * tweepy >= 2.1 (for a Twitter API connection, obviously)
+* GitPython 0.3.2 (if you wish to use tweet_commit)
+* python-setuptools
 * requests 1.1.0
 * colorama 0.2.5
-* GitPython 0.3.2 (if you wish to use tweet_commit)
 * pytz
-* python-setuptools 
 * Working API keys from Twitter
 
 
@@ -53,13 +53,13 @@ Pre-requisites:
 
 Get the latest version (from GitHub):
 
-    $ wget -O /tmp/tweetuoso-last.tgz https://github.com/c0ding/tweetuoso/tarball/master
+    $ wget -O /tmp/tweetuoso-master.zip https://github.com/c0ding/tweetuoso/archive/master.zip
     $ sudo apt-get update
     $ sudo apt-get install python-setuptools python-tweepy python-requests python-colorama python-pytz
     $ cd /tmp
-    $ tar zxvf tweetuoso-last.tgz
-    $ chmod -R 777 c0ding-tweetuoso-*    
-    $ cd c0ding-tweetuoso-*/
+    $ unzip tweetuoso-master.zip
+    $ chmod -R 777 tweetuoso-master    
+    $ cd tweetuoso-master
 	$ nano /tweetuoso/config.py (edit variables)
     $ python setup.py install
 
