@@ -33,9 +33,6 @@ More is still to come...
 ![screenshot](https://raw.github.com/c0ding/tweetuoso/master/tweetuoso/doc/screenshot.png)
 
 
-![screenshot](https://raw.github.com/c0ding/tweetuoso/master/tweetuoso/doc/screenshot_2.png)
-
-
 ## Installation
 
 
