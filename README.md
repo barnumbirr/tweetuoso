@@ -15,6 +15,7 @@ For now, it allows you to:
 * check your timeline
 * post tweets
 * show tweets that mentionned you
+* retweet a tweet
 * get your profile details
 * follow or unfollow people
 * search for 'query'
@@ -26,10 +27,13 @@ For now, it allows you to:
 More is still to come...
 
 
-## Console screenshot (80x24):
+## Console screenshots:
 
 
 ![screenshot](https://raw.github.com/c0ding/tweetuoso/master/tweetuoso/doc/screenshot.png)
+
+
+![screenshot](https://raw.github.com/c0ding/tweetuoso/master/tweetuoso/doc/screenshot_2.png)
 
 
 ## Installation
