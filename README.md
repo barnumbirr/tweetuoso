@@ -50,7 +50,7 @@ Pre-requisites:
 
 ### From source
 
-**Remember to configure Tweetuoso before install it!**
+**Remember to configure Tweetuoso's config.py file before installing!**
 
 Get the latest version (from GitHub):
 
@@ -158,4 +158,4 @@ Simply follow the steps above, edit the config.py file to suit your needs and la
 * Sven Steinbauer ([Svenito on Github](https://github.com/Svenito))
 
 
-**Feel free to report issues or to contribute**
+**Feel free to report issues or to contribute.**
