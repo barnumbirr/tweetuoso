@@ -27,7 +27,7 @@ For now, it allows you to:
 More is still to come...
 
 
-## Console screenshots:
+## Console screenshot:
 
 
 ![screenshot](https://raw.github.com/c0ding/tweetuoso/master/tweetuoso/doc/screenshot.png)
