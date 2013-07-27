@@ -267,7 +267,6 @@ class TweetuosoCommands(cmd.Cmd):
 		""" Duration of operation depends on number of tweets. """
 		try:
 			utc = pytz.utc
-			archivefile = settings['archive_path']
 			homeTZ = pytz.timezone(settings['timezone'])
 			status_list = []
 			cur_status_count = 0 
@@ -275,6 +274,7 @@ class TweetuosoCommands(cmd.Cmd):
 			statuses = api.user_timeline(count=200, include_rts=True)
 			theUser = statuses[0].author
 			total_status_count = theUser.statuses_count
+			archivefile = settings['archive_path'] + theUser.screen_name + "'s_tweets.txt"
 			prompt_print("Archiving @" + Fore.RED + theUser.screen_name + Fore.RESET + "'s tweets to " + archivefile)
 			while statuses != []:
 				cur_status_count = cur_status_count + len(statuses)
@@ -301,7 +301,7 @@ class TweetuosoCommands(cmd.Cmd):
 			prompt_print("Error occured: %s" % error)
 
 	def do_help(self, line):
-		""" Show detailed help """
+		""" Show detailed help. """
 		print Fore.RED + "   Commands:\n   _________________________________________________________________"
 		print "  +                                                                 +"
 		print "  +\ttimeline\t Show public timeline.                      +"
