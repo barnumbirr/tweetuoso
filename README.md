@@ -134,7 +134,7 @@ Simply follow the steps above, edit the config.py file to suit your needs and la
 
 
 ```
-  Apache v2 License
+  Apache v2.0 License
   Copyright 2013 Martin Simon
 
    Licensed under the Apache License, Version 2.0 (the "License");

@@ -7,9 +7,10 @@ Version 1.0.3
 	* Fixed Tweetuoso to work with Twitter API v.1.1
 	* Added trends localization
 	* Added tweets archiving
-	* Changed License form WTFPL to Apache v2 License
+	* Changed License form WTFPL to Apache v2.0 License
 	* Added retweet cmd
 	* Added tweet url in timeline
+	* Added user.screen_name to archive file
 
 
 Version 1.0.2

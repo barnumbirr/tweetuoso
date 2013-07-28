@@ -5,8 +5,4 @@
   * shortcut for functions (timeline = t)
   * color #hashtag / mentions
   * add pytz support
-  * post issue to https://github.com/c0ding/tweetuoso/issues directly from Tweetuoso
-  * use curses module to create CLI interface
-  * add caracter count when posting tweet
-  * rule the world
   * ...
