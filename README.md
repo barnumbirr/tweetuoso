@@ -151,12 +151,14 @@ Simply follow the steps above, edit the config.py file to suit your needs and la
    limitations under the License.
 
 ```
+## Community
+
+* IRC Chat (irc.freenode.net #tweetuoso)
+
+**Feel free to report issues or to contribute.**
 
 
 ## Thanks to
 
 
 * Sven Steinbauer ([Svenito on Github](https://github.com/Svenito))
-
-
-**Feel free to report issues or to contribute.**
