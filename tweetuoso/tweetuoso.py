@@ -72,9 +72,25 @@ def auth_():
 	auth.set_access_token(keys['access_token'], keys['access_secret'])
 	api = tw.API(auth)
 	return api
+	
+class Listener(tw.StreamListener):
+	
+	def on_status(self, tweet):
+		tweet.text = tweet.text.replace("\n", " ")
+		print("   @" + Fore.RED + tweet.user.screen_name.encode('utf-8')
+				+ Fore.RESET +
+				tweet.created_at.strftime(
+					Style.DIM +' tweeted on %d/%m/%Y at %H:%M' + Style.RESET_ALL) + "\n      " +
+					tweet.text.encode('utf-8') + "\n      " + 'http://twitter.com/'+tweet.author.screen_name.encode('utf-8')+'/status/'+str(tweet.id))
+							
+	def on_error(self, status_code):
+		print "Error occured: %s" % status_code
+		
+	def on_timeout(self):
+		return True
 
 class TweetuosoCommands(cmd.Cmd):
-
+	
 	prompt = Fore.RED + ">> " + Fore.RESET
 
 	def emptyline(self):
@@ -260,6 +276,24 @@ class TweetuosoCommands(cmd.Cmd):
 		except tw.TweepError as error:
 			prompt_print("Error occured: %s" % error)
 			
+	def do_stream(self, mode):
+		def auth_stream():
+			api = tw.OAuthHandler(keys['consumer_key'], keys['consumer_secret'])
+			api.set_access_token(keys['access_token'], keys['access_secret'])
+			return api
+		try:
+			api = auth_stream()
+			if mode == 'sample':
+				stream = tw.Stream(api, Listener())
+				stream.sample()
+			if mode == 'filter':
+				track_list = raw_input(Fore.RED + ">> " + Fore.RESET + "Keywords to track (comma separated): ")
+				','.join(track_list)
+				stream = tw.streaming.Stream(api, Listener())
+				stream.filter(follow=None, track=[track_list])
+		except KeyboardInterrupt:
+			os.system("clear") 
+			stream.disconnect()
 			
 	def do_archive(self, line):
 		""" Archive your tweets to a .txt file. """
@@ -316,6 +350,7 @@ class TweetuosoCommands(cmd.Cmd):
 		print "  +\tunfollow\t Unfollow a user.                           +"
 		print "  +\tfollowback\t Followback all your followers.             +"
 		print "  +\tarchive\t\t Save all your tweets to a text file.       +"
+		print "  +\tstream\t\t Sample/filter and stream tweets.           +"
 		print "  +\ttrends\t\t Show today's trends.                       +"
 		print "  +                                                                 +"
 		print "  +     Use 'quit' or 'exit' to leave.                              +"

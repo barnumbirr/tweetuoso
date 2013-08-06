@@ -23,6 +23,7 @@ For now, it allows you to:
 * show current trends
 * automatically followback your followers
 * Archive all your tweets to a text file
+* stream tweets (sample or filter mode)
 
 More is still to come...
 

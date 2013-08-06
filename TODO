@@ -5,4 +5,5 @@
   * shortcut for functions (timeline = t)
   * color #hashtag / mentions
   * add pytz support
+  * fix ugly raw_input() in stream.filter()
   * ...
