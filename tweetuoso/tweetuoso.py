@@ -117,6 +117,10 @@ class TweetuosoCommands(cmd.Cmd):
 							tweet.text.encode('utf-8') + "\n      " + 'http://twitter.com/'+tweet.author.screen_name.encode('utf-8')+'/status/'+str(tweet.id))
 		except tw.TweepError as error:
 			prompt_print("Error occured: %s" % error)
+			
+	def do_tl(self, line):
+		""" Alias of do_timeline """
+		return self.do_timeline(self)
 
 	def do_mentions(self, line):
 		""" Show tweets in which you were mentioned. """
@@ -200,7 +204,7 @@ class TweetuosoCommands(cmd.Cmd):
 			prompt_print("Error occured: %s" % error)
 
 	def do_search(self, q):
-		""" Search Twitter for <query> """
+		""" Search Twitter for <query>. """
 		try:
 			api = auth_()
 			src = api.search(q, rpp=20, result_type="recent")
@@ -213,6 +217,10 @@ class TweetuosoCommands(cmd.Cmd):
 						+ "\n      " + tweet.text.encode('utf-8'))
 		except tw.TweepError as error:
 			prompt_print("Error occured: %s" % error)
+			
+	def do_src(self, q):
+		""" Alias of do_search """
+		return self.do_search(q)
 			
 	def do_trends(self, line):
 		""" Returns the top 10 trending topics for the day. """
@@ -260,6 +268,10 @@ class TweetuosoCommands(cmd.Cmd):
 		except tw.TweepError as error:
 			prompt_print("Error occured: %s" % error)
 			
+	def do_fb(self, line):
+		""" Alias of do_followback """
+		return self.do_followback(self)
+			
 	def do_retweet(self, tweet_id):
 		""" Retweet a tweet by given tweet_id. """
 		try:
@@ -276,7 +288,14 @@ class TweetuosoCommands(cmd.Cmd):
 		except tw.TweepError as error:
 			prompt_print("Error occured: %s" % error)
 			
+	def do_rt(self, tweet_id):
+		""" Alias of do_retweet """
+		return self.do_retweet(tweet_id)
+			
 	def do_stream(self, mode):
+		""" Stream tweets as they are posted to Twitter. """
+		""" <sample> modes streams all tweets. """
+		""" <filter> modes streams tweets containing <query>. """
 		def auth_stream():
 			api = tw.OAuthHandler(keys['consumer_key'], keys['consumer_secret'])
 			api.set_access_token(keys['access_token'], keys['access_secret'])
