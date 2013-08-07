@@ -5,6 +5,7 @@ Version 1.0.4
 
 
 	* Added stream cmd
+	* Added cmd aliases [do_timeline = do_tl]
 
 
 Version 1.0.3
