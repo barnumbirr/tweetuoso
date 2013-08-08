@@ -292,7 +292,7 @@ class TweetuosoCommands(cmd.Cmd):
 		""" Alias of do_retweet """
 		return self.do_retweet(tweet_id)
 			
-	def do_stream(self, mode):
+	def do_stream(self, input):
 		""" Stream tweets as they are posted to Twitter. """
 		""" <sample> modes streams all tweets. """
 		""" <filter> modes streams tweets containing <query>. """
@@ -302,12 +302,13 @@ class TweetuosoCommands(cmd.Cmd):
 			return api
 		try:
 			api = auth_stream()
+			mode = input.split(" ", 1)[0]
 			if mode == 'sample':
 				stream = tw.Stream(api, Listener())
 				stream.sample()
 			if mode == 'filter':
-				track_list = raw_input(Fore.RED + ">> " + Fore.RESET + "Keywords to track (comma separated): ")
-				','.join(track_list)
+				track_list = input.split(" ", 1)[1]
+				track_list = track_list.replace(" ", ",")
 				stream = tw.streaming.Stream(api, Listener())
 				stream.filter(follow=None, track=[track_list])
 		except KeyboardInterrupt:
@@ -352,6 +353,21 @@ class TweetuosoCommands(cmd.Cmd):
 			prompt_print("You successfully archived all of your tweets!")
 		except tw.TweepError as error:
 			prompt_print("Error occured: %s" % error)
+			
+	def do_direct_message(self, input):
+		""" Send @user a direct message. """
+		try:
+			api = auth_()
+			name = input.split(" ", 1)[0]
+			message = input.split(" ", 1)[1]
+			api.send_direct_message(screen_name = name, text = message)
+			prompt_print ("You successfully sent @"+ Fore.RED + name + Fore.RESET + " a message.")
+		except tw.TweepError as error:
+			prompt_print("Error occured: %s" % error)
+			
+	def do_dm(self, input):
+		""" Alias of do_direct_message """
+		return self.do_direct_message(input)
 
 	def do_help(self, line):
 		""" Show detailed help. """
