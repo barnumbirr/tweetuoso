@@ -6,6 +6,8 @@ Version 1.0.4
 
 	* Added stream cmd
 	* Added cmd aliases [do_timeline = do_tl]
+	* added direct_message cmd
+	* fixed fix ugly raw_input() in stream.filter()
 
 
 Version 1.0.3
@@ -17,7 +19,7 @@ Version 1.0.3
 	* Fixed Tweetuoso to work with Twitter API v.1.1
 	* Added trends localization
 	* Added tweets archiving
-	* Changed License form WTFPL to Apache v2.0 License
+	* Changed License from WTFPL to Apache v2.0 License
 	* Added retweet cmd
 	* Added tweet url in timeline
 	* Added user.screen_name to archive file
