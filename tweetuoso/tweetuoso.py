@@ -386,6 +386,7 @@ class TweetuosoCommands(cmd.Cmd):
 		print "  +\tfollowback\t Followback all your followers.             +"
 		print "  +\tarchive\t\t Save all your tweets to a text file.       +"
 		print "  +\tstream\t\t Sample/filter and stream tweets.           +"
+		print "  +\tdirect_message\t Send @user a direct message.               +"
 		print "  +\ttrends\t\t Show today's trends.                       +"
 		print "  +                                                                 +"
 		print "  +     Use 'quit' or 'exit' to leave.                              +"
