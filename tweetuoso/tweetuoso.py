@@ -197,7 +197,7 @@ class TweetuosoCommands(cmd.Cmd):
 				user.description + "\n      " + "Following: " +
 				str(user.friends_count) + " || Followers: " +
 				str(user.followers_count) + " || Tweets: " +
-				str(user.statuses_count) + "|| Listed: " +
+				str(user.statuses_count) + " || Listed: " +
 				str(user.listed_count) + "\n      " +
 				user.location + " || " + str(user.url))
 		except tw.TweepError as error:
@@ -276,8 +276,7 @@ class TweetuosoCommands(cmd.Cmd):
 		""" Retweet a tweet by given tweet_id. """
 		try:
 			api = auth_()
-			retweet = api.retweet(tweet_id)
-			tweet = retweet
+			tweet = api.retweet(tweet_id)
 			tweet.text = tweet.text.replace("\n", " ")
 			print("   @"+ Fore.RED +
 				tweet.user.screen_name.encode('utf-8') +
@@ -354,8 +353,8 @@ class TweetuosoCommands(cmd.Cmd):
 		except tw.TweepError as error:
 			prompt_print("Error occured: %s" % error)
 			
-	def do_direct_message(self, input):
-		""" Send @user a direct message. """
+	def do_send_dm(self, input):
+		""" Send user a direct message. """
 		try:
 			api = auth_()
 			name = input.split(" ", 1)[0]
@@ -365,10 +364,10 @@ class TweetuosoCommands(cmd.Cmd):
 		except tw.TweepError as error:
 			prompt_print("Error occured: %s" % error)
 			
-	def do_dm(self, input):
+	def do_sdm(self, input):
 		""" Alias of do_direct_message """
-		return self.do_direct_message(input)
-
+		return self.do_send_dm(input)
+	
 	def do_help(self, line):
 		""" Show detailed help. """
 		print Fore.RED + "   Commands:\n   _________________________________________________________________"
@@ -386,7 +385,7 @@ class TweetuosoCommands(cmd.Cmd):
 		print "  +\tfollowback\t Followback all your followers.             +"
 		print "  +\tarchive\t\t Save all your tweets to a text file.       +"
 		print "  +\tstream\t\t Sample/filter and stream tweets.           +"
-		print "  +\tdirect_message\t Send @user a direct message.               +"
+		print "  +\tsend_dm\t\t Send @user a direct message.               +"
 		print "  +\ttrends\t\t Show today's trends.                       +"
 		print "  +                                                                 +"
 		print "  +     Use 'quit' or 'exit' to leave.                              +"
