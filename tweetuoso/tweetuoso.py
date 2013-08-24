@@ -6,6 +6,7 @@ import re
 import sys
 import cmd
 import pytz
+import time
 import codecs
 import requests
 import tweepy as tw
@@ -86,7 +87,8 @@ class Listener(tw.StreamListener):
 	def on_error(self, status_code):
 		print "Error occured: %s" % status_code
 		
-	def on_timeout(self):
+	def on_timeout(self, status_code):
+		print "Error occured: %s" % status_code
 		return True
 
 class TweetuosoCommands(cmd.Cmd):
@@ -109,17 +111,20 @@ class TweetuosoCommands(cmd.Cmd):
 			if settings['reversed_timeline'] == True:
 				tl.reverse()
 			for tweet in tl:
+				utc = pytz.utc
+				home_tz = pytz.timezone(settings['timezone'])
+				tweet_time = utc.localize(tweet.created_at).astimezone(home_tz)
 				tweet.text = tweet.text.replace("\n", " ")
 				print("   @" + Fore.RED + tweet.user.screen_name.encode('utf-8')
 						+ Fore.RESET +
-						tweet.created_at.strftime(
+						tweet_time.strftime(
 							Style.DIM +' tweeted on %d/%m/%Y at %H:%M' + Style.RESET_ALL) + "\n      " +
 							tweet.text.encode('utf-8') + "\n      " + 'http://twitter.com/'+tweet.author.screen_name.encode('utf-8')+'/status/'+str(tweet.id))
 		except tw.TweepError as error:
 			prompt_print("Error occured: %s" % error)
 			
 	def do_tl(self, line):
-		""" Alias of do_timeline """
+		""" Alias of do_timeline. """
 		return self.do_timeline(self)
 
 	def do_mentions(self, line):
@@ -130,12 +135,15 @@ class TweetuosoCommands(cmd.Cmd):
 			if settings['reversed_mentions'] == True:
 				mt.reverse()
 			for tweet in mt:
+				utc = pytz.utc
+				home_tz = pytz.timezone(settings['timezone'])
+				tweet_time = utc.localize(tweet.created_at).astimezone(home_tz)
 				tweet.text = tweet.text.replace("\n", " ")
 				print("   @" + Fore.RED + tweet.user.screen_name.encode('utf-8')
 						+ Fore.RESET +
-						tweet.created_at.strftime(
-							Style.DIM +' tweeted on %d/%m/%Y at %H:%M' +
-							Style.RESET_ALL) + "\n      " + tweet.text.encode('utf-8'))
+						tweet_time.strftime(
+							Style.DIM +' tweeted on %d/%m/%Y at %H:%M' + Style.RESET_ALL) + "\n      " +
+							tweet.text.encode('utf-8') + "\n      " + 'http://twitter.com/'+tweet.author.screen_name.encode('utf-8')+'/status/'+str(tweet.id))
 		except tw.TweepError as error:
 			prompt_print("Error occured: %s" % error)
 
@@ -209,17 +217,20 @@ class TweetuosoCommands(cmd.Cmd):
 			api = auth_()
 			src = api.search(q, rpp=20, result_type="recent")
 			for tweet in src:
+				utc = pytz.utc
+				home_tz = pytz.timezone(settings['timezone'])
+				tweet_time = utc.localize(tweet.created_at).astimezone(home_tz)
 				tweet.text = tweet.text.replace("\n", " ")
 				print("   @"+ Fore.RED + tweet.user.screen_name.encode('utf-8') +
 						Fore.RESET +
-						tweet.created_at.strftime(Style.DIM +
+						tweet_time.strftime(Style.DIM +
 								' tweeted on %d/%m/%Y at %H:%M' + Style.RESET_ALL)
 						+ "\n      " + tweet.text.encode('utf-8'))
 		except tw.TweepError as error:
 			prompt_print("Error occured: %s" % error)
 			
 	def do_src(self, q):
-		""" Alias of do_search """
+		""" Alias of do_search. """
 		return self.do_search(q)
 			
 	def do_trends(self, line):
@@ -242,13 +253,15 @@ class TweetuosoCommands(cmd.Cmd):
 			if settings['reversed_stalk'] == True:
 				stk.reverse()
 			for tweet in stk:
+				utc = pytz.utc
+				home_tz = pytz.timezone(settings['timezone'])
+				tweet_time = utc.localize(tweet.created_at).astimezone(home_tz)
 				tweet.text = tweet.text.replace("\n", " ")
-				print("   @"+ Fore.RED +
-					tweet.user.screen_name.encode('utf-8') +
-					Fore.RESET +
-					tweet.created_at.strftime(Style.DIM +
-							   ' tweeted on %d/%m/%Y at %H:%M' + Style.RESET_ALL)
-					+ "\n      " + tweet.text.encode('utf-8'))
+				print("   @" + Fore.RED + tweet.user.screen_name.encode('utf-8')
+						+ Fore.RESET +
+						tweet_time.strftime(
+							Style.DIM +' tweeted on %d/%m/%Y at %H:%M' + Style.RESET_ALL) + "\n      " +
+							tweet.text.encode('utf-8') + "\n      " + 'http://twitter.com/'+tweet.author.screen_name.encode('utf-8')+'/status/'+str(tweet.id))
 		except tw.TweepError as error:
 			prompt_print("Error occured: %s" % error)
 
@@ -269,7 +282,7 @@ class TweetuosoCommands(cmd.Cmd):
 			prompt_print("Error occured: %s" % error)
 			
 	def do_fb(self, line):
-		""" Alias of do_followback """
+		""" Alias of do_followback. """
 		return self.do_followback(self)
 			
 	def do_retweet(self, tweet_id):
@@ -277,19 +290,43 @@ class TweetuosoCommands(cmd.Cmd):
 		try:
 			api = auth_()
 			tweet = api.retweet(tweet_id)
+			utc = pytz.utc
+			home_tz = pytz.timezone(settings['timezone'])
+			tweet_time = utc.localize(tweet.created_at).astimezone(home_tz)
 			tweet.text = tweet.text.replace("\n", " ")
-			print("   @"+ Fore.RED +
-				tweet.user.screen_name.encode('utf-8') +
-				Fore.RESET +
-				tweet.created_at.strftime(Style.DIM +
-						   ' tweeted on %d/%m/%Y at %H:%M' + Style.RESET_ALL)
-				+ "\n      " + tweet.text.encode('utf-8'))
+			print("   @" + Fore.RED + tweet.user.screen_name.encode('utf-8')
+					+ Fore.RESET +
+					tweet_time.strftime(
+						Style.DIM +' tweeted on %d/%m/%Y at %H:%M' + Style.RESET_ALL) + "\n      " +
+						tweet.text.encode('utf-8') + "\n      " + 'http://twitter.com/'+tweet.author.screen_name.encode('utf-8')+'/status/'+str(tweet.id))
 		except tw.TweepError as error:
 			prompt_print("Error occured: %s" % error)
 			
 	def do_rt(self, tweet_id):
-		""" Alias of do_retweet """
+		""" Alias of do_retweet. """
 		return self.do_retweet(tweet_id)
+		
+	def do_my_tweets_rt(self, line):
+		""" Returns user tweets that have been RT. """
+		try:
+			api = auth_()
+			mtrt = api.retweets_of_me()
+			for tweet in mtrt:
+				utc = pytz.utc
+				home_tz = pytz.timezone(settings['timezone'])
+				tweet_time = utc.localize(tweet.created_at).astimezone(home_tz)
+				tweet.text = tweet.text.replace("\n", " ")
+				print("   @" + Fore.RED + tweet.user.screen_name.encode('utf-8')
+						+ Fore.RESET +
+						tweet_time.strftime(
+							Style.DIM +' tweeted on %d/%m/%Y at %H:%M' + Style.RESET_ALL) + "\n      " +
+							tweet.text.encode('utf-8') + "\n      " + 'http://twitter.com/'+tweet.author.screen_name.encode('utf-8')+'/status/'+str(tweet.id))
+		except tw.TweepError as error:
+			prompt_print("Error occured: %s" % error)
+			
+	def do_mtrt(self, line):
+		""" Alias of do_my_tweets_rt. """
+		return self.do_my_tweets_rt(self)
 			
 	def do_stream(self, input):
 		""" Stream tweets as they are posted to Twitter. """
@@ -303,13 +340,15 @@ class TweetuosoCommands(cmd.Cmd):
 			api = auth_stream()
 			mode = input.split(" ", 1)[0]
 			if mode == 'sample':
-				stream = tw.Stream(api, Listener())
+				stream = tw.Stream(api, Listener(), timeout = 50000)
 				stream.sample()
 			if mode == 'filter':
 				track_list = input.split(" ", 1)[1]
 				track_list = track_list.replace(" ", ",")
-				stream = tw.streaming.Stream(api, Listener())
+				stream = tw.streaming.Stream(api, Listener(), timeout = 50000)
 				stream.filter(follow=None, track=[track_list])
+			if mode == '':
+				prompt_print("Missing parameter for function <stream>.")
 		except KeyboardInterrupt:
 			os.system("clear") 
 			stream.disconnect()
@@ -320,30 +359,31 @@ class TweetuosoCommands(cmd.Cmd):
 		""" Duration of operation depends on number of tweets. """
 		try:
 			utc = pytz.utc
-			homeTZ = pytz.timezone(settings['timezone'])
+			home_tz = pytz.timezone(settings['timezone'])
 			status_list = []
-			cur_status_count = 0 
+			current_status_count = 0 
 			api = auth_()
 			statuses = api.user_timeline(count=200, include_rts=True)
-			theUser = statuses[0].author
-			total_status_count = theUser.statuses_count
-			archivefile = settings['archive_path'] + theUser.screen_name + "'s_tweets.txt"
-			prompt_print("Archiving @" + Fore.RED + theUser.screen_name + Fore.RESET + "'s tweets to " + archivefile)
+			auth_user = statuses[0].author
+			total_status_count = auth_user.statuses_count
+			archivefile = settings['archive_path'] + auth_user.screen_name + "'s_tweets.txt"
+			prompt_print("Archiving @" + Fore.RED + auth_user.screen_name + Fore.RESET + "'s tweets to " + archivefile)
 			while statuses != []:
-				cur_status_count = cur_status_count + len(statuses)
+				current_status_count = current_status_count + len(statuses)
 				for status in statuses:
 					status_list.append(status)
-					theMaxId = statuses[-1].id
-					theMaxId = theMaxId - 1
-				statuses = api.user_timeline(count=200, include_rts=True, max_id=theMaxId)
-				prompt_print("%d of %d tweets processed..." % (cur_status_count, total_status_count))
+					max_id = statuses[-1].id
+					max_id = max_id - 1
+				statuses = api.user_timeline(count=200, include_rts=True, max_id=max_id)
+				prompt_print("%d of %d tweets processed..." % (current_status_count, total_status_count))
 			prompt_print("Total Statuses Retrieved: " + Fore.RED + str(len(status_list)) + Fore.RESET)
 			prompt_print("Writing statuses to log file...")
+			time.sleep(2)
 			f = codecs.open(archivefile, 'a', 'utf-8')
 			if settings['reversed_archive'] == True:
-							status_list.reverse()
+				status_list.reverse()
 			for status in status_list:
-				theTime = utc.localize(status.created_at).astimezone(homeTZ)
+				theTime = utc.localize(status.created_at).astimezone(home_tz)
 				f.write('@'+ status.author.screen_name + ' tweeted on ' + theTime.strftime("%d/%m/%Y at %H:%M\n"))
 				f.write('      ' + status.text)
 				f.write('\n      ' + 'http://twitter.com/'+status.author.screen_name+'/status/'+str(status.id)+'\n')
@@ -353,6 +393,10 @@ class TweetuosoCommands(cmd.Cmd):
 		except tw.TweepError as error:
 			prompt_print("Error occured: %s" % error)
 			
+	def do_zip(self, line):
+		""" Alias of do_archive. """
+		return self.do_archive(self)
+
 	def do_send_dm(self, input):
 		""" Send user a direct message. """
 		try:
@@ -365,7 +409,7 @@ class TweetuosoCommands(cmd.Cmd):
 			prompt_print("Error occured: %s" % error)
 			
 	def do_sdm(self, input):
-		""" Alias of do_direct_message """
+		""" Alias of do_direct_message. """
 		return self.do_send_dm(input)
 	
 	def do_help(self, line):
@@ -378,6 +422,7 @@ class TweetuosoCommands(cmd.Cmd):
 		print "  +\tpost\t\t Post new tweet.                            +"
 		print "  +\tdelete\t\t Delete tweet.                              +"
 		print "  +\tretweet\t\t Retweet tweet.                             +"
+		print "  +\tmy_tweets_rt\t Returns user tweets that have been RT.     +"
 		print "  +\tme\t\t Me (Get account info).                     +"
 		print "  +\tsearch\t\t Search for <query>.                        +"
 		print "  +\tfollow\t\t Follow a new user.                         +"

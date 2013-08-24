@@ -6,8 +6,11 @@ Version 1.0.4
 
 	* Added stream cmd
 	* Added cmd aliases [do_timeline = do_tl]
-	* added direct_message cmd
-	* fixed fix ugly raw_input() in stream.filter()
+	* Added direct_message cmd
+	* Fixed fix ugly raw_input() in stream.filter()
+	* Added my_tweets_rt cmd
+	* Added support for pytz
+	* Added on_timeout to stream function
 
 
 Version 1.0.3

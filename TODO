@@ -3,5 +3,6 @@
 ===========================================
 
   * color #hashtag / mentions
-  * add pytz support
+  * stream friends timeline
+  * fix my_tweets_rt to display RT's username
   * ...
