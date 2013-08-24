@@ -4,7 +4,7 @@
 </p>
 =============================
 
-[![Downloads](https://pypip.in/d/tweetuoso/badge.png)](https://crate.io/packages/tweetuoso/)
+[![Downloads](https://pypip.in/d/tweetuoso/badge.png)](https://crate.io/packages/tweetuoso/)[![PyPi Version](https://pypip.in/v/tweetuoso/badge.png)](https://pypi.python.org/pypi/tweetuoso/)
 
 ## Description
 
