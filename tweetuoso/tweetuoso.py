@@ -77,12 +77,15 @@ def auth_():
 class Listener(tw.StreamListener):
 	
 	def on_status(self, tweet):
+		utc = pytz.utc
+		home_tz = pytz.timezone(settings['timezone'])
+		tweet_time = utc.localize(tweet.created_at).astimezone(home_tz)
 		tweet.text = tweet.text.replace("\n", " ")
 		print("   @" + Fore.RED + tweet.user.screen_name.encode('utf-8')
 				+ Fore.RESET +
-				tweet.created_at.strftime(
+				tweet_time.strftime(
 					Style.DIM +' tweeted on %d/%m/%Y at %H:%M' + Style.RESET_ALL) + "\n      " +
-					tweet.text.encode('utf-8') + "\n      " + 'http://twitter.com/'+tweet.author.screen_name.encode('utf-8')+'/status/'+str(tweet.id))
+					tweet.text.encode('utf-8') + "\n      " + 'http://twitter.com/' + tweet.author.screen_name.encode('utf-8') + '/status/'+str(tweet.id))
 							
 	def on_error(self, status_code):
 		print "Error occured: %s" % status_code
@@ -101,7 +104,7 @@ class TweetuosoCommands(cmd.Cmd):
 
 	def default(self, inp):
 		""" Return error if <input> is not a valid command. """
-		print "'" + inp + "'" + " is not a valid command. Try using 'help'."
+		print "<" + inp + ">" + " is not a valid command. Try using <help>."
 
 	def do_timeline(self, line):
 		""" Show current timeline. """
@@ -119,7 +122,7 @@ class TweetuosoCommands(cmd.Cmd):
 						+ Fore.RESET +
 						tweet_time.strftime(
 							Style.DIM +' tweeted on %d/%m/%Y at %H:%M' + Style.RESET_ALL) + "\n      " +
-							tweet.text.encode('utf-8') + "\n      " + 'http://twitter.com/'+tweet.author.screen_name.encode('utf-8')+'/status/'+str(tweet.id))
+							tweet.text.encode('utf-8') + "\n      " + 'http://twitter.com/' + tweet.author.screen_name.encode('utf-8') + '/status/' + str(tweet.id))
 		except tw.TweepError as error:
 			prompt_print("Error occured: %s" % error)
 			
@@ -143,7 +146,7 @@ class TweetuosoCommands(cmd.Cmd):
 						+ Fore.RESET +
 						tweet_time.strftime(
 							Style.DIM +' tweeted on %d/%m/%Y at %H:%M' + Style.RESET_ALL) + "\n      " +
-							tweet.text.encode('utf-8') + "\n      " + 'http://twitter.com/'+tweet.author.screen_name.encode('utf-8')+'/status/'+str(tweet.id))
+							tweet.text.encode('utf-8') + "\n      " + 'http://twitter.com/' + tweet.author.screen_name.encode('utf-8') + '/status/' + str(tweet.id))
 		except tw.TweepError as error:
 			prompt_print("Error occured: %s" % error)
 
@@ -261,7 +264,7 @@ class TweetuosoCommands(cmd.Cmd):
 						+ Fore.RESET +
 						tweet_time.strftime(
 							Style.DIM +' tweeted on %d/%m/%Y at %H:%M' + Style.RESET_ALL) + "\n      " +
-							tweet.text.encode('utf-8') + "\n      " + 'http://twitter.com/'+tweet.author.screen_name.encode('utf-8')+'/status/'+str(tweet.id))
+							tweet.text.encode('utf-8') + "\n      " + 'http://twitter.com/' + tweet.author.screen_name.encode('utf-8') + '/status/' + str(tweet.id))
 		except tw.TweepError as error:
 			prompt_print("Error occured: %s" % error)
 
@@ -298,7 +301,7 @@ class TweetuosoCommands(cmd.Cmd):
 					+ Fore.RESET +
 					tweet_time.strftime(
 						Style.DIM +' tweeted on %d/%m/%Y at %H:%M' + Style.RESET_ALL) + "\n      " +
-						tweet.text.encode('utf-8') + "\n      " + 'http://twitter.com/'+tweet.author.screen_name.encode('utf-8')+'/status/'+str(tweet.id))
+						tweet.text.encode('utf-8') + "\n      " + 'http://twitter.com/' + tweet.author.screen_name.encode('utf-8') + '/status/' + str(tweet.id))
 		except tw.TweepError as error:
 			prompt_print("Error occured: %s" % error)
 			
@@ -320,7 +323,7 @@ class TweetuosoCommands(cmd.Cmd):
 						+ Fore.RESET +
 						tweet_time.strftime(
 							Style.DIM +' tweeted on %d/%m/%Y at %H:%M' + Style.RESET_ALL) + "\n      " +
-							tweet.text.encode('utf-8') + "\n      " + 'http://twitter.com/'+tweet.author.screen_name.encode('utf-8')+'/status/'+str(tweet.id))
+							tweet.text.encode('utf-8') + "\n      " + 'http://twitter.com/' + tweet.author.screen_name.encode('utf-8') + '/status/' + str(tweet.id))
 		except tw.TweepError as error:
 			prompt_print("Error occured: %s" % error)
 			
@@ -386,7 +389,7 @@ class TweetuosoCommands(cmd.Cmd):
 				theTime = utc.localize(status.created_at).astimezone(home_tz)
 				f.write('@'+ status.author.screen_name + ' tweeted on ' + theTime.strftime("%d/%m/%Y at %H:%M\n"))
 				f.write('      ' + status.text)
-				f.write('\n      ' + 'http://twitter.com/'+status.author.screen_name+'/status/'+str(status.id)+'\n')
+				f.write('\n      ' + 'http://twitter.com/' + status.author.screen_name + '/status/' + str(status.id)+'\n')
 				f.write('- - - - - - - -\n\n')
 			f.close()
 			prompt_print("You successfully archived all of your tweets!")
@@ -404,13 +407,32 @@ class TweetuosoCommands(cmd.Cmd):
 			name = input.split(" ", 1)[0]
 			message = input.split(" ", 1)[1]
 			api.send_direct_message(screen_name = name, text = message)
-			prompt_print ("You successfully sent @"+ Fore.RED + name + Fore.RESET + " a message.")
+			prompt_print ("You successfully sent @" + Fore.RED + name + Fore.RESET + " a message.")
 		except tw.TweepError as error:
 			prompt_print("Error occured: %s" % error)
 			
 	def do_sdm(self, input):
 		""" Alias of do_direct_message. """
 		return self.do_send_dm(input)
+		
+	def do_read_dm(self, line):
+		""" Read your direct messages. """
+		try:
+			api = auth_()
+			direct_messages = api.direct_messages()
+			for message in direct_messages:
+				utc = pytz.utc
+				home_tz = pytz.timezone(settings['timezone'])
+				message_time = utc.localize(message.created_at).astimezone(home_tz)
+				message.text = message.text.replace("\n", " ")
+				print("   @" + Fore.RED + message.sender_screen_name.encode('utf-8') + Fore.RESET + message_time.strftime(
+						Style.DIM +' send you a message on %d/%m/%Y at %H:%M' + Style.RESET_ALL) + "\n      " + message.text.encode('utf-8'))
+		except tw.TweepError as error:
+			prompt_print("Error occured: %s" % error)
+	
+	def do_rdm(self, line):
+		""" Alias of do_read_dm. """
+		return self.do_read_dm(self)
 	
 	def do_help(self, line):
 		""" Show detailed help. """
@@ -430,7 +452,8 @@ class TweetuosoCommands(cmd.Cmd):
 		print "  +\tfollowback\t Followback all your followers.             +"
 		print "  +\tarchive\t\t Save all your tweets to a text file.       +"
 		print "  +\tstream\t\t Sample/filter and stream tweets.           +"
-		print "  +\tsend_dm\t\t Send @user a direct message.               +"
+		print "  +\tsend_dm\t\t Send <user> a direct message.              +"
+		print "  +\tread_dm\t\t Read your direct messages.                 +"
 		print "  +\ttrends\t\t Show today's trends.                       +"
 		print "  +                                                                 +"
 		print "  +     Use 'quit' or 'exit' to leave.                              +"
