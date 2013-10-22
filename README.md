@@ -157,7 +157,6 @@ Simply follow the steps above, edit the config.py file to suit your needs and la
 I always like to know what users feel I should improve or add to Tweetuoso. Don't be afraid to get in touch via:
 
 * Twitter   (@c0ding)
-* IRC       (#tweetuoso on irc.freenode.net)
 * Mail      (me@martinsimon.me)
 
 ## Thanks to
