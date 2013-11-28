@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-__appname__ = 'api_rate_limit'
+__appname__ = 'api_rate_limit.py'
 __version__ = "0.3"
 __author__ = "c0ding"
-__licence__ = "Apache v2 License"
+__licence__ = "Apache v2.0 License"
 
 import os
 import tweepy as tw

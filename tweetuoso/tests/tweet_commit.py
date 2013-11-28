@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-__appname__ = 'tweet_commit'
+__appname__ = 'tweet_commit.py'
 __version__ = "0.1"
 __author__ = "c0ding"
-__licence__ = "Apache v2 License"
+__licence__ = "Apache v2.0 License"
 
 import tweepy
 from git import Repo
