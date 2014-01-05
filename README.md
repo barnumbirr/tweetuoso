@@ -162,3 +162,7 @@ I always like to know what users feel I should improve or add to Tweetuoso. Don'
 
 
 * Sven Steinbauer ([Svenito on Github](https://github.com/Svenito))
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/c0ding/tweetuoso/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
