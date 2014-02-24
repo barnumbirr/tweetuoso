@@ -23,13 +23,13 @@ def banner ():
 ##         | | \ \ /\ / / _ \/ _ \ __| | | |/ _ \/ __|/ _ \       ##
 ##         | |  \ V  V /  __/  __/ |_| |_| | |_| \__ \ |_| |      ##
 ##         |_|   \_/\_/ \___|\___|\__|\____|\___/|___/\___/       ##
-##                                                  v.1.0.4       ##
+##                                                  v.1.0.5       ##
 ##                          ˈtwiːt[uoso]                          ##
 ##                                                                ##
 ##        The Twitter Command-line client written in Python       ##
 ##                                                                ##
-##             Made with ♥ by @c0ding, February 2013              ##
-##                Licensed under Apache v2 License                ##
+##               Made with ♥ by @c0ding | 2013-2014               ##
+##                   Licensed under Apache v2.0                   ##
 ####################################################################\n""" +
 Fore.RESET)
 
@@ -49,6 +49,7 @@ def auth():
 			url = auth.get_authorization_url()
 		except tw.TweepError:
 			prompt_print("Error occured: Couldn't get token.")
+			prompt_print("Please review your config file...")
 			return
 
 		prompt_print("Please visit this url to get your access keys:")
@@ -104,7 +105,7 @@ class TweetuosoCommands(cmd.Cmd):
 
 	def default(self, inp):
 		""" Return error if <input> is not a valid command. """
-		print "<" + inp + ">" + " is not a valid command. Try using <help>."
+		prompt_print("<" + inp + ">" + " is not a valid command. Try using <help>.")
 
 	def do_timeline(self, line):
 		""" Show current timeline. """
@@ -152,9 +153,11 @@ class TweetuosoCommands(cmd.Cmd):
 
 	def do_post(self, a):
 		""" Post a tweet. """
+		""" Handles url shortening and tweeting of pictures. """
 		try:
 			api = auth_()
 			url = re.search("(?P<url>https?://[^\s]+)", a)
+			photo = re.search("/[^\s]+", a)
 			if url is not None:
 				try:
 					long_url = url.group("url")
@@ -165,6 +168,12 @@ class TweetuosoCommands(cmd.Cmd):
 					prompt_print("Status updated successfully!")
 				except requests.HTTPError:
 					prompt_print("Error: Unable to shorten URL.")
+			elif photo is not None:
+				photo = ''.join(photo.group())
+				a = a.replace(photo, "")
+				a = a.replace("  ", " ")
+				api.update_with_media(photo, status=a)
+				prompt_print("Status updated successfully!")
 			else:
 				api.update_status(a)
 				prompt_print("Status updated successfully!")
