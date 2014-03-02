@@ -3,7 +3,7 @@
   <img src="https://raw.github.com/c0ding/tweetuoso/master/tweetuoso/doc/tweetuoso.banner.png" alt="Tweetuoso" title="Tweetuoso">
 </p>
 =============================
-[![PyPI version](https://badge.fury.io/py/tweetuoso.png)](http://badge.fury.io/py/tweetuoso)
+[![Downloads](https://pypip.in/d/tweetuoso/badge.png)](https://crate.io/packages/tweetuoso/)   [![PyPi Version](https://pypip.in/v/tweetuoso/badge.png)](https://pypi.python.org/pypi/tweetuoso/)
 
 ## Description
 
