@@ -3,7 +3,7 @@
   <img src="https://raw.github.com/c0ding/tweetuoso/master/tweetuoso/doc/tweetuoso.banner.png" alt="Tweetuoso" title="Tweetuoso">
 </p>
 =============================
-[![Downloads](http://img.shields.io/pypi/dm/tweetuoso.svg)](https://pypi.python.org/pypi/tweetuoso/)   [![PyPi Version](http://img.shields.io/pypi/v/tweetuoso.svg)](https://pypi.python.org/pypi/tweetuoso/)   [![Release Version](http://img.shields.io/github/release/c0ding/tweetuoso.svg)](https://github.com/c0ding/tweetuoso/releases)
+[![PyPi Version](http://img.shields.io/pypi/v/tweetuoso.svg)](https://pypi.python.org/pypi/tweetuoso/)   [![Downloads](http://img.shields.io/pypi/dm/tweetuoso.svg)](https://pypi.python.org/pypi/tweetuoso/)   [![Release Version](http://img.shields.io/github/release/c0ding/tweetuoso.svg)](https://github.com/c0ding/tweetuoso/releases)
 
 ## Description
 
