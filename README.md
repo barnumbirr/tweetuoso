@@ -151,14 +151,17 @@ Simply follow the steps above, edit the config.py file to suit your needs and la
    limitations under the License.
 
 ```
-## Community
-
-I always like to know what users feel I should improve or add to Tweetuoso. Don't be afraid to get in touch via:
-
-* Twitter   (@c0ding)
-* Mail      (me@martinsimon.me)
 
 ## Thanks to
 
-
 * Sven Steinbauer ([Svenito on Github](https://github.com/Svenito))
+
+## Buy me a coffee?
+
+If you feel like buying me a coffee (or a beer?), donations are welcome:
+
+```
+WDC : WbcWJzVD8yXt3yLnnkCZtwQo4YgSUdELkj
+HBN : F2Zs4igv8r4oJJzh4sh4bGmeqoUxLQHPki
+DOGE: DRBkryyau5CMxpBzVmrBAjK6dVdMZSBsuS
+```
