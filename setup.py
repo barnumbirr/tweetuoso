@@ -12,9 +12,8 @@ setup(
     author_email='me@martinsimon.me',
     license = "Apache v2.0 License",
     packages = ['tweetuoso'],
-    scripts = ['tweetuoso/tweetuoso.py', 'tweetuoso/config.py'],
     description = 'Tweetuoso is a very light Twitter Command-line client developed in Python.',
-    long_description=open('README.md').read(),
+    long_description = file('README.md','r').read(),
     keywords = 'twitter tweepy command-line tweetuoso',
     requires=[
         'colorama (==0.2.5)',
